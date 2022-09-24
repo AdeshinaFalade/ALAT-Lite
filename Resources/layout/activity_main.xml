@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@drawable/loginBackground"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/alatlogo"
+            android:contentDescription="description" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back!"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="19dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="19sp"
+            />
+   
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:layout_marginTop="85dp"
+            android:textStyle="bold"
+                android:textColor="@android:color/black"
+            android:textSize="15sp"
+            />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:backgroundTint="@android:color/white"
+            android:hint="Email"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:inputType="textWebEmailAddress"
+            android:textSize="15sp"
+            android:background="@drawable/edtbackground"
+            android:layout_height="47dp"/>
+   
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+    
+        />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="10dp"
+            app:hintEnabled="false"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:backgroundTint="@android:color/white"
+                android:hint="Password"
+                android:textSize="15sp"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edtBackground"
+                android:layout_height="47dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Login"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:background="@drawable/btnBackground"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:id="@+id/btnLogin" />
+
+        <TextView
+            android:text="Forgot Password?"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/childImage"
+            android:clickable="true"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/rhoyal"
+            android:contentDescription="description" 
+          />
+
+        <TextView
+            android:text="help@alat.ng"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="0700 2255 2528"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+    
+            <TextView
+                android:text="Don't have an account"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1" />
+
+            <TextView
+                android:text=" Sign-up"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/textView1"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/back"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView1" />
+
+</RelativeLayout>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/royakkiddiesToolbar"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:layout_height="40dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="20dp">
+
+        <TextView
+            android:text="Select Account"
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:layout_gravity="left"
+            android:layout_marginLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:id="@+id/txtaccts" />
+
+        <TextView
+            android:text="Swipe"
+            android:textSize="10sp"
+
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/swipe"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/Rectangle"
+        android:layout_height="185dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+
+             <TextView
+                android:id="@+id/txtWardNameLabel"
+                android:text="Name"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardName"
+                android:text="Bruce Lee"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardNameLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardStatusLabel"
+                android:text="Status"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardStatus"
+                android:text="Active"
+                
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtWardStatusLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtWardBalLabel"
+                android:text="Balance"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardBalance"
+                android:text="N20,332.25"
+                android:textSize="23sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardBalLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            </RelativeLayout>
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtWardAcctNoLabel"
+                android:text="Account Number"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardAcctNumber"
+                android:text="0237584763"
+                android:textSize="13sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardAcctNoLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:id="@+id/txtWardTypeLabel"
+                android:text="Type"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardType"
+                android:text="Royal Kiddies Account"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtWardTypeLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+            
+        
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp">
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:text="Fund Account"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:background="@drawable/btnBackground"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:id="@+id/btnFundWard" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Transaction History"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:background="@drawable/btnBackground"
+            android:backgroundTint="@color/colorEdtBackground"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:id="@+id/btnWardTransactionHistory" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Maintenance"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:background="@drawable/btnBackground"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:id="@+id/btnMaintenance" />
+    </LinearLayout>
+
+    
+
+</LinearLayout>

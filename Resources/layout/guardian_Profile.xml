@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/profilecircle"/>
+
+            <TextView
+                android:text="Hi, Chichi"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:typeface="sans"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:id="@+id/txtCustomerName" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/notification"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="20dp">
+
+        <TextView
+            android:text="Account(s)"
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:layout_gravity="left"
+            android:layout_marginLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:id="@+id/txtaccts" />
+
+        <TextView
+            android:text="View All Accounts"
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/Rectangle"
+        android:layout_height="185dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtBalLabel"
+                android:text="Balance"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtGuardianBalance"
+                android:text="N390,909.89"
+                android:textSize="23sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtBalLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/imgVisibility"
+                android:layout_width="30dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:layout_below="@+id/txtBalLabel"
+                android:layout_toRightOf="@+id/txtGuardianBalance"
+                android:layout_height="15dp"
+                android:src="@drawable/baseline_visibility_20"/>
+
+            <TextView
+                android:id="@+id/txtStatusLabel"
+                android:text="Status"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:text="Active"
+                
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtStatusLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtAcctNoLabel"
+                android:text="Account Number"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtAcctNumber"
+                android:text="0237584763"
+                android:textSize="13sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtAcctNoLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:id="@+id/txtTypeLabel"
+                android:text="Type"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtType"
+                android:text="Tier 3 Savings Account"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtTypeLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+            
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+             <com.google.android.material.button.MaterialButton
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Fund Account"
+                android:background="@drawable/btnbackground"
+                android:textColor="@android:color/white"
+                android:id="@+id/btnFund"
+                app:backgroundTint="@color/colorPrimary"
+                android:textSize="10sp"
+                android:elevation="10dp"
+                android:layout_marginRight="20dp"
+                android:textAllCaps="false"
+                android:layout_weight="1"/>
+             <com.google.android.material.button.MaterialButton
+                android:layout_width="120dp"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/colorPrimary"
+                android:elevation="10dp"
+                android:background="@drawable/btnbackground"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:text="Transaction History"
+                android:id="@+id/btnHistory"
+                android:layout_weight="1"/>
+
+         </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="20dp">
+
+        <TextView
+            android:text="My Favourite"
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:textStyle="bold"
+            android:layout_gravity="left"
+            android:layout_marginLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp" />
+
+        <TextView
+            android:text="Edit Favourite"
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="sans"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:rowCount="2"
+        android:layout_marginTop="20dp"
+        android:columnCount="2"
+        android:padding="15dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridLayout2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout5">
+
+            <ImageView
+                android:src="@drawable/sendmoney"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/imageView6" 
+                    />
+            <TextView
+                android:text="Send Money"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout6">
+
+            <ImageView
+                android:src="@drawable/createacct"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/imageView7" 
+                    />
+            <TextView
+                android:text="Create Account"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout7">
+
+            <ImageView
+                android:src="@drawable/airtime"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/imageView8" 
+                    />
+            <TextView
+                android:text="Airtime And Data"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout8">
+
+            <ImageView
+                android:src="@drawable/rhoyalkid"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/imageView9" 
+                    />
+            <TextView
+                android:text="Rhoyal Kiddies\nAccount"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8" />
+
+        </LinearLayout>
+
+
+    </GridLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="25dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/house"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Home"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="25dp"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/payment"
+                    android:layout_width="33dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_height="40dp"/>
+
+                <TextView
+                    android:text="Payment"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Loans"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/card"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Cards"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/refresh"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Goals"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

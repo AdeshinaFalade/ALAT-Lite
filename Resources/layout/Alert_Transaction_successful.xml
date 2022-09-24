@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    android:minWidth="300dp">
+
+
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/alatlogo"/>
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Transaction Was Succesful"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="40dp"
+            android:gravity="center_horizontal"
+            android:textSize="15sp"
+            />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="View Receipt"
+                android:background="@drawable/btnbackground"
+                android:textColor="@android:color/white"
+                app:backgroundTint="#C51353"
+                android:textSize="10sp"
+                android:elevation="10dp"
+                android:layout_marginRight="20dp"
+                android:textAllCaps="false"/>
+
+             <com.google.android.material.button.MaterialButton
+                android:layout_width="120dp"
+                android:textAllCaps="false"
+                app:backgroundTint="#C51353"
+                android:elevation="10dp"
+                android:background="@drawable/btnbackground"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:text="Share Receipt"/>
+
+    </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="120dp"
+                android:textAllCaps="false"
+                app:backgroundTint="#C51353"
+                android:elevation="10dp"
+                android:background="@drawable/btnbackground"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:layout_gravity="center"
+                android:text="Save beneficiary"/>
+
+
+</LinearLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/maintenanceToolbar"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:layout_height="40dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp">
+    
+        <RelativeLayout
+            android:id="@+id/btnStandingOrder" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgStandingOrder"
+                android:src="@drawable/standing"
+                android:layout_centerVertical="true"
+                android:background="@drawable/blackrect"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <ImageView
+                android:src="@drawable/whitearrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <TextView
+            android:text="Standing Order"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@id/imgStandingOrder"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"/>
+        
+        
+        
+        </RelativeLayout>
+    
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="60dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
+        android:elevation="10dp"
+        android:layout_marginTop="30dp">
+    
+        <RelativeLayout
+            android:id="@+id/btnSetLimits" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgSetLimits"
+                android:src="@drawable/candle"
+                android:layout_centerVertical="true"
+                android:background="@drawable/blackrect"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <ImageView
+                android:src="@drawable/whitearrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <TextView
+            android:text="Set Limits"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@id/imgSetLimits"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"/>
+        
+        
+        
+        </RelativeLayout>
+    
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="60dp"
+        android:elevation="10dp">
+    
+        <RelativeLayout
+            android:id="@+id/btnAcctStatement" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgAcctStatement"
+                android:src="@drawable/note2"
+                android:layout_centerVertical="true"
+                android:background="@drawable/blackrect"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <ImageView
+                android:src="@drawable/whitearrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <TextView
+            android:text="Account Statement"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@id/imgAcctStatement"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"/>
+        
+        
+        
+        </RelativeLayout>
+    
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="30dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="60dp"
+        android:elevation="10dp">
+    
+        <RelativeLayout
+            android:id="@+id/btnRestrictAcct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/RestrictAcct"
+                android:src="@drawable/restrict"
+                android:layout_centerVertical="true"
+                android:background="@drawable/blackrect"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <ImageView
+                android:src="@drawable/whitearrow"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+
+             <TextView
+                android:text="Restrict Account"
+                android:textSize="13sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/RestrictAcct"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"/>
+        
+        
+        
+        </RelativeLayout>
+    
+    </androidx.cardview.widget.CardView>
+        
+
+   
+
+</LinearLayout>

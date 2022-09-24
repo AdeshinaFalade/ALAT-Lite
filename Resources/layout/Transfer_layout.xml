@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="30dp"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/transferToolbar"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:layout_height="40dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        android:padding="15dp"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Bank"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+
+        <Spinner
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorEdtBackground"
+                android:background="@drawable/edtbackground"
+                android:layout_height="47dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/spinner1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Number"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+
+            <EditText
+                android:id="@+id/edtAcctNum"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorEdtBackground"
+                android:hint="2374537472"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:inputType="number"
+                android:textSize="15sp"
+                android:background="@drawable/edtbackground"
+                android:layout_height="47dp"/>
+
+             <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Name"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+
+        <EditText
+            android:id="@+id/edtAcctName"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/colorEdtBackground"
+            android:hint="First Name and Last name"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimary"
+            android:paddingLeft="10dp"
+            android:inputType="textPersonName"
+            android:textSize="15sp"
+            android:background="@drawable/edtbackground"
+            android:layout_height="47dp"/>
+
+             <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amount"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+
+        <EditText
+            android:id="@+id/edtTransAmount"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/colorEdtBackground"
+            android:hint="N50,000"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimary"
+            android:paddingLeft="10dp"
+            android:inputType="numberDecimal"
+            android:textSize="15sp"
+            android:background="@drawable/edtbackground"
+            android:layout_height="47dp"/>
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="10dp"
+            app:hintEnabled="false"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtTransferPassword"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorEdtBackground"
+                android:hint="Password"
+                android:textSize="15sp"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edtBackground"
+                android:layout_height="47dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:text="Transfer"
+                android:layout_gravity="right"
+                android:layout_marginTop="30dp"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:background="@drawable/btnBackground"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:id="@+id/btnTransfer" />
+    
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

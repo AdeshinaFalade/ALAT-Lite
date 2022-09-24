@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:minWidth="300dp"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/alatlogo"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Account Created Successfully.\nCheck Your Email For\nFurther Instructions"
+        android:textColor="@android:color/white"
+        android:id="@+id/txtDialog"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:textSize="15sp"
+            />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="120dp"
+        android:textAllCaps="false"
+        android:id="@+id/btnDone"
+        app:backgroundTint="#C51353"
+        android:layout_marginTop="40dp"
+        android:elevation="10dp"
+        android:background="@drawable/btnbackground"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:layout_gravity="center"
+        android:text="Done"/>
+
+
+</LinearLayout>

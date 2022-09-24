@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:backgroundTint="@color/rechargeBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back_arrow"
+            android:src="@drawable/back_arrow"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="30dp"
+            android:layout_height="50dp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:text="Airtime Recharge"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="30sp"
+             android:layout_width="300dp"
+             android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="SELECT NETWORK"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+ 
+<androidx.appcompat.widget.AppCompatSpinner
+       android:id="@+id/network"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:textColor="@color/black"
+         android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+     <androidx.appcompat.widget.AppCompatTextView
+        android:text="PHONE NUMBER"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/phoneNoLayout"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    >
+
+    <com.google.android.material.textfield.TextInputEditText
+       android:id="@+id/phone_no"
+            android:paddingLeft="10dp"
+        android:hint="08011111111"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+</com.google.android.material.textfield.TextInputLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="Recharge my phone number"
+        android:textColor="@color/recharge"
+        android:lineSpacingExtra="4sp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+     <androidx.appcompat.widget.AppCompatTextView
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="AMOUNT"
+        android:textSize="15sp"        
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+     <com.google.android.material.textfield.TextInputLayout
+       
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/amount"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:hint="1000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+</com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="Balance: ₦100,000"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+     <androidx.appcompat.widget.AppCompatTextView
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="PIN"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+       
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    >
+
+    <com.google.android.material.textfield.TextInputEditText
+         android:id="@+id/pin"
+        android:paddingLeft="10dp"
+        android:inputType="numberPassword"
+        android:hint="****"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+</com.google.android.material.textfield.TextInputLayout>
+
+<com.google.android.material.button.MaterialButton
+        android:id="@+id/recharge"
+        android:text="Recharge"
+        android:backgroundTint="@color/recharge"
+        android:textAllCaps="false"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
+<androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnHome"
+        android:layout_marginTop="100dp"
+        android:baselineAlignBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/home_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+</LinearLayout>

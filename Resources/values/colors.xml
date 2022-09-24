@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#AB2656</color>
+    <color name="colorPrimaryDark">#F9DCE6</color>
+    <color name="colorAccent">#AB2656</color>
+	<color name="colorBackground">#FFF4F4</color>
+	<color name="colorEdtBackground">#F9DCE6</color>
+	<color name="welcomeBack">#A1121B</color>
+	<color name="background">#ffffff</color>
+	<color name="emailColor">#555555</color>
+	<color name="buttonColor">#C41F29</color>
+	<color name="black">#000000</color>
+	<color name="dashboardBg">#FFF4F4</color>
+	<color name="red">#ff0000</color>
+	<color name="white">#ffffff</color>
+	<color name="recharge">#9a0d35</color>
+	<color name="rechargeBg">#FFF4F4</color>
+</resources>

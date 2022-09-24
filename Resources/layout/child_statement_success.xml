@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="300dp"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:src="@drawable/child_recharge_success"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="Request Approved"
+        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="Statement will be sent to your mail shortly."
+        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton
+        android:text="Done"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/recharge"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/rechargeBg"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
