@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALAT Wema BIT", "ALAT Wema BIT.csproj", "{BAD176A6-47F0-4959-B702-F76B06D51515}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALAT LITE", "ALAT LITE.csproj", "{BAD176A6-47F0-4959-B702-F76B06D51515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
