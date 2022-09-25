@@ -82,6 +82,7 @@
     <Compile Include="Activities\SetLimitActivity.cs" />
     <Compile Include="Activities\StandingOrderActivity.cs" />
     <Compile Include="Activities\TransferActivity.cs" />
+    <Compile Include="Activities\WardDetailsActivity.cs" />
     <Compile Include="Fragments\AcctCreatedAlertFrag.cs" />
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
     <Compile Include="Fragments\AlertDialogFragment.cs" />
@@ -110,9 +111,12 @@
     <AndroidResource Include="Resources\drawable\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\loginBackground.xml" />
@@ -428,6 +432,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\add_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\file_paths.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

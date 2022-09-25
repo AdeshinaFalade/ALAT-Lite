@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Ward's Details"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:gravity="center_horizontal"
         android:textSize="15sp"/>
 
@@ -147,7 +148,7 @@
             android:backgroundTint="@color/colorEdtBackground"
             android:layout_width="match_parent"
             android:layout_height="47dp"
-            android:id="@+id/btnStartDate" />
+            android:id="@+id/btnDOB" />
 
              <TextView
             android:layout_width="match_parent"
@@ -159,7 +160,7 @@
             android:textSize="15sp"
             />
             <EditText
-                android:id="@+id/edtAcctNum"
+                android:id="@+id/edtWardEmail"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="Email"
@@ -175,17 +176,56 @@
             android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
             android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_alignParentLeft="true"
+
+               
+                <LinearLayout 
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passport"
+                    android:layout_above="@+id/imgAttachPassport"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    />
+                    <ImageView
+                    android:id="@+id/imgAttachPassport"
+                    android:layout_width="wrap_content"
+                            android:clickable="true"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
 
-                 <ImageView
-                     android:layout_alignParentRight="true"
+                </LinearLayout>
+
+                <LinearLayout 
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="wrap_content">
+
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Birth Certificate"
+                    android:layout_above="@+id/imgAttachPassport"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    />
+                    <ImageView
+                    android:id="@+id/imgAttachBirthCert"
+                            android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
+
+                </LinearLayout>
         
         </RelativeLayout>
 
@@ -193,7 +233,7 @@
             <com.google.android.material.button.MaterialButton
                 android:text="Next"
                 android:layout_gravity="right"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@android:color/white"
                 android:textAllCaps="false"
                 android:textSize="15sp"
@@ -201,7 +241,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:id="@+id/btnTransfer" />
+                android:id="@+id/btnNext" />
 
 
     

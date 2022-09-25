@@ -19,6 +19,7 @@ namespace ALAT_Lite.Activities
     public class CreateAccount : AppCompatActivity
     {
         Toolbar toolbar;
+        RelativeLayout btnRoyalKiddiesAcct;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,14 +27,20 @@ namespace ALAT_Lite.Activities
             // Create your application here
             SetContentView(Resource.Layout.create_new_acct_layout);
             toolbar = FindViewById<Toolbar>(Resource.Id.createAcctToolbar);
+            btnRoyalKiddiesAcct = FindViewById<RelativeLayout>(Resource.Id.btnRoyalKiddiesAcct);
 
             //setup toolbar
-            
+
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Create New Account";
             ActionBar actionBar = SupportActionBar;
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
+
+            btnRoyalKiddiesAcct.Click += (sender, e) => {
+                Intent intent = new Intent(this, typeof(WardDetailsActivity));
+                StartActivity(intent);
+            };
 
         }
 

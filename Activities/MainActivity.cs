@@ -18,7 +18,6 @@ namespace ALAT_Lite
     public class MainActivity : AppCompatActivity
     {
         EditText email;
-        AppCompatTextView emailError, passwordError;
         EditText password;
         AppCompatButton login;
         ImageView childImage;
@@ -33,44 +32,33 @@ namespace ALAT_Lite
             email = FindViewById<EditText>(Resource.Id.edtEmail);
             password = FindViewById<EditText>(Resource.Id.edtPassword);
             login = FindViewById<AppCompatButton>(Resource.Id.btnLogin);
-            emailError = FindViewById<AppCompatTextView>(Resource.Id.mailError);
-            passwordError = FindViewById<AppCompatTextView>(Resource.Id.passwordError);
             login.Click += Login_Click;
 
         }
 
-        private bool VerifyInput()
+        private void Login_Click(object sender, System.EventArgs e)
         {
             var userEmail = email.Text;
             var userPassword = password.Text;
             if (string.IsNullOrEmpty(userEmail))
             {
-                emailError.Visibility = ViewStates.Visible;
-                return false;
+                Toast.MakeText(this, "Email is required", ToastLength.Short).Show();
+                return;
             }
-            if (string.IsNullOrEmpty(userPassword))
+            else if (string.IsNullOrEmpty(userPassword))
             {
-                passwordError.Visibility = ViewStates.Visible;
-                return false;
+                Toast.MakeText(this, "Password is required", ToastLength.Short).Show();
+                return;
             }
             else if (!Android.Util.Patterns.EmailAddress.Matcher(userEmail).Matches())
             {
-                emailError.Text = "Invalid Email Address";
-                emailError.Visibility = ViewStates.Visible;
-                return false;
+                Toast.MakeText(this, "Invalid Email Address", ToastLength.Short).Show();
+                return;
             }
-            emailError.Visibility = ViewStates.Invisible;
-            emailError.Visibility = ViewStates.Invisible;
-            return true;
-        }
 
-        private void Login_Click(object sender, System.EventArgs e)
-        {
-            if (VerifyInput())
-            {
-                Intent intent = new Intent(this, typeof(GuardianActivity));
-                StartActivity(intent); 
-            }
+            Intent intent = new Intent(this, typeof(GuardianActivity));
+            StartActivity(intent); 
+            
         }
         private void ChildImage_Click(object sender, System.EventArgs e)
         {
