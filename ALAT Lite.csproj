@@ -294,7 +294,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Transfer_layout.xml" />
     <AndroidResource Include="Resources\layout\child_login.xml">
-
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -309,7 +308,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\SetLimitLayout.xml"/>
+    <AndroidResource Include="Resources\layout\SetLimitLayout.xml" />
     <AndroidResource Include="Resources\drawable\alat_logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +417,17 @@
     <AndroidResource Include="Resources\layout\child_statement_success.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\WardDetailsLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add_photo_alternate_24.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add_image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

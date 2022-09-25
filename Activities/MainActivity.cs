@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
@@ -17,6 +18,7 @@ namespace ALAT_Lite
     public class MainActivity : AppCompatActivity
     {
         EditText email;
+        AppCompatTextView emailError, passwordError;
         EditText password;
         AppCompatButton login;
         ImageView childImage;
@@ -31,14 +33,44 @@ namespace ALAT_Lite
             email = FindViewById<EditText>(Resource.Id.edtEmail);
             password = FindViewById<EditText>(Resource.Id.edtPassword);
             login = FindViewById<AppCompatButton>(Resource.Id.btnLogin);
+            emailError = FindViewById<AppCompatTextView>(Resource.Id.mailError);
+            passwordError = FindViewById<AppCompatTextView>(Resource.Id.passwordError);
             login.Click += Login_Click;
 
         }
 
+        private bool VerifyInput()
+        {
+            var userEmail = email.Text;
+            var userPassword = password.Text;
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                emailError.Visibility = ViewStates.Visible;
+                return false;
+            }
+            if (string.IsNullOrEmpty(userPassword))
+            {
+                passwordError.Visibility = ViewStates.Visible;
+                return false;
+            }
+            else if (!Android.Util.Patterns.EmailAddress.Matcher(userEmail).Matches())
+            {
+                emailError.Text = "Invalid Email Address";
+                emailError.Visibility = ViewStates.Visible;
+                return false;
+            }
+            emailError.Visibility = ViewStates.Invisible;
+            emailError.Visibility = ViewStates.Invisible;
+            return true;
+        }
+
         private void Login_Click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(GuardianActivity));
-            StartActivity(intent);
+            if (VerifyInput())
+            {
+                Intent intent = new Intent(this, typeof(GuardianActivity));
+                StartActivity(intent); 
+            }
         }
         private void ChildImage_Click(object sender, System.EventArgs e)
         {

@@ -49,12 +49,22 @@
             android:layout_width="match_parent"
             android:backgroundTint="@android:color/white"
             android:hint="Email"
+            android:imeOptions="actionNext"
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:inputType="textWebEmailAddress"
             android:textSize="15sp"
             android:background="@drawable/edtbackground"
             android:layout_height="47dp"/>
+        
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mailError"
+            android:textSize="10sp"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:text="Email field cannot be empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
    
 
         <TextView
@@ -80,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:backgroundTint="@android:color/white"
                 android:hint="Password"
+                android:imeOptions="actionNext"
                 android:textSize="15sp"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
@@ -87,6 +98,15 @@
                 android:layout_height="47dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/passwordError"
+            android:visibility="gone"
+            android:textSize="10sp"
+            android:textColor="@color/red"
+            android:text="Password field cannot be empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:text="Login"
