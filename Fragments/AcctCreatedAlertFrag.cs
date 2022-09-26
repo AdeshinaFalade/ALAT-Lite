@@ -25,7 +25,7 @@ namespace ALAT_Lite.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            return inflater.Inflate(Resource.Layout.AcctStatementAlertLayout, container, false);
+            return inflater.Inflate(Resource.Layout.AccountCreatedAlert, container, false);
 
             return base.OnCreateView(inflater, container, savedInstanceState);
         }

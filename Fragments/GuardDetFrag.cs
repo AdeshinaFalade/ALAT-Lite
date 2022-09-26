@@ -91,7 +91,13 @@ namespace ALAT_Lite.Fragments
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            
+            ShowAlert();
+        }
+        void ShowAlert()
+        {
+            var alertFrag = new AcctCreatedAlertFrag();
+            var trans = FragmentManager.BeginTransaction();
+            alertFrag.Show(trans, "Dialog");
         }
 
         async void TakePhoto(ImageView imageView)
