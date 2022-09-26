@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ward's Details"
+        android:text="Guardian's Details"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
@@ -49,7 +49,7 @@
             android:textSize="15sp"
             />
             <EditText
-                android:id="@+id/edtWardFirstName"
+                android:id="@+id/edtGuardFirstName"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="First Name"
@@ -74,7 +74,7 @@
             />
 
             <EditText
-                android:id="@+id/edtWardlastName"
+                android:id="@+id/edtGuardlastName"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="Last Name"
@@ -97,7 +97,7 @@
             />
 
         <EditText
-            android:id="@+id/edtWardMiddleName"
+            android:id="@+id/edtGuardMiddleName"
             android:layout_width="match_parent"
             android:backgroundTint="@color/colorEdtBackground"
             android:hint="Middle Name"
@@ -109,48 +109,54 @@
             android:background="@drawable/edtbackground"
             android:layout_height="47dp"/>
 
-             <TextView
+            <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender"
+            android:text="BVN"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            />
+            <EditText
+                android:id="@+id/edtBVN"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorEdtBackground"
+                android:hint="BVN"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:inputType="number"
+                    android:maxLength="11"
+                android:textSize="15sp"
+                android:background="@drawable/edtbackground"
+                android:layout_height="47dp"/>
+
+        
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             />
 
-        <Spinner
-                android:layout_marginTop="5dp"
+            <EditText
+                android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
-                android:background="@drawable/edtbackground"
-                android:layout_height="47dp"
+                android:hint="Adress"
+                    android:maxLength="30"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
-                android:id="@+id/spinner3" />
-
-            <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Date of Birth"
-           android:layout_marginTop="5dp"
-           android:textStyle="bold"
-           android:textColor="@color/colorPrimary"
-           android:textSize="15sp"
-            />
-
-            <androidx.appcompat.widget.AppCompatButton
-            android:hint="DD/MM/YY"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:textAlignment="viewStart"
-            android:paddingLeft="10dp"
-            android:textSize="15sp"
-            android:background="@drawable/btnBackground"
-            android:backgroundTint="@color/colorEdtBackground"
-            android:layout_width="match_parent"
-            android:layout_height="47dp"
-            android:id="@+id/btnDOB" />
+                android:paddingLeft="10dp"
+                android:inputType="textPersonName"
+                android:textSize="15sp"
+                android:background="@drawable/edtbackground"
+                android:layout_height="47dp"/>
 
              <TextView
             android:layout_width="match_parent"
@@ -162,7 +168,7 @@
             android:textSize="15sp"
             />
             <EditText
-                android:id="@+id/edtWardEmail"
+                android:id="@+id/edtGuardEmail"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="Email"
@@ -194,7 +200,7 @@
                     android:textSize="15sp"
                     />
                     <ImageView
-                    android:id="@+id/imgAttachPassport"
+                    android:id="@+id/imgAttachGuardPassport"
                     android:layout_width="120dp"
                     android:clickable="true"
                     android:layout_marginTop="5dp"
@@ -212,13 +218,13 @@
                     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Birth Certificate"
+                    android:text="Valid ID"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     />
                     <ImageView
-                    android:id="@+id/imgAttachBirthCert"
+                    android:id="@+id/imgAttachID"
                             android:clickable="true"
                     android:layout_width="150dp"
                     android:layout_marginTop="5dp"
@@ -231,7 +237,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:text="Next"
+                android:text="Submit"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
                 android:textColor="@android:color/white"
@@ -241,7 +247,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:id="@+id/btnNext" />
+                android:id="@+id/btnSubmit" />
 
 
     

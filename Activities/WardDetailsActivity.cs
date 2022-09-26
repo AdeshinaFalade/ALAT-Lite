@@ -42,7 +42,7 @@ namespace ALAT_Lite.Activities
             // Create your application here
             SetContentView(Resource.Layout.WardDetailsLayout);
             toolbar = FindViewById<Toolbar>(Resource.Id.wardDetToolbar);
-            frameLayout = FindViewById<FrameLayout>(Resource.Id.frameLayout1);
+            //frameLayout = FindViewById<FrameLayout>(Resource.Id.frameLayout1);
             //spinner = FindViewById<Spinner>(Resource.Id.spinner3);
             //btnDOB = FindViewById<AppCompatButton>(Resource.Id.btnDOB);
             //imgAttachPassport = FindViewById<ImageView>(Resource.Id.imgAttachPassport);

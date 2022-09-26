@@ -87,6 +87,7 @@
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
     <Compile Include="Fragments\AlertDialogFragment.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
+    <Compile Include="Fragments\GuardDetFrag.cs" />
     <Compile Include="Fragments\RestrictAlertFrag.cs" />
     <Compile Include="Fragments\SetLimitAlertFrag.cs" />
     <Compile Include="Fragments\StandingOrderAlertFragment.cs" />
@@ -439,6 +440,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\WardFragLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\GuardDetailsFragLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
