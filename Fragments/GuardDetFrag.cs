@@ -39,7 +39,7 @@ namespace ALAT_Lite.Fragments
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            View view = inflater.Inflate(Resource.Layout.WardFragLayout, container, false);
+            View view = inflater.Inflate(Resource.Layout.GuardDetailsFragLayout, container, false);
 
 
             btnSubmit = view.FindViewById<MaterialButton>(Resource.Id.btnSubmit);

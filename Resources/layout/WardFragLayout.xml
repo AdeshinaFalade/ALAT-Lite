@@ -182,7 +182,7 @@
                
                 <LinearLayout 
                     android:orientation="vertical"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -195,7 +195,7 @@
                     />
                     <ImageView
                     android:id="@+id/imgAttachPassport"
-                    android:layout_width="120dp"
+                    android:layout_width="match_parent"
                     android:clickable="true"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                     <ImageView
                     android:id="@+id/imgAttachBirthCert"
                             android:clickable="true"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
@@ -233,7 +233,7 @@
             <com.google.android.material.button.MaterialButton
                 android:text="Next"
                 android:layout_gravity="right"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:textColor="@android:color/white"
                 android:textAllCaps="false"
                 android:textSize="15sp"

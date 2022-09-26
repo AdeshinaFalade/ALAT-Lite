@@ -58,6 +58,7 @@ namespace ALAT_Lite.Activities
 
             var trans = FragmentManager.BeginTransaction();
             trans.Add(Resource.Id.frameLayout1, new WardDetailFragment(), "Fragment");
+            //trans.AddToBackStack(null);
             trans.Commit();
 
 

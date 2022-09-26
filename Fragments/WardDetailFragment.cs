@@ -1,4 +1,5 @@
-﻿using Android;
+﻿using ALAT_Lite.Activities;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -65,7 +66,9 @@ namespace ALAT_Lite.Fragments
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag()).Commit();
+            var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag());
+            trans.AddToBackStack(null);
+            trans.Commit();
 
         }
 
