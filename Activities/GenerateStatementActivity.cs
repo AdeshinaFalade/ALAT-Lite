@@ -52,6 +52,26 @@ namespace ALAT_Lite.Activities
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(btnStartDate.Text))
+            {
+                Toast.MakeText(this, "Start Date is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(btnEndDate.Text))
+            {
+                Toast.MakeText(this, "End Date is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (DateTime.Parse(btnStartDate.Text) >= DateTime.Now)
+            {
+                Toast.MakeText(this, "Pick a date before today", ToastLength.Short).Show();
+                return;
+            }
+            else if (DateTime.Parse(btnEndDate.Text) >= DateTime.Now)
+            {
+                Toast.MakeText(this, "Pick a date before today", ToastLength.Short).Show();
+                return;
+            }
             alertFrag = new AcctStatementAlertFrag();
             var trans = FragmentManager.BeginTransaction();
             alertFrag.Show(trans, "Dialog");
@@ -59,6 +79,7 @@ namespace ALAT_Lite.Activities
 
         private void BtnEndDate_Click(object sender, EventArgs e)
         {
+            
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {
                 btnEndDate.Text = time.ToShortDateString();

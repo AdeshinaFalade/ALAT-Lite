@@ -20,6 +20,7 @@ namespace ALAT_Lite.Activities
     public class TransferActivity : AppCompatActivity
     {
         Spinner spinner;
+        EditText edtAcctNum, edtAcctName, edtTransAmount, edtTransferPIN;
         Toolbar toolbar;
         AppCompatButton btnTransfer;
         AlertDialogFragment alertDialogFragment;
@@ -33,6 +34,10 @@ namespace ALAT_Lite.Activities
             toolbar = FindViewById<Toolbar>(Resource.Id.transferToolbar);
             spinner = FindViewById<Spinner>(Resource.Id.spinner1);
             btnTransfer = FindViewById<AppCompatButton>(Resource.Id.btnTransfer);
+            edtAcctName = FindViewById<EditText>(Resource.Id.edtAcctName);
+            edtTransAmount = FindViewById<EditText>(Resource.Id.edtTransAmount);
+            edtAcctNum = FindViewById<EditText>(Resource.Id.edtAcctNum);
+            edtTransferPIN = FindViewById<EditText>(Resource.Id.edtTransferPIN);
 
             //setup toolbar
 
@@ -55,6 +60,7 @@ namespace ALAT_Lite.Activities
 
         private void BtnTransfer_Click(object sender, EventArgs e)
         {
+
             alertDialogFragment = new AlertDialogFragment();
             var trans = FragmentManager.BeginTransaction();
             alertDialogFragment.Show(trans, "Dialog");

@@ -20,6 +20,7 @@ namespace ALAT_Lite.Activities
     public class SetLimitActivity : AppCompatActivity
     {
         Toolbar toolbar;
+        EditText edtLimitAmount;
         SetLimitAlertFrag setLimitAlertFrag;
         AppCompatButton btnSetLimit;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,6 +31,7 @@ namespace ALAT_Lite.Activities
             SetContentView(Resource.Layout.SetLimitLayout);
             toolbar = FindViewById<Toolbar>(Resource.Id.limitToolbar);
             btnSetLimit = FindViewById<AppCompatButton>(Resource.Id.btnSetLimit);
+            edtLimitAmount = FindViewById<EditText>(Resource.Id.edtLimitAmount);
 
             //setup toolbar
 
@@ -45,6 +47,16 @@ namespace ALAT_Lite.Activities
 
         private void BtnSetLimit_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(edtLimitAmount.Text))
+            {
+                Toast.MakeText(this, "Amount is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (int.Parse(edtLimitAmount.Text) < 1000 | int.Parse(edtLimitAmount.Text) > 50000)
+            {
+                Toast.MakeText(this, "Amount can only be between N1,000 and N50,000", ToastLength.Short).Show();
+                return;
+            }
             setLimitAlertFrag = new SetLimitAlertFrag();
             var trans = FragmentManager.BeginTransaction();
             setLimitAlertFrag.Show(trans,"Dialog");

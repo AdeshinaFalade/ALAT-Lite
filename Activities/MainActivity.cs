@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
+using Google.Android.Material.TextField;
 using System.Reflection.Emit;
 using static Android.Content.Res.Resources;
 
@@ -18,7 +19,7 @@ namespace ALAT_Lite
     public class MainActivity : AppCompatActivity
     {
         EditText email;
-        EditText password;
+        TextInputEditText password;
         AppCompatButton login;
         ImageView childImage;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,7 +31,7 @@ namespace ALAT_Lite
              childImage = FindViewById<ImageView>(Resource.Id.childImage);
             childImage.Click += ChildImage_Click;
             email = FindViewById<EditText>(Resource.Id.edtEmail);
-            password = FindViewById<EditText>(Resource.Id.edtPassword);
+            password = FindViewById<TextInputEditText>(Resource.Id.edtPassword);
             login = FindViewById<AppCompatButton>(Resource.Id.btnLogin);
             login.Click += Login_Click;
 
@@ -57,7 +58,8 @@ namespace ALAT_Lite
             }
 
             Intent intent = new Intent(this, typeof(GuardianActivity));
-            StartActivity(intent); 
+            StartActivity(intent);
+            password.Text = "" ;
             
         }
         private void ChildImage_Click(object sender, System.EventArgs e)

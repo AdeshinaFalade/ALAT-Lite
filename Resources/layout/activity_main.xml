@@ -76,16 +76,16 @@
             app:hintEnabled="false"
             android:layout_height="wrap_content">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:backgroundTint="@android:color/white"
+            android:background="@drawable/edtBackground"
                 android:hint="Password"
-                android:imeOptions="actionNext"
+                android:paddingTop="1dp"
                 android:textSize="15sp"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
-                android:background="@drawable/edtBackground"
                 android:layout_height="47dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>

@@ -40,12 +40,12 @@
             />
 
             <androidx.appcompat.widget.AppCompatButton
-            android:text="DD/MM/YY"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorPrimary"
             android:textAllCaps="false"
             android:textAlignment="viewStart"
             android:paddingLeft="10dp"
+                 android:hint="DD/MM/YY"
             android:textSize="15sp"
             android:background="@drawable/btnBackground"
             android:backgroundTint="@color/colorEdtBackground"
@@ -64,9 +64,9 @@
             />
 
             <androidx.appcompat.widget.AppCompatButton
-            android:text="DD/MM/YY"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorPrimary"
+                android:hint="DD/MM/YY"
             android:textAllCaps="false"
             android:textAlignment="viewStart"
             android:paddingLeft="10dp"

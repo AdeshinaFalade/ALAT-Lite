@@ -90,6 +90,7 @@
     <Compile Include="Fragments\RestrictAlertFrag.cs" />
     <Compile Include="Fragments\SetLimitAlertFrag.cs" />
     <Compile Include="Fragments\StandingOrderAlertFragment.cs" />
+    <Compile Include="Fragments\WardDetailFragment.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -435,6 +436,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\WardFragLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

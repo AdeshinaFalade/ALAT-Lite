@@ -49,6 +49,26 @@ namespace ALAT_Lite.Activities
 
         private void BtnSet_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(edtStandingAmount.Text))
+            {
+                Toast.MakeText(this, "Amount is required", ToastLength.Short).Show();
+                return;
+            } 
+            else if (string.IsNullOrEmpty(edtStandingDay.Text))
+            {
+                Toast.MakeText(this, "Day is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (int.Parse(edtStandingAmount.Text) < 100 | int.Parse(edtStandingAmount.Text) > 1000000)
+            {
+                Toast.MakeText(this, "You can only transfer between N100 and N1,000,000", ToastLength.Short).Show();
+                return;
+            }
+            else if (int.Parse(edtStandingDay.Text) < 1 | int.Parse(edtStandingDay.Text) > 28)
+            {
+                Toast.MakeText(this, "You can only select between 1-28", ToastLength.Short).Show();
+                return;
+            }
             standingOrderAlertFragment = new StandingOrderAlertFragment();
             var trans = FragmentManager.BeginTransaction();
             standingOrderAlertFragment.Show(trans, "Dialog");
