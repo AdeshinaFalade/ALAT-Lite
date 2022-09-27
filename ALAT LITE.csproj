@@ -83,11 +83,16 @@
     <Compile Include="Activities\StandingOrderActivity.cs" />
     <Compile Include="Activities\TransferActivity.cs" />
     <Compile Include="Activities\WardDetailsActivity.cs" />
+    <Compile Include="Activities\WardTransActivity.cs" />
+    <Compile Include="Adapters\RecyclerAdapter.cs" />
+    <Compile Include="Classes\ProgressClass.cs" />
+    <Compile Include="Classes\TransactionModel.cs" />
     <Compile Include="Fragments\AcctCreatedAlertFrag.cs" />
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
     <Compile Include="Fragments\AlertDialogFragment.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
     <Compile Include="Fragments\GuardDetFrag.cs" />
+    <Compile Include="Fragments\ProgressFragment.cs" />
     <Compile Include="Fragments\RestrictAlertFrag.cs" />
     <Compile Include="Fragments\SetLimitAlertFrag.cs" />
     <Compile Include="Fragments\StandingOrderAlertFragment.cs" />
@@ -115,6 +120,12 @@
   <ItemGroup>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v4">
+      <Version>23.4.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <Version>23.4.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.1" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
@@ -349,6 +360,7 @@
     <AndroidResource Include="Resources\drawable\login_bg.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Interfaces\" />
     <Folder Include="Resources\font\" />
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +457,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\GuardDetailsFragLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ProgressLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TransactionRecyclerLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\WardTransactionHistory.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

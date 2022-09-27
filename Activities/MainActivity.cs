@@ -1,4 +1,5 @@
 ﻿using ALAT_Lite.Activities;
+using ALAT_Lite.Fragments;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -22,6 +23,7 @@ namespace ALAT_Lite
         TextInputEditText password;
         AppCompatButton login;
         ImageView childImage;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -69,6 +71,7 @@ namespace ALAT_Lite
             SetResult(Result.Ok, myIntent);
             Finish();
         }
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

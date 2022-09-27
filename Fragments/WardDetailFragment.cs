@@ -1,4 +1,5 @@
 ﻿using ALAT_Lite.Activities;
+using ALAT_Lite.Classes;
 using Android;
 using Android.App;
 using Android.Content;
@@ -25,6 +26,7 @@ namespace ALAT_Lite.Fragments
         ImageView imgAttachBirthCert, imgAttachPassport;
         AppCompatButton btnDOB;
         MaterialButton btnNext;
+        ProgressClass progress = new ProgressClass();
         readonly string[] permissionGroup =
         {
             Manifest.Permission.ReadExternalStorage,
@@ -44,7 +46,6 @@ namespace ALAT_Lite.Fragments
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             View view = inflater.Inflate(Resource.Layout.WardFragLayout,container,false);
             
-
             spinner = view.FindViewById<Spinner>(Resource.Id.spinner3);
             btnDOB = view.FindViewById<AppCompatButton>(Resource.Id.btnDOB);
             imgAttachPassport = view.FindViewById<ImageView>(Resource.Id.imgAttachPassport);
@@ -59,7 +60,7 @@ namespace ALAT_Lite.Fragments
             btnDOB.Click += BtnDOB_Click;
             imgAttachBirthCert.Click += ImgAttachBirthCert_Click;
             imgAttachPassport.Click += ImgAttachPassport_Click;
-            btnNext.Click += BtnNext_Click; 
+            btnNext.Click += BtnNext_Click;
 
             return view;
         }
@@ -69,7 +70,6 @@ namespace ALAT_Lite.Fragments
             var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag());
             trans.AddToBackStack(null);
             trans.Commit();
-
         }
 
         private void ImgAttachPassport_Click(object sender, EventArgs e)
@@ -90,10 +90,13 @@ namespace ALAT_Lite.Fragments
             passportAlert.Show();
         }
 
-
-        async void TakePhoto(ImageView imageView)
+        async public void TakePhoto(ImageView imageView)
         {
+            
+
             await CrossMedia.Current.Initialize();
+            
+
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
@@ -107,16 +110,15 @@ namespace ALAT_Lite.Fragments
                 return;
             }
 
-
+            
             //converts file to byte array and set resulting bitmap to imageview
             byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
-
             Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             imageView.SetImageBitmap(bitmap);
 
         }
 
-        string GenerateRandomString(int length)
+        public string GenerateRandomString(int length)
         {
             Random rand = new Random();
             char[] allowChars = "QWERTYUIOPLKJHGFDSAZXCVBNMmnbvcxzasdfghjklpoiuytrewq0987654321".ToCharArray();
@@ -128,7 +130,7 @@ namespace ALAT_Lite.Fragments
             return sResult;
         }
 
-        async void SelectPhoto(ImageView imageView)
+        async public void SelectPhoto(ImageView imageView)
         {
             await CrossMedia.Current.Initialize();
 
@@ -184,5 +186,6 @@ namespace ALAT_Lite.Fragments
             frag.Show(FragmentManager, DatePickerFragment.TAG);
         }
 
+        
     }
 }

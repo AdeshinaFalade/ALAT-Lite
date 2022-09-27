@@ -43,6 +43,13 @@ namespace ALAT_Lite.Activities
 
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
+            btnTransactionHistory.Click += BtnTransactionHistory_Click; 
+        }
+
+        private void BtnTransactionHistory_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(WardTransActivity));
+            StartActivity(intent);
         }
 
         private void BtnMaintenance_Click(object sender, EventArgs e)

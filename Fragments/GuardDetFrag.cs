@@ -21,12 +21,15 @@ namespace ALAT_Lite.Fragments
     {
         ImageView imgAttachGuardPassport, imgAttachID;
         MaterialButton btnSubmit;
+        WardDetailFragment wardDetailFragment = new WardDetailFragment();
         readonly string[] permissionGroup =
         {
             Manifest.Permission.ReadExternalStorage,
             Manifest.Permission.WriteExternalStorage,
             Manifest.Permission.Camera
         };
+
+        
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -60,13 +63,13 @@ namespace ALAT_Lite.Fragments
             passportAlert.SetNegativeButton("Take Photo", (sender, e) =>
             {
                 //capture image
-                TakePhoto(imgAttachID);
+                wardDetailFragment.TakePhoto(imgAttachID);
             });
 
             passportAlert.SetPositiveButton("Upload Photo", (sender, e) =>
             {
                 //select image
-                SelectPhoto(imgAttachID);
+                wardDetailFragment.SelectPhoto(imgAttachID);
             });
             passportAlert.Show();
         }
@@ -78,13 +81,13 @@ namespace ALAT_Lite.Fragments
             passportAlert.SetNegativeButton("Take Photo", (sender, e) =>
             {
                 //capture image
-                TakePhoto(imgAttachGuardPassport);
+                wardDetailFragment.TakePhoto(imgAttachGuardPassport);
             });
 
             passportAlert.SetPositiveButton("Upload Photo", (sender, e) =>
             {
                 //select image
-                SelectPhoto(imgAttachGuardPassport);
+                wardDetailFragment.SelectPhoto(imgAttachGuardPassport);
             });
             passportAlert.Show();
         }
@@ -99,70 +102,6 @@ namespace ALAT_Lite.Fragments
             var trans = FragmentManager.BeginTransaction();
             alertFrag.Show(trans, "Dialog");
         }
-
-        async void TakePhoto(ImageView imageView)
-        {
-            await CrossMedia.Current.Initialize();
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                CompressionQuality = 20,
-                Directory = "Sample",
-                Name = GenerateRandomString(6) + "alat.jpg"
-            });
-
-            if (file == null)
-            {
-                return;
-            }
-
-
-            //converts file to byte array and set resulting bitmap to imageview
-            byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
-
-            Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
-            imageView.SetImageBitmap(bitmap);
-
-        }
-
-        string GenerateRandomString(int length)
-        {
-            Random rand = new Random();
-            char[] allowChars = "QWERTYUIOPLKJHGFDSAZXCVBNMmnbvcxzasdfghjklpoiuytrewq0987654321".ToCharArray();
-            string sResult = "";
-            for (int i = 0; i < length; i++)
-            {
-                sResult += allowChars[rand.Next(0, allowChars.Length)];
-            }
-            return sResult;
-        }
-
-        async void SelectPhoto(ImageView imageView)
-        {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                Toast.MakeText(Activity, "Upload not supported", ToastLength.Short).Show();
-                return;
-            }
-
-            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                CompressionQuality = 30
-            });
-
-            if (file == null)
-            {
-                return;
-            }
-            //converts file to byte array and set resulting bitmap to imageview
-            byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
-
-            Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
-            imageView.SetImageBitmap(bitmap);
-
-        }
+       
     }
 }
