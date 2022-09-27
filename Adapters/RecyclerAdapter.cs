@@ -1,7 +1,9 @@
-﻿using Android.Support.V7.Widget;
+﻿using ALAT_Lite.Classes;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections.Generic;
 
 namespace ALAT_Lite.Adapters
 {
@@ -13,7 +15,7 @@ namespace ALAT_Lite.Adapters
 
         public RecyclerAdapter(List<TransactionModel> data)
         {
-            items = data;
+            listOfTranx = data;
         }
 
         // Create new views (invoked by the layout manager)
@@ -22,9 +24,9 @@ namespace ALAT_Lite.Adapters
 
             //Setup your layout here
             View itemView = null;
-            //var id = Resource.Layout.__YOUR_ITEM_HERE;
-            //itemView = LayoutInflater.From(parent.Context).
-            //       Inflate(id, parent, false);
+            var id = Resource.Layout.TransactionRecyclerLayout;
+            itemView = LayoutInflater.From(parent.Context).
+                  Inflate(id, parent, false);
 
             var vh = new RecyclerAdapterViewHolder(itemView, OnClick, OnLongClick);
             return vh;
@@ -33,14 +35,18 @@ namespace ALAT_Lite.Adapters
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)
         {
-            var item = items[position];
+            var item = listOfTranx[position];
 
             // Replace the contents of the view with that element
             var holder = viewHolder as RecyclerAdapterViewHolder;
             //holder.TextView.Text = items[position];
+            holder.txtTransAmount.Text = item.Amount.ToString();
+            holder.txtTransDate.Text = item.Date;
+            holder.txtTransPhone.Text = item.Phone;
+
         }
 
-        public override int ItemCount => items.Length;
+        public override int ItemCount => listOfTranx.Count;
 
         void OnClick(RecyclerAdapterClickEventArgs args) => ItemClick?.Invoke(this, args);
         void OnLongClick(RecyclerAdapterClickEventArgs args) => ItemLongClick?.Invoke(this, args);
@@ -50,12 +56,17 @@ namespace ALAT_Lite.Adapters
     public class RecyclerAdapterViewHolder : RecyclerView.ViewHolder
     {
         //public TextView TextView { get; set; }
+        public TextView txtTransPhone, txtTransAmount, txtTransDate;
 
 
         public RecyclerAdapterViewHolder(View itemView, Action<RecyclerAdapterClickEventArgs> clickListener,
                             Action<RecyclerAdapterClickEventArgs> longClickListener) : base(itemView)
         {
             //TextView = v;
+            txtTransAmount = itemView.FindViewById<TextView>(Resource.Id.txtTransAmount);
+            txtTransPhone = itemView.FindViewById<TextView>(Resource.Id.txtTransPhone);
+            txtTransDate = itemView.FindViewById<TextView>(Resource.Id.txtTransDate);
+
             itemView.Click += (sender, e) => clickListener(new RecyclerAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
         }
