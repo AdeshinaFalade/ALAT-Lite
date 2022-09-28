@@ -60,6 +60,30 @@ namespace ALAT_Lite.Activities
 
         private void BtnTransfer_Click(object sender, EventArgs e)
         {
+            var acctnum = edtAcctNum.Text;
+            var amt = edtTransAmount.Text;
+            var pin = edtTransferPIN.Text;
+            if (string.IsNullOrEmpty(acctnum) | acctnum.Length != 10)
+            {
+                Toast.MakeText(this, "Enter a valid account number", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(amt))
+            {
+                Toast.MakeText(this, "Amount is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (int.Parse(amt) < 100 | int.Parse(amt) > 1000000)
+            {
+                Toast.MakeText(this, "You can only transfer between N100 and N1,000,000", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(pin))
+            {
+                Toast.MakeText(this, "Enter a valid pin", ToastLength.Short).Show();
+                return;
+            }
+        
 
             alertDialogFragment = new AlertDialogFragment();
             var trans = FragmentManager.BeginTransaction();

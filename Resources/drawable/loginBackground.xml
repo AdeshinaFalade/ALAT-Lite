@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item>
 <shape  >
-	<gradient android:angle="173.77"
+	<gradient android:angle="180"
 android:startColor="#F9DCE6"
 android:endColor="#AB2656"/>
 </shape>

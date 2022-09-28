@@ -48,16 +48,17 @@ namespace ALAT_Lite
                 Toast.MakeText(this, "Email is required", ToastLength.Short).Show();
                 return;
             }
-            else if (string.IsNullOrEmpty(userPassword))
-            {
-                Toast.MakeText(this, "Password is required", ToastLength.Short).Show();
-                return;
-            }
             else if (!Android.Util.Patterns.EmailAddress.Matcher(userEmail).Matches())
             {
                 Toast.MakeText(this, "Invalid Email Address", ToastLength.Short).Show();
                 return;
             }
+            else if (string.IsNullOrEmpty(userPassword))
+            {
+                Toast.MakeText(this, "Password is required", ToastLength.Short).Show();
+                return;
+            }
+           
 
             Intent intent = new Intent(this, typeof(GuardianActivity));
             StartActivity(intent);

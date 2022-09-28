@@ -45,13 +45,10 @@ namespace ALAT_Lite.Fragments
             View view = inflater.Inflate(Resource.Layout.GuardDetailsFragLayout, container, false);
 
 
-            btnSubmit = view.FindViewById<MaterialButton>(Resource.Id.btnSubmit);
-            imgAttachGuardPassport = view.FindViewById<ImageView>(Resource.Id.imgAttachGuardPassport);
-            imgAttachID = view.FindViewById<ImageView>(Resource.Id.imgAttachID);
+            btnSubmit = view.FindViewById<MaterialButton>(Resource.Id.btnNextPage);
 
             btnSubmit.Click += BtnSubmit_Click;
-            imgAttachGuardPassport.Click += ImgAttachGuardPassport_Click;
-            imgAttachID.Click += ImgAttachID_Click; 
+          
 
             return view;
         }

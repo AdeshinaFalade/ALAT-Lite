@@ -91,6 +91,7 @@
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
     <Compile Include="Fragments\AlertDialogFragment.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
+    <Compile Include="Fragments\DocumentationFragment.cs" />
     <Compile Include="Fragments\GuardDetFrag.cs" />
     <Compile Include="Fragments\ProgressFragment.cs" />
     <Compile Include="Fragments\RestrictAlertFrag.cs" />
@@ -478,6 +479,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\WardTransactionHistory.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DocumentationLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
