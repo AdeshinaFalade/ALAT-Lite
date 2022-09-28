@@ -19,15 +19,9 @@ namespace ALAT_Lite.Fragments
     [Obsolete]
     public class GuardDetFrag : Fragment
     {
-        ImageView imgAttachGuardPassport, imgAttachID;
+        
         MaterialButton btnSubmit;
-        WardDetailFragment wardDetailFragment = new WardDetailFragment();
-        readonly string[] permissionGroup =
-        {
-            Manifest.Permission.ReadExternalStorage,
-            Manifest.Permission.WriteExternalStorage,
-            Manifest.Permission.Camera
-        };
+      
 
         
         public override void OnCreate(Bundle savedInstanceState)
@@ -53,52 +47,16 @@ namespace ALAT_Lite.Fragments
             return view;
         }
 
-        private void ImgAttachID_Click(object sender, EventArgs e)
-        {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
-            passportAlert.SetMessage("Upload ID");
-            passportAlert.SetNegativeButton("Take Photo", (sender, e) =>
-            {
-                //capture image
-                wardDetailFragment.TakePhoto(imgAttachID);
-            });
-
-            passportAlert.SetPositiveButton("Upload Photo", (sender, e) =>
-            {
-                //select image
-                wardDetailFragment.SelectPhoto(imgAttachID);
-            });
-            passportAlert.Show();
-        }
-
-        private void ImgAttachGuardPassport_Click(object sender, EventArgs e)
-        {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
-            passportAlert.SetMessage("Upload Your Passport");
-            passportAlert.SetNegativeButton("Take Photo", (sender, e) =>
-            {
-                //capture image
-                wardDetailFragment.TakePhoto(imgAttachGuardPassport);
-            });
-
-            passportAlert.SetPositiveButton("Upload Photo", (sender, e) =>
-            {
-                //select image
-                wardDetailFragment.SelectPhoto(imgAttachGuardPassport);
-            });
-            passportAlert.Show();
-        }
+     
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            ShowAlert();
+
+            var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new DocumentationFragment());
+            trans.AddToBackStack(null);
+            trans.Commit();
         }
-        void ShowAlert()
-        {
-            var alertFrag = new AcctCreatedAlertFrag();
-            var trans = FragmentManager.BeginTransaction();
-            alertFrag.Show(trans, "Dialog");
-        }
+       
        
     }
 }

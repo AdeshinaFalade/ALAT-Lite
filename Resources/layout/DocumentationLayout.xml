@@ -44,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ward's Passport"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
@@ -52,23 +53,24 @@
                     android:id="@+id/imgAttachWardPassport"
                     android:layout_width="match_parent"
                     android:clickable="true"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
 
                     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Birth Certificate of the Ward"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     />
                     <ImageView
-                    android:id="@id/imgAttachBirthCert"
+                    android:id="@+id/imgAttachBirthCert"
                             android:clickable="true"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
 
@@ -76,31 +78,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Guardian Valid ID"
+                    android:layout_marginTop="10dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     />
                     <ImageView
-                    android:id="@id/imgAttachID"
+                    android:id="@+id/imgAttachID"
                     android:layout_width="match_parent"
                     android:clickable="true"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
 
                     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Guardian PAssport Photo"
+                    android:layout_marginTop="10dp"
+                    android:text="Guardian Passport Photo"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     />
                     <ImageView
-                    android:id="@id/imgAttachGuardPassport"
+                    android:id="@+id/imgAttachGuardPassport"
                             android:clickable="true"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_image"/>
 
