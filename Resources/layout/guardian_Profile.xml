@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<LinearLayout
+        
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:scrollbars="vertical">
-<LinearLayout
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="10dp"
-    android:background="@color/colorBackground"
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -54,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_height="20dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:text="Account(s)"
@@ -83,7 +81,7 @@
         android:padding="10dp"
         android:orientation="vertical"
         android:background="@drawable/Rectangle"
-        android:layout_height="185dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -218,7 +216,8 @@
                 android:background="@drawable/btnbackground"
                 android:textColor="@android:color/white"
                 android:id="@+id/btnFund"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/colo"
+                app:backgroundTint="@color/colorButton"
                 android:textSize="10sp"
                 android:elevation="10dp"
                 android:layout_marginRight="20dp"
@@ -227,7 +226,7 @@
              <com.google.android.material.button.MaterialButton
                 android:layout_width="120dp"
                 android:textAllCaps="false"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/colorButton"
                 android:elevation="10dp"
                 android:background="@drawable/btnbackground"
                 android:layout_height="wrap_content"
@@ -509,4 +508,3 @@
     </RelativeLayout>
 
 </LinearLayout>
-</ScrollView>

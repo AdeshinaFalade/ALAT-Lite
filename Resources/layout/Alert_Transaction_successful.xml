@@ -42,7 +42,7 @@
                 android:text="View Receipt"
                 android:background="@drawable/btnbackground"
                 android:textColor="@android:color/white"
-                app:backgroundTint="#C51353"
+                app:backgroundTint="@color/colorButton"
                 android:textSize="10sp"
                 android:elevation="10dp"
                 android:layout_marginRight="20dp"
@@ -51,7 +51,7 @@
              <com.google.android.material.button.MaterialButton
                 android:layout_width="120dp"
                 android:textAllCaps="false"
-                app:backgroundTint="#C51353"
+                app:backgroundTint="@color/colorButton"
                 android:elevation="10dp"
                 android:background="@drawable/btnbackground"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="120dp"
                 android:textAllCaps="false"
-                app:backgroundTint="#C51353"
+                app:backgroundTint="@color/colorButton"
                 android:elevation="10dp"
                 android:background="@drawable/btnbackground"
                 android:layout_height="wrap_content"

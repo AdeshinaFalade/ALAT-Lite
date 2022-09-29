@@ -85,7 +85,7 @@
     <Compile Include="Activities\WardDetailsActivity.cs" />
     <Compile Include="Activities\WardTransActivity.cs" />
     <Compile Include="Adapters\RecyclerAdapter.cs" />
-    <Compile Include="Classes\ProgressClass.cs" />
+    <Compile Include="Interfaces\IProgress.cs" />
     <Compile Include="Classes\TransactionModel.cs" />
     <Compile Include="Fragments\AcctCreatedAlertFrag.cs" />
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
@@ -370,7 +370,6 @@
     <AndroidResource Include="Resources\drawable\login_bg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Resources\font\" />
   </ItemGroup>
   <ItemGroup>
@@ -489,6 +488,9 @@
     <AndroidResource Include="Resources\layout\DocumentationLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\landin_page.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

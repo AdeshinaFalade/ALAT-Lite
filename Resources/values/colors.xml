@@ -8,6 +8,7 @@
 	<color name="welcomeBack">#A1121B</color>
 	<color name="background">#ffffff</color>
 	<color name="emailColor">#555555</color>
+	<color name="colorButton">#C51353</color>
 	<color name="buttonColor">#C41F29</color>
 	<color name="black">#000000</color>
 	<color name="dashboardBg">#FFF4F4</color>

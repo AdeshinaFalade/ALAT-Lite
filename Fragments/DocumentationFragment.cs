@@ -21,7 +21,7 @@ using System.Text;
 namespace ALAT_Lite.Fragments
 {
     [Obsolete]
-    public class DocumentationFragment : Fragment
+    public class DocumentationFragment : Fragment, IProgress
     {
         public Bitmap bitmap;
         View view;
@@ -29,7 +29,7 @@ namespace ALAT_Lite.Fragments
         public List<string> links = new List<string>();
         private const int PICK_IMAGE_REQUSET = 71;
         private const int TAKE_IMAGE_REQUSET = 0;
-        ProgressClass progress = new ProgressClass();
+        public ProgressFragment progressDialog;
         readonly string[] permissionGroup =
         {
             Manifest.Permission.ReadExternalStorage,
@@ -40,6 +40,12 @@ namespace ALAT_Lite.Fragments
         public string URL { get; private set; }
         MaterialButton btnSubmit;
         ImageView imgAttachWardPassport, imgAttachBirthCert, imgAttachID, imgAttachGuardPassport;
+
+
+        public DocumentationFragment()
+        {
+        }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -145,6 +151,11 @@ namespace ALAT_Lite.Fragments
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
+            if (links.Count < 4)
+            {
+                Toast.MakeText(Activity, "Upload all the required documents", ToastLength.Long).Show();
+                return;
+            }
             ShowAlert();
         }
 
@@ -172,8 +183,10 @@ namespace ALAT_Lite.Fragments
         //Upload to blob function  
         private async void Upload(Stream stream)
         {
+            ShowProgressDialog("Uploading");
             try
             {
+                
                 var account = CloudStorageAccount.Parse("BlobEndpoint=https://bitproject.blob.core.windows.net/;QueueEndpoint=https://bitproject.queue.core.windows.net/;FileEndpoint=https://bitproject.file.core.windows.net/;TableEndpoint=https://bitproject.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-10-07T17:59:44Z&st=2022-09-28T09:59:44Z&spr=https,http&sig=fFmGMBq%2FGwrp6Xcs%2FM8%2FDEOqJWJ7CAsFRZF3A25vQg0%3D");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("imageblob");
@@ -183,15 +196,13 @@ namespace ALAT_Lite.Fragments
                 await blockBlob.UploadFromStreamAsync(stream);
                 URL = blockBlob.Uri.OriginalString;
                 links.Add(URL);
-
                 Toast.MakeText(Activity, "Image uploaded Successfully!", ToastLength.Short).Show();
-
             }
             catch (Exception e)
             {
-                Toast.MakeText(Activity, "exception" + e.ToString(), ToastLength.Short);
+                Toast.MakeText(Activity, "" + e.ToString(), ToastLength.Short);
             }
-            
+            CloseProgressDialog();
         }
 
 
@@ -227,7 +238,9 @@ namespace ALAT_Lite.Fragments
                 bitmapData = stream.ToArray();
             }
             inputStream = new MemoryStream(bitmapData);
+            
             UploadImage();
+            
 
         }
 
@@ -275,8 +288,26 @@ namespace ALAT_Lite.Fragments
                 bitmapData = stream.ToArray();
             }
             inputStream = new MemoryStream(bitmapData);
+            
             UploadImage();
+        }
 
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
         }
     }
 }
