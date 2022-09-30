@@ -1,15 +1,23 @@
-﻿using Android.App;
+﻿using ALAT_Lite.Adapters;
+using ALAT_Lite.Classes;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.ViewPager2.Widget;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using static AndroidX.ViewPager.Widget.ViewPager;
+using static AndroidX.ViewPager2.Widget.ViewPager2;
 using System.Text;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
+using System.Globalization;
 
 namespace ALAT_Lite.Activities
 {
@@ -19,12 +27,14 @@ namespace ALAT_Lite.Activities
         TextView customerName;
         TextView balance;
         ImageView visibility;
+
         LinearLayout createAcct;
         LinearLayout royalKiddies;
+        NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;
         LinearLayout sendMoney;
         bool Clicked = true;
-        string bal = "54,000.34";
-        private static Context mContext;
+        public double bal = 54000.34;
+        private static Android.Content.Context mContext;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,12 +48,14 @@ namespace ALAT_Lite.Activities
             createAcct = FindViewById<LinearLayout>(Resource.Id.linearLayout6);
             royalKiddies = FindViewById<LinearLayout>(Resource.Id.linearLayout8);
             sendMoney = FindViewById<LinearLayout>(Resource.Id.linearLayout5);
-            balance.Text = bal;
+            
+            balance.Text = bal.ToString("C", myNumberFormatInfo);
             visibility.Click += Visibility_Click;
             createAcct.Click += CreateAcct_Click;
             royalKiddies.Click += RoyalKiddies_Click;
             sendMoney.Click += SendMoney_Click;
             mContext = this;
+
         }
 
         private void SendMoney_Click(object sender, EventArgs e)
@@ -66,16 +78,16 @@ namespace ALAT_Lite.Activities
 
         private void Visibility_Click(object sender, EventArgs e)
         {
-            
+
             if (Clicked)
             {
                 visibility.SetImageResource(Resource.Drawable.baseline_visibility_off_24);
-                balance.Text = "********";
+                balance.Text = "******.**";
             }
             else
             {
                 visibility.SetImageResource(Resource.Drawable.baseline_visibility_20);
-                balance.Text = bal;
+                balance.Text = bal.ToString("C", myNumberFormatInfo);
             }
             Clicked = !Clicked;
         }
@@ -98,5 +110,6 @@ namespace ALAT_Lite.Activities
             });
             Alert.Show();
         }
+
     }
 }

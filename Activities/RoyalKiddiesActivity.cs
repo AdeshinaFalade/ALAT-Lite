@@ -12,6 +12,11 @@ using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using System.Text;
 using AndroidX.AppCompat.Widget;
+using AndroidX.ViewPager2.Widget;
+
+using static AndroidX.ViewPager2.Widget.ViewPager2;
+using ALAT_Lite.Classes;
+using ALAT_Lite.Adapters;
 
 namespace ALAT_Lite.Activities
 {
@@ -20,6 +25,9 @@ namespace ALAT_Lite.Activities
     {
         Toolbar toolbar;
         AppCompatButton btnFundWard;
+
+        ViewPager2 viewPager2;
+        LinearLayout parent_view;
         AppCompatButton btnTransactionHistory;
         AppCompatButton btnMaintenance;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,6 +40,8 @@ namespace ALAT_Lite.Activities
             btnFundWard = FindViewById<AppCompatButton>(Resource.Id.btnFundWard);
             btnTransactionHistory = FindViewById<AppCompatButton>(Resource.Id.btnWardTransactionHistory);
             btnMaintenance = FindViewById<AppCompatButton>(Resource.Id.btnMaintenance);
+            viewPager2 = FindViewById<ViewPager2>(Resource.Id.viewPager);
+            parent_view = FindViewById<LinearLayout>(Resource.Id.parent_view);
 
             //setup toolbar
 
@@ -43,8 +53,28 @@ namespace ALAT_Lite.Activities
 
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
-            btnTransactionHistory.Click += BtnTransactionHistory_Click; 
+            btnTransactionHistory.Click += BtnTransactionHistory_Click;
+
+            //setup
+            var myAdapter = new ViewPagerAdapter(this,CreateData());
+            viewPager2.Adapter = myAdapter;
+            viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
         }
+
+
+        private List<ChildClass> CreateData()
+        {
+            List<ChildClass> children = new List<ChildClass>();
+            children.Add(new ChildClass() { Balance = 5000, AccountNumber = "2323243422", Active = true ,Name = "Thor Odinson"});
+            children.Add(new ChildClass() { Balance = 4000, AccountNumber = "2343648635", Active = true , Name = "Peter Parker"});
+            children.Add(new ChildClass() { Balance = 400000, AccountNumber = "2343565896", Active = true, Name = "Bruce Banner" });
+            return children;
+
+        }
+
+
+
+
 
         private void BtnTransactionHistory_Click(object sender, EventArgs e)
         {
@@ -75,6 +105,20 @@ namespace ALAT_Lite.Activities
                     return base.OnOptionsItemSelected(item);
             }
 
+        }
+
+        private class MyOnPageCangeListener : OnPageChangeCallback
+        {
+            private LinearLayout parent_view;
+
+            public MyOnPageCangeListener(LinearLayout parent_view)
+            {
+                this.parent_view = parent_view;
+            }
+            public override void OnPageSelected(int position)
+            {
+                base.OnPageSelected(position);
+            }
         }
     }
 }
