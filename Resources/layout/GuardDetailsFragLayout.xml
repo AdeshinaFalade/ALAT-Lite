@@ -56,6 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"
+                android:maxLength="20"
                 android:inputType="textPersonName"
                 android:textSize="15sp"
                 android:background="@drawable/edtbackground"
@@ -74,13 +75,14 @@
             />
 
             <EditText
-                android:id="@+id/edtGuardlastName"
+                android:id="@+id/edtGuardLastName"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="Last Name"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"
+                android:maxLength="20"
                 android:inputType="textPersonName"
                 android:textSize="15sp"
                 android:background="@drawable/edtbackground"
@@ -104,6 +106,7 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/colorPrimary"
             android:paddingLeft="10dp"
+            android:maxLength="20"
             android:inputType="textPersonName"
             android:textSize="15sp"
             android:background="@drawable/edtbackground"
@@ -127,7 +130,7 @@
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"
                 android:inputType="number"
-                    android:maxLength="11"
+                android:maxLength="11"
                 android:textSize="15sp"
                 android:background="@drawable/edtbackground"
                 android:layout_height="47dp"/>
@@ -149,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
                 android:hint="Adress"
-                    android:maxLength="30"
+                android:maxLength="30"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"
@@ -175,6 +178,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"
+                android:maxLength="30"
                 android:inputType="textEmailAddress"
                 android:textSize="15sp"
                 android:background="@drawable/edtbackground"
@@ -184,7 +188,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:text="Next"
+                android:text="Submit"
                 android:layout_gravity="right"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/white"

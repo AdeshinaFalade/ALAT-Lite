@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 
 namespace ALAT_Lite.Activities
 {
@@ -77,6 +78,25 @@ namespace ALAT_Lite.Activities
                 balance.Text = bal;
             }
             Clicked = !Clicked;
+        }
+
+        public override void OnBackPressed()
+        {
+            AlertDialog.Builder Alert = new AlertDialog.Builder(this);
+            Alert.SetTitle("Log Out");
+            Alert.SetCancelable(false);
+            Alert.SetMessage("Are you sure?");
+            Alert.SetNegativeButton("No", (sender, e) =>
+            {
+                return;
+
+            });
+
+            Alert.SetPositiveButton("Yes", (sender, e) =>
+            {
+                base.OnBackPressed();
+            });
+            Alert.Show();
         }
     }
 }

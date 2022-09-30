@@ -210,6 +210,56 @@
         </RelativeLayout>
     
     </androidx.cardview.widget.CardView>
+
+     <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/colorBackground"
+        android:layout_height="60dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
+        android:elevation="10dp"
+        android:layout_marginTop="30dp">
+    
+        <RelativeLayout
+            android:id="@+id/btnDocumentation" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgFolder"
+                android:src="@drawable/folder"
+                android:layout_centerVertical="true"
+                android:background="@drawable/blackrect"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <ImageView
+                android:src="@drawable/whitearrow"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                />
+            
+            <TextView
+            android:text="Documentation"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@+id/imgFolder"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"/>
+        
+        
+        
+        </RelativeLayout>
+    
+    </androidx.cardview.widget.CardView>
         
 
    

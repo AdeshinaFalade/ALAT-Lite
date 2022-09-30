@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
+using Google.Android.Material.Snackbar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,14 @@ namespace ALAT_Lite.Activities
             var acctnum = edtAcctNum.Text;
             var amt = edtTransAmount.Text;
             var pin = edtTransferPIN.Text;
-            if (string.IsNullOrEmpty(acctnum) | acctnum.Length != 10)
+            if (string.IsNullOrEmpty(acctnum))
             {
                 Toast.MakeText(this, "Enter a valid account number", ToastLength.Short).Show();
+                return;
+            }
+            else if (acctnum.Length != 10)
+            {
+                Toast.MakeText(this, "Invalid account number", ToastLength.Short).Show();
                 return;
             }
             else if (string.IsNullOrEmpty(amt))

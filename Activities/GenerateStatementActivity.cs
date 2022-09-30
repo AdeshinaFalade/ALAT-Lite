@@ -72,6 +72,11 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "Pick a date before today", ToastLength.Short).Show();
                 return;
             }
+            else if (DateTime.Parse(btnEndDate.Text) < DateTime.Parse(btnStartDate.Text))
+            {
+                Toast.MakeText(this, "End date can't be less than start date", ToastLength.Short).Show();
+                return;
+            }
             alertFrag = new AcctStatementAlertFrag();
             var trans = FragmentManager.BeginTransaction();
             alertFrag.Show(trans, "Dialog");

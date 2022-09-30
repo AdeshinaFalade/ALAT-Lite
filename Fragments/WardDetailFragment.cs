@@ -25,6 +25,7 @@ namespace ALAT_Lite.Fragments
         Spinner spinner;
         AppCompatButton btnDOB;
         MaterialButton btnNext;
+        EditText edtWardFirstName, edtWardLastName, edtWardMiddleName, edtWardEmail;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -41,6 +42,10 @@ namespace ALAT_Lite.Fragments
             spinner = view.FindViewById<Spinner>(Resource.Id.spinner3);
             btnDOB = view.FindViewById<AppCompatButton>(Resource.Id.btnDOB);
             btnNext = view.FindViewById<MaterialButton>(Resource.Id.btnNext);
+            edtWardEmail = view.FindViewById<EditText>(Resource.Id.edtWardEmail);
+            edtWardFirstName = view.FindViewById<EditText>(Resource.Id.edtWardFirstName);
+            edtWardLastName = view.FindViewById<EditText>(Resource.Id.edtWardlastName);
+            edtWardMiddleName = view.FindViewById<EditText>(Resource.Id.edtWardMiddleName);
 
             ArrayAdapter adapter;
             adapter = ArrayAdapter.CreateFromResource(Activity, Resource.Array.Gender, Android.Resource.Layout.SimpleSpinnerItem);
@@ -55,6 +60,53 @@ namespace ALAT_Lite.Fragments
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
+            var firstName = edtWardFirstName.Text;
+            var lastName = edtWardLastName.Text;
+            var mail = edtWardEmail.Text;
+            var dob = btnDOB.Text;
+
+            if (string.IsNullOrEmpty(firstName))
+            {
+                Toast.MakeText(Activity, "First name is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (firstName.Length < 2)
+            {
+                Toast.MakeText(Activity, "Invalid first name", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(lastName))
+            {
+                Toast.MakeText(Activity, "Last name is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (lastName.Length < 2)
+            {
+                Toast.MakeText(Activity, "Invalid last name", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(dob))
+            {
+                Toast.MakeText(Activity, "Date of birth is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (DateTime.Compare(DateTime.Parse(dob), DateTime.Now) >= 0)
+            {
+                Toast.MakeText(Activity, "Invalid date", ToastLength.Short).Show();
+                return;
+            }
+            if (string.IsNullOrEmpty(mail))
+            {
+                Toast.MakeText(Activity, "Email is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (!Patterns.EmailAddress.Matcher(mail).Matches())
+            {
+                Toast.MakeText(Activity, "Invalid Email Address", ToastLength.Short).Show();
+                return;
+            }
+          
+
             var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag());
             trans.AddToBackStack(null);
             trans.Commit();

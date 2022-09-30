@@ -216,7 +216,6 @@
                 android:background="@drawable/btnbackground"
                 android:textColor="@android:color/white"
                 android:id="@+id/btnFund"
-                app:backgroundTint="@color/colo"
                 app:backgroundTint="@color/colorButton"
                 android:textSize="10sp"
                 android:elevation="10dp"

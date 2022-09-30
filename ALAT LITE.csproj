@@ -71,6 +71,7 @@
     <Compile Include="Activities\ChildDashboardActivity.cs" />
     <Compile Include="Activities\ChildForgotPassword.cs" />
     <Compile Include="Activities\CreateAccount.cs" />
+    <Compile Include="Activities\DocumentationActivity.cs" />
     <Compile Include="Activities\GenerateStatementActivity.cs" />
     <Compile Include="Activities\GuardianActivity.cs" />
     <Compile Include="Activities\ChildLoginActivity.cs" />
@@ -85,13 +86,13 @@
     <Compile Include="Activities\WardDetailsActivity.cs" />
     <Compile Include="Activities\WardTransActivity.cs" />
     <Compile Include="Adapters\RecyclerAdapter.cs" />
+    <Compile Include="Fragments\DocUploadeAlertFragment.cs" />
     <Compile Include="Interfaces\IProgress.cs" />
     <Compile Include="Classes\TransactionModel.cs" />
     <Compile Include="Fragments\AcctCreatedAlertFrag.cs" />
     <Compile Include="Fragments\AcctStatementAlertFrag.cs" />
     <Compile Include="Fragments\AlertDialogFragment.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
-    <Compile Include="Fragments\DocumentationFragment.cs" />
     <Compile Include="Fragments\GuardDetFrag.cs" />
     <Compile Include="Fragments\ProgressFragment.cs" />
     <Compile Include="Fragments\RestrictAlertFrag.cs" />
@@ -491,6 +492,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\landin_page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DocUploadedAlertLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

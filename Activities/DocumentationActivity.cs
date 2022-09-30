@@ -1,14 +1,13 @@
-﻿using ALAT_Lite.Classes;
+﻿using ALAT_Lite.Fragments;
 using Android;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Provider;
 using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using Google.Android.Material.Button;
 using Microsoft.WindowsAzure.Storage;
 using Plugin.Media;
@@ -17,18 +16,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using ActionBar = AndroidX.AppCompat.App.ActionBar;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 
-namespace ALAT_Lite.Fragments
+namespace ALAT_Lite.Activities
 {
-    [Obsolete]
-    public class DocumentationFragment : Fragment, IProgress
+    [Activity(Label = "DocumentationActivity")]
+    public class DocumentationActivity : AppCompatActivity
     {
+        Toolbar toolbar;
         public Bitmap bitmap;
-        View view;
-        private Android.Net.Uri filePath;
         public List<string> links = new List<string>();
-        private const int PICK_IMAGE_REQUSET = 71;
-        private const int TAKE_IMAGE_REQUSET = 0;
         public ProgressFragment progressDialog;
         readonly string[] permissionGroup =
         {
@@ -41,44 +40,36 @@ namespace ALAT_Lite.Fragments
         MaterialButton btnSubmit;
         ImageView imgAttachWardPassport, imgAttachBirthCert, imgAttachID, imgAttachGuardPassport;
 
-
-        public DocumentationFragment()
-        {
-        }
-
-        public override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your fragment here
-        }
+            // Create your application here 
+            SetContentView(Resource.Layout.DocumentationLayout);
+            imgAttachBirthCert = (ImageView)FindViewById(Resource.Id.imgAttachBirthCert);
+            imgAttachGuardPassport = (ImageView)FindViewById(Resource.Id.imgAttachGuardPassport);
+            imgAttachID = (ImageView)FindViewById(Resource.Id.imgAttachID);
+            imgAttachWardPassport = (ImageView)FindViewById(Resource.Id.imgAttachWardPassport);
+            btnSubmit = FindViewById<MaterialButton>(Resource.Id.btnSubmit);
+            toolbar = FindViewById<Toolbar>(Resource.Id.documentationToolbar);
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+            //setup toolbar
 
-            View view = inflater.Inflate(Resource.Layout.DocumentationLayout, container, false);
-
-            imgAttachBirthCert = (ImageView)view.FindViewById(Resource.Id.imgAttachBirthCert);
-            imgAttachGuardPassport = (ImageView)view.FindViewById(Resource.Id.imgAttachGuardPassport);
-            imgAttachID = (ImageView)view.FindViewById(Resource.Id.imgAttachID);
-            imgAttachWardPassport = (ImageView)view.FindViewById(Resource.Id.imgAttachWardPassport);
-            btnSubmit = view.FindViewById<MaterialButton>(Resource.Id.btnSubmit);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Documentation";
+            ActionBar actionBar = SupportActionBar;
+            actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
+            actionBar.SetDisplayHomeAsUpEnabled(true);
 
             btnSubmit.Click += BtnSubmit_Click;
             imgAttachBirthCert.Click += ImgAttachBirthCert_Click;
             imgAttachGuardPassport.Click += ImgAttachGuardPassport_Click;
             imgAttachID.Click += ImgAttachID_Click;
-            imgAttachWardPassport.Click += ImgAttachWardPassport_Click; 
-
-
-            return view;
+            imgAttachWardPassport.Click += ImgAttachWardPassport_Click;
         }
-
         private void ImgAttachWardPassport_Click(object sender, EventArgs e)
         {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
+            AlertDialog.Builder passportAlert = new AlertDialog.Builder(this);
             passportAlert.SetMessage("Upload Ward Passport");
             passportAlert.SetNegativeButton("Take Picture", (sender, e) =>
             {
@@ -96,7 +87,7 @@ namespace ALAT_Lite.Fragments
 
         private void ImgAttachID_Click(object sender, EventArgs e)
         {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
+            AlertDialog.Builder passportAlert = new AlertDialog.Builder(this);
             passportAlert.SetMessage("Upload ID");
             passportAlert.SetNegativeButton("Take Picture", (sender, e) =>
             {
@@ -114,7 +105,7 @@ namespace ALAT_Lite.Fragments
 
         private void ImgAttachGuardPassport_Click(object sender, EventArgs e)
         {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
+            AlertDialog.Builder passportAlert = new AlertDialog.Builder(this);
             passportAlert.SetMessage("Upload Your Passport");
             passportAlert.SetNegativeButton("Take Picture", (sender, e) =>
             {
@@ -132,7 +123,7 @@ namespace ALAT_Lite.Fragments
 
         private void ImgAttachBirthCert_Click(object sender, EventArgs e)
         {
-            AlertDialog.Builder passportAlert = new AlertDialog.Builder(Activity);
+            AlertDialog.Builder passportAlert = new AlertDialog.Builder(this);
             passportAlert.SetMessage("Upload Birth Certificate");
             passportAlert.SetNegativeButton("Take Picture", (sender, e) =>
             {
@@ -153,7 +144,7 @@ namespace ALAT_Lite.Fragments
         {
             if (links.Count < 4)
             {
-                Toast.MakeText(Activity, "Upload all the required documents", ToastLength.Long).Show();
+                Toast.MakeText(this, "Upload all the required documents", ToastLength.Long).Show();
                 return;
             }
             ShowAlert();
@@ -161,13 +152,13 @@ namespace ALAT_Lite.Fragments
 
         void ShowAlert()
         {
-            var alertFrag = new AcctCreatedAlertFrag();
+            var alertFrag = new DocUploadeAlertFragment();
             var trans = FragmentManager.BeginTransaction();
             alertFrag.Show(trans, "Dialog");
         }
 
 
-       
+
 
         private void UploadImage()
         {
@@ -177,8 +168,8 @@ namespace ALAT_Lite.Fragments
             }
         }
 
-       
-        
+
+
 
         //Upload to blob function  
         private async void Upload(Stream stream)
@@ -186,7 +177,7 @@ namespace ALAT_Lite.Fragments
             ShowProgressDialog("Uploading");
             try
             {
-                
+
                 var account = CloudStorageAccount.Parse("BlobEndpoint=https://bitproject.blob.core.windows.net/;QueueEndpoint=https://bitproject.queue.core.windows.net/;FileEndpoint=https://bitproject.file.core.windows.net/;TableEndpoint=https://bitproject.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-10-07T17:59:44Z&st=2022-09-28T09:59:44Z&spr=https,http&sig=fFmGMBq%2FGwrp6Xcs%2FM8%2FDEOqJWJ7CAsFRZF3A25vQg0%3D");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("imageblob");
@@ -196,11 +187,11 @@ namespace ALAT_Lite.Fragments
                 await blockBlob.UploadFromStreamAsync(stream);
                 URL = blockBlob.Uri.OriginalString;
                 links.Add(URL);
-                Toast.MakeText(Activity, "Image uploaded Successfully!", ToastLength.Short).Show();
+                Toast.MakeText(this, "Image uploaded Successfully!", ToastLength.Short).Show();
             }
             catch (Exception e)
             {
-                Toast.MakeText(Activity, "" + e.ToString(), ToastLength.Short);
+                Toast.MakeText(this, "" + e.ToString(), ToastLength.Short);
             }
             CloseProgressDialog();
         }
@@ -238,9 +229,9 @@ namespace ALAT_Lite.Fragments
                 bitmapData = stream.ToArray();
             }
             inputStream = new MemoryStream(bitmapData);
-            
+
             UploadImage();
-            
+
 
         }
 
@@ -262,7 +253,7 @@ namespace ALAT_Lite.Fragments
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                Toast.MakeText(Activity, "Upload not supported", ToastLength.Short).Show();
+                Toast.MakeText(this, "Upload not supported", ToastLength.Short).Show();
                 return;
             }
 
@@ -288,7 +279,7 @@ namespace ALAT_Lite.Fragments
                 bitmapData = stream.ToArray();
             }
             inputStream = new MemoryStream(bitmapData);
-            
+
             UploadImage();
         }
 
@@ -308,6 +299,19 @@ namespace ALAT_Lite.Fragments
                 progressDialog.Dismiss();
                 progressDialog = null;
             }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    OnBackPressed();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+
         }
     }
 }

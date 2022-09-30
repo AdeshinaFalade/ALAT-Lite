@@ -12,7 +12,6 @@ using Google.Android.Material.TextField;
 using System.Reflection.Emit;
 using static Android.Content.Res.Resources;
 
-
 namespace ALAT_Lite
 {
     
@@ -58,7 +57,12 @@ namespace ALAT_Lite
                 Toast.MakeText(this, "Password is required", ToastLength.Short).Show();
                 return;
             }
-           
+            else if (userPassword.Length < 6)
+            {
+                Toast.MakeText(this, "Invalid Password", ToastLength.Short).Show();
+                return;
+            }
+
 
             Intent intent = new Intent(this, typeof(GuardianActivity));
             StartActivity(intent);
@@ -72,7 +76,7 @@ namespace ALAT_Lite
             SetResult(Result.Ok, myIntent);
             Finish();
         }
-
+       
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

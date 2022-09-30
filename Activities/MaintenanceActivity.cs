@@ -21,7 +21,7 @@ namespace ALAT_Lite.Activities
         RelativeLayout btnStandingOrder;
         RelativeLayout btnSetLimits;
         RelativeLayout btnAcctStatement;
-        RelativeLayout btnRestrictAcct;
+        RelativeLayout btnRestrictAcct, btnDocumentation;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,6 +33,7 @@ namespace ALAT_Lite.Activities
             btnAcctStatement = FindViewById<RelativeLayout>(Resource.Id.btnAcctStatement);
             btnRestrictAcct = FindViewById<RelativeLayout>(Resource.Id.btnRestrictAcct);
             btnSetLimits = FindViewById<RelativeLayout>(Resource.Id.btnSetLimits);
+            btnDocumentation = FindViewById<RelativeLayout>(Resource.Id.btnDocumentation);
 
             //setup toolbar
 
@@ -46,8 +47,15 @@ namespace ALAT_Lite.Activities
             btnStandingOrder.Click += BtnStandingOrder_Click;
             btnAcctStatement.Click += BtnAcctStatement_Click;
             btnRestrictAcct.Click += BtnRestrictAcct_Click;
-            btnSetLimits.Click += BtnSetLimits_Click;   
+            btnSetLimits.Click += BtnSetLimits_Click;
+            btnDocumentation.Click += BtnDocumentation_Click;
 
+        }
+
+        private void BtnDocumentation_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(DocumentationActivity));
+            StartActivity(intent);
         }
 
         private void BtnSetLimits_Click(object sender, EventArgs e)

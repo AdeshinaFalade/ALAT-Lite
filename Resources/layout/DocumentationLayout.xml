@@ -12,14 +12,11 @@
     android:background="@color/colorBackground"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/documentationToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Documentation"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"/>
+        android:elevation="4dp"
+        android:layout_height="40dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
