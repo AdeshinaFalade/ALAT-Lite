@@ -27,7 +27,6 @@ namespace ALAT_Lite.Activities
         TextView customerName;
         TextView balance;
         ImageView visibility;
-
         LinearLayout createAcct;
         LinearLayout royalKiddies;
         NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;

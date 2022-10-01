@@ -25,7 +25,7 @@ namespace ALAT_Lite.Activities
     {
         Toolbar toolbar;
         AppCompatButton btnFundWard;
-
+        public static string AcctNum, KidName;
         ViewPager2 viewPager2;
         LinearLayout parent_view;
         AppCompatButton btnTransactionHistory;
@@ -60,9 +60,9 @@ namespace ALAT_Lite.Activities
             viewPager2.Adapter = myAdapter;
             viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
         }
+        
 
-
-        private List<ChildClass> CreateData()
+        public static List<ChildClass> CreateData()
         {
             List<ChildClass> children = new List<ChildClass>();
             children.Add(new ChildClass() { Balance = 5000, AccountNumber = "2323243422", Active = true ,Name = "Thor Odinson"});
@@ -91,6 +91,8 @@ namespace ALAT_Lite.Activities
         private void BtnFundWard_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(TransferActivity));
+            intent.PutExtra("acct",AcctNum);
+            intent.PutExtra("name", KidName);
             StartActivity(intent);
         }
 
@@ -115,9 +117,14 @@ namespace ALAT_Lite.Activities
             {
                 this.parent_view = parent_view;
             }
+
             public override void OnPageSelected(int position)
             {
+
+                
                 base.OnPageSelected(position);
+                AcctNum = CreateData()[position].AccountNumber;
+                KidName = CreateData()[position].Name;
             }
         }
     }

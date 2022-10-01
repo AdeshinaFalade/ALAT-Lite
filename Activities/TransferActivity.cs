@@ -40,6 +40,7 @@ namespace ALAT_Lite.Activities
             edtAcctNum = FindViewById<EditText>(Resource.Id.edtAcctNum);
             edtTransferPIN = FindViewById<EditText>(Resource.Id.edtTransferPIN);
 
+
             //setup toolbar
 
             SetSupportActionBar(toolbar);
@@ -54,6 +55,10 @@ namespace ALAT_Lite.Activities
             adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.Banks, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+            var acct = Intent.GetStringExtra("acct");
+            var kidName = Intent.GetStringExtra("name");
+            edtAcctNum.Text = acct;
+            edtAcctName.Text = kidName;
 
             // click event handlers
             btnTransfer.Click += BtnTransfer_Click; 

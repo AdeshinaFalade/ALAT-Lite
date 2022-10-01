@@ -11,7 +11,7 @@ using System.Text;
 
 namespace ALAT_Lite.Classes
 {
-    internal class ChildClass
+    public class ChildClass
     {
         public double Balance { get; set; }
         public string AccountNumber { get; set; }
