@@ -33,7 +33,6 @@ namespace ALAT_Lite.Activities
         LinearLayout sendMoney;
         bool Clicked = true;
         public double bal = 54000.34;
-        private static Android.Content.Context mContext;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -53,14 +52,13 @@ namespace ALAT_Lite.Activities
             createAcct.Click += CreateAcct_Click;
             royalKiddies.Click += RoyalKiddies_Click;
             sendMoney.Click += SendMoney_Click;
-            mContext = this;
 
         }
 
         private void SendMoney_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(mContext, typeof(TransferActivity));
-            mContext.StartActivity(intent);
+            Intent intent = new Intent(this, typeof(TransferActivity));
+            StartActivity(intent);
         }
 
         private void RoyalKiddies_Click(object sender, EventArgs e)
@@ -80,12 +78,12 @@ namespace ALAT_Lite.Activities
 
             if (Clicked)
             {
-                visibility.SetImageResource(Resource.Drawable.baseline_visibility_off_24);
+                visibility.SetImageResource(Resource.Drawable.baseline_visibility_20);
                 balance.Text = "******.**";
             }
             else
             {
-                visibility.SetImageResource(Resource.Drawable.baseline_visibility_20);
+                visibility.SetImageResource(Resource.Drawable.baseline_visibility_off_24);
                 balance.Text = bal.ToString("C", myNumberFormatInfo);
             }
             Clicked = !Clicked;
@@ -93,6 +91,7 @@ namespace ALAT_Lite.Activities
 
         public override void OnBackPressed()
         {
+            //to confirm logout
             AlertDialog.Builder Alert = new AlertDialog.Builder(this);
             Alert.SetTitle("Log Out");
             Alert.SetCancelable(false);

@@ -9,6 +9,7 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using Google.Android.Material.TextField;
+using Plugin.Connectivity;
 using System.Reflection.Emit;
 using static Android.Content.Res.Resources;
 
@@ -42,6 +43,11 @@ namespace ALAT_Lite
         {
             var userEmail = email.Text;
             var userPassword = password.Text;
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                Toast.MakeText(this, "No internet connection", ToastLength.Short).Show();
+                return;
+            }
             if (string.IsNullOrEmpty(userEmail))
             {
                 Toast.MakeText(this, "Email is required", ToastLength.Short).Show();

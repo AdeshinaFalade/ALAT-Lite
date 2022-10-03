@@ -55,7 +55,7 @@ namespace ALAT_Lite.Activities
             btnMaintenance.Click += BtnMaintenance_Click;
             btnTransactionHistory.Click += BtnTransactionHistory_Click;
 
-            //setup
+            //setup view pager
             var myAdapter = new ViewPagerAdapter(this,CreateData());
             viewPager2.Adapter = myAdapter;
             viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
@@ -88,6 +88,8 @@ namespace ALAT_Lite.Activities
             StartActivity(intent);
         }
 
+
+        //transfer info about the selected account in the viewpager
         private void BtnFundWard_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(TransferActivity));
@@ -96,6 +98,7 @@ namespace ALAT_Lite.Activities
             StartActivity(intent);
         }
 
+        //back button
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -120,7 +123,7 @@ namespace ALAT_Lite.Activities
 
             public override void OnPageSelected(int position)
             {
-
+                //to note the item being displayed in the viewpager
                 
                 base.OnPageSelected(position);
                 AcctNum = CreateData()[position].AccountNumber;

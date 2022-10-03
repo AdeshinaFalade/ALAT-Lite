@@ -19,6 +19,7 @@ using System.Text;
 using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
+using Google.Android.Material.Snackbar;
 
 namespace ALAT_Lite.Activities
 {
@@ -26,6 +27,7 @@ namespace ALAT_Lite.Activities
     public class DocumentationActivity : AppCompatActivity
     {
         Toolbar toolbar;
+        LinearLayout linearLayoutDoc;
         public Bitmap bitmap;
         public List<string> links = new List<string>();
         public ProgressFragment progressDialog;
@@ -52,6 +54,7 @@ namespace ALAT_Lite.Activities
             imgAttachWardPassport = (ImageView)FindViewById(Resource.Id.imgAttachWardPassport);
             btnSubmit = FindViewById<MaterialButton>(Resource.Id.btnSubmit);
             toolbar = FindViewById<Toolbar>(Resource.Id.documentationToolbar);
+            linearLayoutDoc = FindViewById<LinearLayout>(Resource.Id.linearLayoutDoc);
 
             //setup toolbar
 
@@ -187,13 +190,16 @@ namespace ALAT_Lite.Activities
                 await blockBlob.UploadFromStreamAsync(stream);
                 URL = blockBlob.Uri.OriginalString;
                 links.Add(URL);
-                Toast.MakeText(this, "Image uploaded Successfully!", ToastLength.Short).Show();
+                Snackbar.Make(linearLayoutDoc, "Image uploaded Successfully!", Snackbar.LengthShort).Show();
+                CloseProgressDialog();
             }
+                
             catch (Exception e)
             {
-                Toast.MakeText(this, "" + e.ToString(), ToastLength.Short);
+                Snackbar.Make(linearLayoutDoc, "Error: " + e.Message, Snackbar.LengthShort).Show();
+                CloseProgressDialog();
             }
-            CloseProgressDialog();
+            
         }
 
 

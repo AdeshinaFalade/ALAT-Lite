@@ -151,7 +151,7 @@
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
-                android:hint="Adress"
+                android:hint="Address"
                 android:maxLength="30"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"

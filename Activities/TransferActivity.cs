@@ -55,6 +55,8 @@ namespace ALAT_Lite.Activities
             adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.Banks, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
+            //get info from the viewpager in royalkiddies activity
             var acct = Intent.GetStringExtra("acct");
             var kidName = Intent.GetStringExtra("name");
             edtAcctNum.Text = acct;
@@ -69,6 +71,9 @@ namespace ALAT_Lite.Activities
             var acctnum = edtAcctNum.Text;
             var amt = edtTransAmount.Text;
             var pin = edtTransferPIN.Text;
+
+            // input validations
+
             if (string.IsNullOrEmpty(acctnum))
             {
                 Toast.MakeText(this, "Enter a valid account number", ToastLength.Short).Show();
@@ -95,12 +100,13 @@ namespace ALAT_Lite.Activities
                 return;
             }
         
-
+            //dialog gragment
             alertDialogFragment = new AlertDialogFragment();
             var trans = FragmentManager.BeginTransaction();
             alertDialogFragment.Show(trans, "Dialog");
         }
 
+        //for back button on top
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
