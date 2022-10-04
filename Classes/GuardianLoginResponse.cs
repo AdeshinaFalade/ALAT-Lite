@@ -21,7 +21,7 @@ namespace ALAT_Lite.Classes
         public string phoneNumber { get; set; }
         public string email { get; set; }
         public string accountBalance { get; set; }
-        public string accountstatus { get; set; }
+        public bool accountstatus { get; set; }
         public string accountNumber { get; set; }
         public string accountType { get; set; }
     }

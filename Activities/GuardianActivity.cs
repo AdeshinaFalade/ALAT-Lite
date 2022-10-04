@@ -18,13 +18,14 @@ using static AndroidX.ViewPager2.Widget.ViewPager2;
 using System.Text;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using System.Globalization;
+using ALAT_Lite.Fragments;
 
 namespace ALAT_Lite.Activities
 {
     [Activity(Label = "GuardianActivity")]
     public class GuardianActivity : AppCompatActivity
     {
-        TextView customerName;
+        TextView customerName, txtAcctNumber;
         TextView balance;
         ImageView visibility;
         LinearLayout createAcct;
@@ -32,7 +33,9 @@ namespace ALAT_Lite.Activities
         NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;
         LinearLayout sendMoney;
         bool Clicked = true;
-        public double bal = 54000.34;
+        public double bal;
+        public static string accountBalance;
+        public static string formattedBal;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,13 +44,40 @@ namespace ALAT_Lite.Activities
             // Create your application here
             SetContentView(Resource.Layout.guardian_Profile);
             customerName = FindViewById<TextView>(Resource.Id.txtCustomerName);
+            txtAcctNumber = FindViewById<TextView>(Resource.Id.txtAcctNumber);
             balance = FindViewById<TextView>(Resource.Id.txtGuardianBalance);
             visibility = FindViewById<ImageView>(Resource.Id.imgVisibility);
             createAcct = FindViewById<LinearLayout>(Resource.Id.linearLayout6);
             royalKiddies = FindViewById<LinearLayout>(Resource.Id.linearLayout8);
             sendMoney = FindViewById<LinearLayout>(Resource.Id.linearLayout5);
-            
-            balance.Text = bal.ToString("C", myNumberFormatInfo);
+
+
+            /**
+            intent.PutExtra("userId", userId);
+            intent.PutExtra("firstName", firstName);
+            intent.PutExtra("lastName", lastName);
+            intent.PutExtra("gender", gender);
+            intent.PutExtra("phoneNumber", phoneNumber);
+            intent.PutExtra("email", email);
+            intent.PutExtra("accountBalance", accountBalance);
+            intent.PutExtra("accountNumber", accountNumber);
+            intent.PutExtra("accountStatus", accountStatus);
+            intent.PutExtra("accountType", accountType);
+            intent.PutExtra("token", token);
+            **/
+
+
+            var userId = Intent.GetStringExtra("userId");
+            var firstName = Intent.GetStringExtra("firstName");
+            var lastName = Intent.GetStringExtra("lastName");
+            accountBalance = Intent.GetStringExtra("accountBalance");
+            var accountNumber = Intent.GetStringExtra("accountNumber");
+            var bal = double.Parse(accountBalance);
+            formattedBal = bal.ToString("C", myNumberFormatInfo);
+            balance.Text = formattedBal;
+            customerName.Text = "Hi, " + firstName;
+            txtAcctNumber.Text = accountNumber;
+
             visibility.Click += Visibility_Click;
             createAcct.Click += CreateAcct_Click;
             royalKiddies.Click += RoyalKiddies_Click;
@@ -84,10 +114,12 @@ namespace ALAT_Lite.Activities
             else
             {
                 visibility.SetImageResource(Resource.Drawable.baseline_visibility_off_24);
-                balance.Text = bal.ToString("C", myNumberFormatInfo);
+                balance.Text = formattedBal;
             }
             Clicked = !Clicked;
         }
+
+        
 
         public override void OnBackPressed()
         {

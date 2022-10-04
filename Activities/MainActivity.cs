@@ -30,6 +30,7 @@ namespace ALAT_Lite
         EditText email;
         TextInputEditText password;
         AppCompatButton login;
+        public ProgressFragment progressDialog;
         ImageView childImage;
         public static string baseUrl = "https://galacticos-alat-apim.azure-api.net/api/Authentication/Login/";
 
@@ -94,10 +95,11 @@ namespace ALAT_Lite
             {
                 GuardianLogin model = new GuardianLogin() { username = mail, password = passwrd };
                 var rawString = JsonConvert.SerializeObject(model);
+                ShowProgressDialog("Authenticating");
                 result = await NetworkUtils.PostUserData("Authentication/Login", rawString);
                 if (!string.IsNullOrEmpty(result))
                 {
-                    Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
+                   // Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
 
                     var loginDetails = JsonConvert.DeserializeObject<GuardianLoginResponse>(result);
                     var userId = loginDetails.userId.ToString();
@@ -125,21 +127,42 @@ namespace ALAT_Lite
                     intent.PutExtra("accountType", accountType);
                     intent.PutExtra("token", token);
 
+                    CloseProgressDialog();
                     StartActivity(intent);
                     password.Text = "";
                     // var desiioo = JsonConvert.DeserializeObject<LoginModel>(result);
                 }
                 else
                 {
+                    CloseProgressDialog();
                     Toast.MakeText(this, "Oops!, Kindly try again.", ToastLength.Long).Show();
                 }
             }
             catch (Exception e)
             {
-                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+                CloseProgressDialog();
+                Toast.MakeText(this, "Oops!, Kindly try again. " + e.Message, ToastLength.Long).Show();
             }
 
 
+        }
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
         }
 
         private void ChildImage_Click(object sender, System.EventArgs e)
