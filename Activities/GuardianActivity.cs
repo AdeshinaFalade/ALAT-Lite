@@ -12,7 +12,7 @@ using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Xamarin.Essentials;
 using static AndroidX.ViewPager.Widget.ViewPager;
 using static AndroidX.ViewPager2.Widget.ViewPager2;
 using System.Text;
@@ -52,32 +52,20 @@ namespace ALAT_Lite.Activities
             sendMoney = FindViewById<LinearLayout>(Resource.Id.linearLayout5);
 
 
-            /**
-            intent.PutExtra("userId", userId);
-            intent.PutExtra("firstName", firstName);
-            intent.PutExtra("lastName", lastName);
-            intent.PutExtra("gender", gender);
-            intent.PutExtra("phoneNumber", phoneNumber);
-            intent.PutExtra("email", email);
-            intent.PutExtra("accountBalance", accountBalance);
-            intent.PutExtra("accountNumber", accountNumber);
-            intent.PutExtra("accountStatus", accountStatus);
-            intent.PutExtra("accountType", accountType);
-            intent.PutExtra("token", token);
-            **/
 
+            string userId = Preferences.Get("userId","");
+            var firstName = Preferences.Get("firstName", "");
+            var lastName = Preferences.Get("lastName", "");
+            accountBalance = Preferences.Get("accountBalance", "");
+            var accountNumber = Preferences.Get("accountNumber", "");
 
-            var userId = Intent.GetStringExtra("userId");
-            var firstName = Intent.GetStringExtra("firstName");
-            var lastName = Intent.GetStringExtra("lastName");
-            accountBalance = Intent.GetStringExtra("accountBalance");
-            var accountNumber = Intent.GetStringExtra("accountNumber");
+            //format string to currency
             var bal = double.Parse(accountBalance);
             formattedBal = bal.ToString("C", myNumberFormatInfo);
             balance.Text = formattedBal;
             customerName.Text = "Hi, " + firstName;
             txtAcctNumber.Text = accountNumber;
-
+            //to do show and hide balance
             visibility.Click += Visibility_Click;
             createAcct.Click += CreateAcct_Click;
             royalKiddies.Click += RoyalKiddies_Click;

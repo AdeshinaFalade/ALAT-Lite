@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Xamarin.Essentials;
 
 namespace ALAT_Lite
 {
@@ -58,7 +59,7 @@ namespace ALAT_Lite
                 Toast.MakeText(this, "No internet connection", ToastLength.Short).Show();
                 return;
             }
-            if (string.IsNullOrEmpty(userEmail))
+            else if (string.IsNullOrEmpty(userEmail))
             {
                 Toast.MakeText(this, "Email is required", ToastLength.Short).Show();
                 return;
@@ -79,24 +80,18 @@ namespace ALAT_Lite
                 return;
             }
 
-            /**
-            Intent intent = new Intent(this, typeof(GuardianActivity));
-            StartActivity(intent);
-            password.Text = "" ;
-            **/
-
             //SendData();
             LoginUserAccount(userEmail, userPassword);
         }
         public async void LoginUserAccount(string mail, string passwrd)
         {
-            string result = string.Empty;
+            string result = string.Empty; 
             try
             {
-                GuardianLogin model = new GuardianLogin() { username = mail, password = passwrd };
-                var rawString = JsonConvert.SerializeObject(model);
                 ShowProgressDialog("Authenticating");
-                result = await NetworkUtils.PostUserData("Authentication/Login", rawString);
+                GuardianLogin model = new GuardianLogin() { username = mail, password = passwrd };
+                var rawString = JsonConvert.SerializeObject(model); 
+                result = await NetworkUtils.PostUserData("Authentication//GuardianLogin", rawString);
                 if (!string.IsNullOrEmpty(result))
                 {
                    // Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
@@ -114,19 +109,21 @@ namespace ALAT_Lite
                     var accountType = loginDetails.accountType.ToString();
                     var token = loginDetails.token.ToString();
 
-                    Intent intent = new Intent(this, typeof(GuardianActivity));
-                    intent.PutExtra("userId", userId);
-                    intent.PutExtra("firstName", firstName);
-                    intent.PutExtra("lastName", lastName);
-                    intent.PutExtra("gender", gender);
-                    intent.PutExtra("phoneNumber", phoneNumber);
-                    intent.PutExtra("email", email);
-                    intent.PutExtra("accountBalance", accountBalance);
-                    intent.PutExtra("accountNumber", accountNumber);
-                    intent.PutExtra("accountStatus", accountStatus);
-                    intent.PutExtra("accountType", accountType);
-                    intent.PutExtra("token", token);
+                    Preferences.Set("userId", userId);
+                    Preferences.Set("firstName", firstName);
+                    Preferences.Set("lastName", lastName);
+                    Preferences.Set("gender", gender);
+                    Preferences.Set("phoneNumber", phoneNumber);
+                    Preferences.Set("email", email);
+                    Preferences.Set("accountBalance", accountBalance);
+                    Preferences.Set("accountNumber", accountNumber);
+                    Preferences.Set("accountStatus", accountStatus);
+                    Preferences.Set("accountType", accountType);
+                    Preferences.Set("token", token);
 
+
+
+                    Intent intent = new Intent(this, typeof(GuardianActivity));
                     CloseProgressDialog();
                     StartActivity(intent);
                     password.Text = "";
@@ -135,13 +132,18 @@ namespace ALAT_Lite
                 else
                 {
                     CloseProgressDialog();
-                    Toast.MakeText(this, "Oops!, Kindly try again.", ToastLength.Long).Show();
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
                 }
             }
             catch (Exception e)
             {
                 CloseProgressDialog();
-                Toast.MakeText(this, "Oops!, Kindly try again. " + e.Message, ToastLength.Long).Show();
+                if (e.Message == "Unexpected character encountered while parsing value: B. Path '', line 0, position 0.")
+                {
+                    Toast.MakeText(this, "Wrong email or password", ToastLength.Short).Show();
+                }
+                else
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again. ", ToastLength.Short).Show();
             }
 
 

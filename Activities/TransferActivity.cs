@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
@@ -57,8 +58,8 @@ namespace ALAT_Lite.Activities
             spinner.Adapter = adapter;
 
             //get info from the viewpager in royalkiddies activity
-            var acct = Intent.GetStringExtra("acct");
-            var kidName = Intent.GetStringExtra("name");
+            var acct = Preferences.Get("acct","");
+            var kidName = Preferences.Get("name", "");
             edtAcctNum.Text = acct;
             edtAcctName.Text = kidName;
 

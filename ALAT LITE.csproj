@@ -91,6 +91,7 @@
     <Compile Include="Classes\GuardianLogin.cs" />
     <Compile Include="Classes\GuardianLoginResponse.cs" />
     <Compile Include="Classes\NetworkUtils.cs" />
+    <Compile Include="Classes\RegisterWardModel.cs" />
     <Compile Include="Fragments\DocUploadeAlertFragment.cs" />
     <Compile Include="Interfaces\IProgress.cs" />
     <Compile Include="Classes\TransactionModel.cs" />

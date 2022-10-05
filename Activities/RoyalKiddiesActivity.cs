@@ -17,6 +17,7 @@ using AndroidX.ViewPager2.Widget;
 using static AndroidX.ViewPager2.Widget.ViewPager2;
 using ALAT_Lite.Classes;
 using ALAT_Lite.Adapters;
+using Xamarin.Essentials;
 
 namespace ALAT_Lite.Activities
 {
@@ -59,6 +60,9 @@ namespace ALAT_Lite.Activities
             var myAdapter = new ViewPagerAdapter(this,CreateData());
             viewPager2.Adapter = myAdapter;
             viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
+
+           
+
         }
         
 
@@ -93,8 +97,6 @@ namespace ALAT_Lite.Activities
         private void BtnFundWard_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(TransferActivity));
-            intent.PutExtra("acct",AcctNum);
-            intent.PutExtra("name", KidName);
             StartActivity(intent);
         }
 
@@ -128,6 +130,9 @@ namespace ALAT_Lite.Activities
                 base.OnPageSelected(position);
                 AcctNum = CreateData()[position].AccountNumber;
                 KidName = CreateData()[position].Name;
+
+                Preferences.Set("acct", AcctNum);
+                Preferences.Set("name", KidName);
             }
         }
     }

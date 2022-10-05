@@ -1,4 +1,5 @@
-﻿using Android;
+﻿using ALAT_Lite.Classes;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -8,18 +9,22 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Google.Android.Material.Button;
+using Newtonsoft.Json;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace ALAT_Lite.Fragments
 {
     [Obsolete]
     public class GuardDetFrag : Fragment
     {
-        
+        RegisterWardModel registerWard;
+        public static string token;
+        public ProgressFragment progressDialog;
         MaterialButton btnSubmit;
         EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtBVN, edtAddress;
 
@@ -47,6 +52,27 @@ namespace ALAT_Lite.Fragments
             edtGuardMiddleName = view.FindViewById<EditText>(Resource.Id.edtGuardMiddleName);
             edtBVN = view.FindViewById<EditText>(Resource.Id.edtBVN);
             edtAddress = view.FindViewById<EditText>(Resource.Id.edtAddress);
+
+            token = Preferences.Get("token", "");
+            var userId = Preferences.Get("userId", "");
+            var wardFirstName = Preferences.Get("WardFirstName", "");
+            var wardLastName = Preferences.Get("WardLastName", "");
+            var wardMiddleName = Preferences.Get("WardMiddleName", "");
+            var wardEmail = Preferences.Get("WardEmail", "");
+            var wardGender = Preferences.Get("WardGender", "");
+            var wardDOB = Preferences.Get("WardDOB", "");
+
+            RegisterWardModel registerWard = new RegisterWardModel()
+            {
+                firstName= wardFirstName,
+                lastName= wardLastName,
+                middleName= wardMiddleName,
+                emailAddress= wardEmail,
+                gender= wardGender,
+                dateOfBirth= wardDOB,
+                address = edtAddress.Text,
+                guardianId = userId
+            };
 
             btnSubmit.Click += BtnSubmit_Click;
           
@@ -114,7 +140,35 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid Email Address", ToastLength.Short).Show();
                 return;
             }
-            ShowAlert();
+            CreateWard(registerWard);
+        }
+
+        public async void CreateWard(RegisterWardModel model)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Submitting");
+                var rawString = JsonConvert.SerializeObject(model);
+                result = await NetworkUtils.PostUserData("Guardian/GuardianRegisterWard", rawString, token);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    CloseProgressDialog();
+
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                    Toast.MakeText(Activity, e.Message, ToastLength.Short).Show();
+            }
+
+
         }
         void ShowAlert()
         {
@@ -123,6 +177,23 @@ namespace ALAT_Lite.Fragments
             alertFrag.Show(trans, "Dialog");
         }
 
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
+        }
 
     }
 }

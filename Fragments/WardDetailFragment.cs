@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace ALAT_Lite.Fragments
 {
@@ -105,7 +106,13 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid Email Address", ToastLength.Short).Show();
                 return;
             }
-          
+
+            Preferences.Set("WardFirstName", edtWardFirstName.Text);
+            Preferences.Set("WardLastName", edtWardLastName.Text);
+            Preferences.Set("WardMiddleName", edtWardMiddleName.Text);
+            Preferences.Set("WardEmail", edtWardEmail.Text);
+            Preferences.Set("WardGender", spinner.SelectedItem.ToString());
+            Preferences.Set("WardDOB", DateTime.Parse(btnDOB.Text).ToString(@"yyy-MM-dd"));
 
             var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag());
             trans.AddToBackStack(null);

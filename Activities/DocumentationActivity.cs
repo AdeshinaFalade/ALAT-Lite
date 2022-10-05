@@ -64,6 +64,7 @@ namespace ALAT_Lite.Activities
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+
             btnSubmit.Click += BtnSubmit_Click;
             imgAttachBirthCert.Click += ImgAttachBirthCert_Click;
             imgAttachGuardPassport.Click += ImgAttachGuardPassport_Click;
