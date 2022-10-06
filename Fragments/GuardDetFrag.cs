@@ -53,6 +53,7 @@ namespace ALAT_Lite.Fragments
             edtPhone = view.FindViewById<EditText>(Resource.Id.edtBVN);
             edtAddress = view.FindViewById<EditText>(Resource.Id.edtAddress);
 
+            //retrieve shared pref
             token = Preferences.Get("token", "");
             int userId = Preferences.Get("userId", 0);
             var wardFirstName = Preferences.Get("WardFirstName", "");
@@ -61,6 +62,14 @@ namespace ALAT_Lite.Fragments
             var wardEmail = Preferences.Get("WardEmail", "");
             var wardGender = Preferences.Get("WardGender", "");
             var wardDOB = Preferences.Get("WardDOB", "");
+            var firstName = Preferences.Get("firstName", "");
+            var lastName = Preferences.Get("lastName", "");
+            var guardMail = Preferences.Get("email", "");
+
+            //set the guardian details
+            edtGuardFirstName.Text = firstName;
+            edtGuardLastName.Text = lastName;
+            edtGuardEmail.Text = guardMail;
 
             registerWard.firstName = wardFirstName;
             registerWard.lastName = wardLastName;
