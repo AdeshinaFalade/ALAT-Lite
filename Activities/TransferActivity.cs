@@ -58,8 +58,8 @@ namespace ALAT_Lite.Activities
             spinner.Adapter = adapter;
 
             //get info from the viewpager in royalkiddies activity
-            var acct = Preferences.Get("acct","");
-            var kidName = Preferences.Get("name", "");
+            var acct = Intent.GetStringExtra("acct");
+            var kidName = Intent.GetStringExtra("name");
             edtAcctNum.Text = acct;
             edtAcctName.Text = kidName;
 

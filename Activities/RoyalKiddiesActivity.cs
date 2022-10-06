@@ -97,6 +97,8 @@ namespace ALAT_Lite.Activities
         private void BtnFundWard_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(TransferActivity));
+            intent.PutExtra("acct", AcctNum);
+            intent.PutExtra("name", KidName);
             StartActivity(intent);
         }
 
@@ -131,8 +133,7 @@ namespace ALAT_Lite.Activities
                 AcctNum = CreateData()[position].AccountNumber;
                 KidName = CreateData()[position].Name;
 
-                Preferences.Set("acct", AcctNum);
-                Preferences.Set("name", KidName);
+               // Preferences.Set("acct", AcctNum);
             }
         }
     }
