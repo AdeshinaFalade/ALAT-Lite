@@ -97,7 +97,7 @@ namespace ALAT_Lite
                    // Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
 
                     var loginDetails = JsonConvert.DeserializeObject<GuardianLoginResponse>(result);
-                    var userId = loginDetails.userId.ToString();
+                    var userId = loginDetails.userId;
                     var firstName = loginDetails.firstName.ToString();
                     var lastName = loginDetails.lastName.ToString();
                     var gender = loginDetails.gender.ToString();

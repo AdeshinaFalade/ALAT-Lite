@@ -115,7 +115,7 @@
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BVN"
+            android:text="Phone Number"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
@@ -125,7 +125,7 @@
                 android:id="@+id/edtBVN"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
-                android:hint="BVN"
+                android:hint="Phone"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorPrimary"
                 android:paddingLeft="10dp"

@@ -20,7 +20,7 @@ namespace ALAT_Lite.Classes
         public string emailAddress { get; set; }
         public string phoneNumber { get; set; }
         public string gender { get; set; }
-        public string guardianId { get; set; }
+        public int guardianId { get; set; }
         public string address { get; set; }
 
     }

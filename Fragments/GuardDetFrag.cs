@@ -22,11 +22,11 @@ namespace ALAT_Lite.Fragments
     [Obsolete]
     public class GuardDetFrag : Fragment
     {
-        RegisterWardModel registerWard;
+        public static RegisterWardModel registerWard = new RegisterWardModel();
         public static string token;
         public ProgressFragment progressDialog;
         MaterialButton btnSubmit;
-        EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtBVN, edtAddress;
+        EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtPhone, edtAddress;
 
 
 
@@ -50,11 +50,11 @@ namespace ALAT_Lite.Fragments
             edtGuardLastName = view.FindViewById<EditText>(Resource.Id.edtGuardLastName);
             edtGuardEmail = view.FindViewById<EditText>(Resource.Id.edtGuardEmail);
             edtGuardMiddleName = view.FindViewById<EditText>(Resource.Id.edtGuardMiddleName);
-            edtBVN = view.FindViewById<EditText>(Resource.Id.edtBVN);
+            edtPhone = view.FindViewById<EditText>(Resource.Id.edtBVN);
             edtAddress = view.FindViewById<EditText>(Resource.Id.edtAddress);
 
             token = Preferences.Get("token", "");
-            var userId = Preferences.Get("userId", "");
+            int userId = Preferences.Get("userId", 0);
             var wardFirstName = Preferences.Get("WardFirstName", "");
             var wardLastName = Preferences.Get("WardLastName", "");
             var wardMiddleName = Preferences.Get("WardMiddleName", "");
@@ -62,17 +62,16 @@ namespace ALAT_Lite.Fragments
             var wardGender = Preferences.Get("WardGender", "");
             var wardDOB = Preferences.Get("WardDOB", "");
 
-            RegisterWardModel registerWard = new RegisterWardModel()
-            {
-                firstName= wardFirstName,
-                lastName= wardLastName,
-                middleName= wardMiddleName,
-                emailAddress= wardEmail,
-                gender= wardGender,
-                dateOfBirth= wardDOB,
-                address = edtAddress.Text,
-                guardianId = userId
-            };
+            registerWard.firstName = wardFirstName;
+            registerWard.lastName = wardLastName;
+            registerWard.middleName = wardMiddleName;
+            registerWard.emailAddress = wardEmail;
+            registerWard.gender = wardGender;
+            registerWard.dateOfBirth = wardDOB;
+            registerWard.address = edtAddress.Text;
+            registerWard.guardianId = userId;
+            registerWard.phoneNumber = edtPhone.Text;
+
 
             btnSubmit.Click += BtnSubmit_Click;
           
@@ -87,7 +86,7 @@ namespace ALAT_Lite.Fragments
             var firstName = edtGuardFirstName.Text;
             var lastName = edtGuardLastName.Text;
             var mail = edtGuardEmail.Text;
-            var bvn = edtBVN.Text;
+            var phone = edtPhone.Text;
             var address = edtAddress.Text;
 
             if (string.IsNullOrEmpty(firstName))
@@ -110,14 +109,14 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid last name", ToastLength.Short).Show();
                 return;
             }
-            else if (string.IsNullOrEmpty(bvn))
+            else if (string.IsNullOrEmpty(phone))
             {
-                Toast.MakeText(Activity, "BVN is required", ToastLength.Short).Show();
+                Toast.MakeText(Activity, "Phone number is required", ToastLength.Short).Show();
                 return;
             }
-            else if (bvn.Length != 11)
+            else if (phone.Length != 11)
             {
-                Toast.MakeText(Activity, "Invalid BVN", ToastLength.Short).Show();
+                Toast.MakeText(Activity, "Invalid phone number", ToastLength.Short).Show();
                 return;
             }
             else if (string.IsNullOrEmpty(address))
@@ -140,6 +139,7 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid Email Address", ToastLength.Short).Show();
                 return;
             }
+
             CreateWard(registerWard);
         }
 

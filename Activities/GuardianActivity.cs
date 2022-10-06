@@ -53,7 +53,7 @@ namespace ALAT_Lite.Activities
 
 
 
-            string userId = Preferences.Get("userId","");
+            var userId = Preferences.Get("userId",0);
             var firstName = Preferences.Get("firstName", "");
             var lastName = Preferences.Get("lastName", "");
             accountBalance = Preferences.Get("accountBalance", "");
