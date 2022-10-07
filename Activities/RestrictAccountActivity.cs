@@ -13,6 +13,8 @@ using ALAT_Lite.Fragments;
 using System.Text;
 using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using Xamarin.Essentials;
+using ALAT_Lite.Classes;
 
 namespace ALAT_Lite.Activities
 {
@@ -23,7 +25,10 @@ namespace ALAT_Lite.Activities
         AppCompatButton btnApply;
         Toolbar toolbar;
         RestrictAlertFrag alertFrag;
-        
+        public ProgressFragment progressDialog;
+        public static int wardId;
+        public static string token;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,6 +39,9 @@ namespace ALAT_Lite.Activities
             toolbar = FindViewById<Toolbar>(Resource.Id.restrictToolbar);
             spinner = FindViewById<Spinner>(Resource.Id.spinner2);
             btnApply = FindViewById<AppCompatButton>(Resource.Id.btnApply);
+
+            wardId = Preferences.Get("wardId", 0);
+            token = Preferences.Get("token", "");
 
             //setup toolbar
 
@@ -55,8 +63,61 @@ namespace ALAT_Lite.Activities
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
-            ShowAlert();
+
+            var spinnerOption = spinner.SelectedItem.ToString();
+            var status = "";
+            if (spinnerOption == "Activate")
+            {
+                status = "false";
+            }
+            else
+                status = "true";
+            Restrict(wardId, status);
         }
+
+        public async void Restrict(int id, string status)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Updating");
+                result = await NetworkUtils.PostData($"Guardian/UpdateRestrictionStatus?wardId={id}&restStatus={status}", token);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    CloseProgressDialog();
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+            }
+        }
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
+        }
+
         void ShowAlert()
         {
             alertFrag = new RestrictAlertFrag();
