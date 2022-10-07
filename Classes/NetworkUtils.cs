@@ -57,21 +57,26 @@ namespace ALAT_Lite.Classes
             return result;
         }
 
-        
-        internal static async Task<string> PostWebReq(string actionName)
+        internal static async Task<string> PostData(string actionName, string token)
         {
             string result = string.Empty;
             try
             {
-                string imageUrl = baseUrl + actionName;
-                WebRequest request = default(WebRequest);
-                request = WebRequest.Create(imageUrl);
-                request.Timeout = int.MaxValue;
-                request.Method = "POST";
-
-                WebResponse response = default(WebResponse);
-                response = await request.GetResponseAsync();
-                result = response.ToString();
+                using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
+                {
+                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var response = await mClient.PostAsync($"{actionName}",null).ConfigureAwait(false);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var mResult = await response.Content.ReadAsStringAsync();
+                        return mResult;
+                    }
+                    else
+                    {
+                        result = response.ReasonPhrase;
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -79,6 +84,8 @@ namespace ALAT_Lite.Classes
             }
             return result;
         }
+
+
 
         /// <summary>
         /// For http posts
