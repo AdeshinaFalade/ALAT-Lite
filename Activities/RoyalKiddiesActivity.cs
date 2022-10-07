@@ -13,21 +13,25 @@ using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using System.Text;
 using AndroidX.AppCompat.Widget;
 using AndroidX.ViewPager2.Widget;
-
 using static AndroidX.ViewPager2.Widget.ViewPager2;
 using ALAT_Lite.Classes;
 using ALAT_Lite.Adapters;
 using Xamarin.Essentials;
+using ALAT_Lite.Fragments;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ALAT_Lite.Activities
 {
     [Activity(Label = "RoyalKiddiesActivity")]
     public class RoyalKiddiesActivity : AppCompatActivity
     {
+        public ProgressFragment progressDialog;
         Toolbar toolbar;
         AppCompatButton btnFundWard;
-        public static string AcctNum, KidName;
+        public static string AcctNum, KidName, token;
         ViewPager2 viewPager2;
+        public static List<ChildClass> listOfChildren = new List<ChildClass>();
         LinearLayout parent_view;
         AppCompatButton btnTransactionHistory;
         AppCompatButton btnMaintenance;
@@ -52,33 +56,27 @@ namespace ALAT_Lite.Activities
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+            token = Preferences.Get("token", "");
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
             btnTransactionHistory.Click += BtnTransactionHistory_Click;
 
-            //setup view pager
-            var myAdapter = new ViewPagerAdapter(this,CreateData());
-            viewPager2.Adapter = myAdapter;
+            FetchWards();
+
+            
             viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
 
-           
+            
 
         }
-        
-
         public static List<ChildClass> CreateData()
         {
             List<ChildClass> children = new List<ChildClass>();
-            children.Add(new ChildClass() { Balance = 5000, AccountNumber = "2323243422", Active = true ,Name = "Thor Odinson"});
-            children.Add(new ChildClass() { Balance = 4000, AccountNumber = "2343648635", Active = true , Name = "Peter Parker"});
-            children.Add(new ChildClass() { Balance = 400000, AccountNumber = "2343565896", Active = true, Name = "Bruce Banner" });
+            children.Add(new ChildClass() { account_Balance = 5000, account_Number = "2323243422", guardianId = 2 ,account_Name = "Thor Odinson", ward_Id = 3});
+            children.Add(new ChildClass() { account_Balance = 3000, account_Number = "2323243455", guardianId = 2, account_Name = "James Bond", ward_Id = 1 });
+            children.Add(new ChildClass() { account_Balance = 8000, account_Number = "2323232323", guardianId = 2, account_Name = "John Jones", ward_Id = 2 });
             return children;
-
         }
-
-
-
-
 
         private void BtnTransactionHistory_Click(object sender, EventArgs e)
         {
@@ -92,7 +90,6 @@ namespace ALAT_Lite.Activities
             StartActivity(intent);
         }
 
-
         //transfer info about the selected account in the viewpager
         private void BtnFundWard_Click(object sender, EventArgs e)
         {
@@ -101,6 +98,40 @@ namespace ALAT_Lite.Activities
             intent.PutExtra("name", KidName);
             StartActivity(intent);
         }
+
+
+        public async void FetchWards()
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Loading");
+                result = await NetworkUtils.GetUserData("Guardian/getWardByGuardian?id=2", token);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    var resultObject = JObject.Parse(result);
+                    listOfChildren = JsonConvert.DeserializeObject<List<ChildClass>>(resultObject["value"].ToString());
+                    CloseProgressDialog();
+
+                    //setup view pager
+                    var myAdapter = new ViewPagerAdapter(this, listOfChildren);
+                    viewPager2.Adapter = myAdapter;
+                }
+                else
+                {
+                    CloseProgressDialog();
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+            }
+
+
+        }
+
 
         //back button
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -130,10 +161,28 @@ namespace ALAT_Lite.Activities
                 //to note the item being displayed in the viewpager
                 
                 base.OnPageSelected(position);
-                AcctNum = CreateData()[position].AccountNumber;
-                KidName = CreateData()[position].Name;
+                AcctNum = listOfChildren[position].account_Number;
+                KidName = listOfChildren[position].account_Name;
 
                // Preferences.Set("acct", AcctNum);
+            }
+        }
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
             }
         }
     }

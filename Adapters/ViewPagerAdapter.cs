@@ -48,18 +48,9 @@ namespace ALAT_Lite.Adapters
             // Replace the contents of the view with that element
             var holder = viewHolder as ViewPagerAdapterViewHolder;
             //holder.TextView.Text = items[position];
-            holder.txtAcctNumber.Text = item.AccountNumber;
-            holder.txtWardName.Text = item.Name;
-            holder.txtGuardianBalance.Text = item.Balance.ToString("C", myNumberFormatInfo);
-            if (item.Active)
-            {
-                holder.txtStatus.Text = "Active";
-            }
-            else
-            {
-                holder.txtStatus.Text = "Restricted";
-            }
-
+            holder.txtAcctNumber.Text = item.account_Number;
+            holder.txtWardName.Text = item.account_Name;
+            holder.txtWardBalance.Text = item.account_Balance .ToString("C", myNumberFormatInfo);
         }
 
         public override int ItemCount => listOfChild.Count;
@@ -80,14 +71,14 @@ namespace ALAT_Lite.Adapters
     public class ViewPagerAdapterViewHolder : RecyclerView.ViewHolder
     {
         //public TextView TextView { get; set; }
-        public TextView txtAcctNumber, txtGuardianBalance, txtStatus, txtWardName;
+        public TextView txtAcctNumber, txtWardBalance, txtStatus, txtWardName;
 
 
         public ViewPagerAdapterViewHolder(View itemView) : base(itemView)
         {
             //TextView = v;
             txtAcctNumber = itemView.FindViewById<TextView>(Resource.Id.txtWardAcctNumber);
-            txtGuardianBalance = itemView.FindViewById<TextView>(Resource.Id.txtWardBalance);
+            txtWardBalance = itemView.FindViewById<TextView>(Resource.Id.txtWardBalance);
             txtWardName = itemView.FindViewById<TextView>(Resource.Id.txtWardName);
             txtStatus = itemView.FindViewById<TextView>(Resource.Id.txtWardStatus);
          //   itemView.Click += (sender, e) => clickListener(new ViewPagerAdapterClickEventArgs { View = itemView, Position = AdapterPosition });

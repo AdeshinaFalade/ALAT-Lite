@@ -13,9 +13,10 @@ namespace ALAT_Lite.Classes
 {
     public class ChildClass
     {
-        public double Balance { get; set; }
-        public string AccountNumber { get; set; }
-        public string Name { get; set; }
-        public bool Active { get; set; }
+        public double account_Balance { get; set; }
+        public string account_Number { get; set; }
+        public string account_Name { get; set; }
+        public int ward_Id { get; set; }
+        public int guardianId { get; set; }
     }
 }

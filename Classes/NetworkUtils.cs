@@ -105,7 +105,36 @@ namespace ALAT_Lite.Classes
                 {
                     mClient.Timeout = TimeSpan.FromMinutes(1);
 
-                    var response = await mClient.GetAsync($"{actionName}/").ConfigureAwait(false);
+                    var response = await mClient.GetAsync($"{actionName}").ConfigureAwait(false);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var mResult = await response.Content.ReadAsStringAsync();
+                        return mResult;
+                    }
+                    else
+                    {
+                        result = response.ReasonPhrase;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            return result;
+        }
+
+        internal static async Task<string> GetUserData(string actionName, string token)
+        {
+            string result = string.Empty;
+            try
+            {
+                using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
+                {
+                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                    var response = await mClient.GetAsync($"{actionName}").ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
                     {
                         var mResult = await response.Content.ReadAsStringAsync();
