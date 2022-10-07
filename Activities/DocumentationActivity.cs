@@ -20,6 +20,9 @@ using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using Google.Android.Material.Snackbar;
+using Xamarin.Essentials;
+using ALAT_Lite.Classes;
+using Newtonsoft.Json;
 
 namespace ALAT_Lite.Activities
 {
@@ -29,6 +32,8 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         LinearLayout linearLayoutDoc;
         public Bitmap bitmap;
+        public static int wardId;
+        public static string token;
         public List<string> links = new List<string>();
         public ProgressFragment progressDialog;
         readonly string[] permissionGroup =
@@ -64,6 +69,8 @@ namespace ALAT_Lite.Activities
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+            wardId = Preferences.Get("wardId", 0);
+            token = Preferences.Get("token", "");
 
             btnSubmit.Click += BtnSubmit_Click;
             imgAttachBirthCert.Click += ImgAttachBirthCert_Click;
@@ -148,11 +155,42 @@ namespace ALAT_Lite.Activities
         {
             if (links.Count < 4)
             {
-                Toast.MakeText(this, "Upload all the required documents", ToastLength.Long).Show();
+                Toast.MakeText(this, "Upload all the required documents", ToastLength.Short).Show();
                 return;
             }
-            ShowAlert();
+            var docLinks = new UploadDocsModel() { birthCertUrl = links[1], guardianPassportUrl = links[3], idCardUrl = links[2], wardPassportUrl = links[0] };
+            UploadDocuments(wardId, docLinks);
+            
         }
+
+        public async void UploadDocuments(int id, UploadDocsModel model)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Submitting");
+                var rawString = JsonConvert.SerializeObject(model);
+                result = await NetworkUtils.PostUserData($"Guardian/UploadDocument?Wardid={id}", rawString, token);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    CloseProgressDialog();
+
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, e.Message, ToastLength.Short).Show();
+            }
+
+
+        }
+
 
         void ShowAlert()
         {
@@ -182,9 +220,9 @@ namespace ALAT_Lite.Activities
             try
             {
 
-                var account = CloudStorageAccount.Parse("BlobEndpoint=https://bitproject.blob.core.windows.net/;QueueEndpoint=https://bitproject.queue.core.windows.net/;FileEndpoint=https://bitproject.file.core.windows.net/;TableEndpoint=https://bitproject.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-10-07T17:59:44Z&st=2022-09-28T09:59:44Z&spr=https,http&sig=fFmGMBq%2FGwrp6Xcs%2FM8%2FDEOqJWJ7CAsFRZF3A25vQg0%3D");
+                var account = CloudStorageAccount.Parse("BlobEndpoint=https://bitproject.blob.core.windows.net/;QueueEndpoint=https://bitproject.queue.core.windows.net/;FileEndpoint=https://bitproject.file.core.windows.net/;TableEndpoint=https://bitproject.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=b&srt=sco&sp=rwdlaciytfx&se=2022-10-31T03:41:56Z&st=2022-10-07T19:41:56Z&spr=https,http&sig=PIcKUoF26sAYjiB5A702oOomWfMDyIY2MJ8b0OkZ5Ls%3D");
                 var client = account.CreateCloudBlobClient();
-                var container = client.GetContainerReference("imageblob");
+                var container = client.GetContainerReference("user-" + wardId.ToString());
                 await container.CreateIfNotExistsAsync();
                 var name = Guid.NewGuid().ToString();
                 var blockBlob = container.GetBlockBlobReference($"{name}.png");

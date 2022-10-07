@@ -7,6 +7,7 @@ using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,29 @@ namespace ALAT_Lite.Classes
                         result = response.ReasonPhrase;
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            return result;
+        }
+
+        
+        internal static async Task<string> PostWebReq(string actionName)
+        {
+            string result = string.Empty;
+            try
+            {
+                string imageUrl = baseUrl + actionName;
+                WebRequest request = default(WebRequest);
+                request = WebRequest.Create(imageUrl);
+                request.Timeout = int.MaxValue;
+                request.Method = "POST";
+
+                WebResponse response = default(WebResponse);
+                response = await request.GetResponseAsync();
+                result = response.ToString();
             }
             catch (Exception e)
             {

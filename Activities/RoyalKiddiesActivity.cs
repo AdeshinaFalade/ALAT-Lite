@@ -30,6 +30,7 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         AppCompatButton btnFundWard;
         public static string AcctNum, KidName, token;
+        public static int wardId;
         ViewPager2 viewPager2;
         public static List<ChildClass> listOfChildren = new List<ChildClass>();
         LinearLayout parent_view;
@@ -69,14 +70,6 @@ namespace ALAT_Lite.Activities
             
 
         }
-        public static List<ChildClass> CreateData()
-        {
-            List<ChildClass> children = new List<ChildClass>();
-            children.Add(new ChildClass() { account_Balance = 5000, account_Number = "2323243422", guardianId = 2 ,account_Name = "Thor Odinson", ward_Id = 3});
-            children.Add(new ChildClass() { account_Balance = 3000, account_Number = "2323243455", guardianId = 2, account_Name = "James Bond", ward_Id = 1 });
-            children.Add(new ChildClass() { account_Balance = 8000, account_Number = "2323232323", guardianId = 2, account_Name = "John Jones", ward_Id = 2 });
-            return children;
-        }
 
         private void BtnTransactionHistory_Click(object sender, EventArgs e)
         {
@@ -98,7 +91,6 @@ namespace ALAT_Lite.Activities
             intent.PutExtra("name", KidName);
             StartActivity(intent);
         }
-
 
         public async void FetchWards()
         {
@@ -129,9 +121,7 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
             }
 
-
         }
-
 
         //back button
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -163,8 +153,10 @@ namespace ALAT_Lite.Activities
                 base.OnPageSelected(position);
                 AcctNum = listOfChildren[position].account_Number;
                 KidName = listOfChildren[position].account_Name;
+                wardId = listOfChildren[position].ward_Id;
 
-               // Preferences.Set("acct", AcctNum);
+                // Preferences.Set("acct", AcctNum);
+                Preferences.Set("wardId", wardId);
             }
         }
 
