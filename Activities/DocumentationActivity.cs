@@ -223,7 +223,7 @@ namespace ALAT_Lite.Activities
                 var account = CloudStorageAccount.Parse("BlobEndpoint=https://bitproject.blob.core.windows.net/;QueueEndpoint=https://bitproject.queue.core.windows.net/;FileEndpoint=https://bitproject.file.core.windows.net/;TableEndpoint=https://bitproject.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=b&srt=sco&sp=rwdlaciytfx&se=2022-10-31T03:41:56Z&st=2022-10-07T19:41:56Z&spr=https,http&sig=PIcKUoF26sAYjiB5A702oOomWfMDyIY2MJ8b0OkZ5Ls%3D");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("user-" + wardId.ToString());
-                await container.CreateIfNotExistsAsync();
+                await container.CreateIfNotExistsAsync(Microsoft.WindowsAzure.Storage.Blob.BlobContainerPublicAccessType.Container, default,default);
                 var name = Guid.NewGuid().ToString();
                 var blockBlob = container.GetBlockBlobReference($"{name}.png");
                 await blockBlob.UploadFromStreamAsync(stream);

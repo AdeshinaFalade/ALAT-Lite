@@ -19,6 +19,8 @@ using System.Text;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using System.Globalization;
 using ALAT_Lite.Fragments;
+using Android.Support.V4.Widget;
+using Newtonsoft.Json;
 
 namespace ALAT_Lite.Activities
 {
@@ -27,15 +29,17 @@ namespace ALAT_Lite.Activities
     {
         TextView customerName, txtAcctNumber;
         TextView balance;
+        SwipeRefreshLayout swipeRefreshLayout1;
         ImageView visibility;
+        public ProgressFragment progressDialog;
         LinearLayout createAcct;
         LinearLayout royalKiddies;
         NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;
         LinearLayout sendMoney;
         bool Clicked = true;
-        public double bal;
-        public static string accountBalance;
-        public static string formattedBal;
+        public static double bal;
+        public static string accountBalance, loginEmail, loginPassword, firstName, lastName, formattedBal, accountNumber;
+        public static int userId;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,27 +54,116 @@ namespace ALAT_Lite.Activities
             createAcct = FindViewById<LinearLayout>(Resource.Id.linearLayout6);
             royalKiddies = FindViewById<LinearLayout>(Resource.Id.linearLayout8);
             sendMoney = FindViewById<LinearLayout>(Resource.Id.linearLayout5);
+            swipeRefreshLayout1 = FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout1);
 
+            LoadDashboard();
 
+            //to do show and hide balance
+            visibility.Click += Visibility_Click;
 
-            var userId = Preferences.Get("userId",0);
-            var firstName = Preferences.Get("firstName", "");
-            var lastName = Preferences.Get("lastName", "");
+            createAcct.Click += CreateAcct_Click;
+            royalKiddies.Click += RoyalKiddies_Click;
+            sendMoney.Click += SendMoney_Click;
+            swipeRefreshLayout1.Refresh += SwipeRefreshLayout1_Refresh;
+
+        }
+
+        public void LoadDashboard()
+        {
+            userId = Preferences.Get("userId", 0);
+            firstName = Preferences.Get("firstName", "");
+            lastName = Preferences.Get("lastName", "");
             accountBalance = Preferences.Get("accountBalance", "");
-            var accountNumber = Preferences.Get("accountNumber", "");
+            accountNumber = Preferences.Get("accountNumber", "");
+            loginEmail = Preferences.Get("loginEmail", "");
+            loginPassword = Preferences.Get("loginPassword", "");
 
             //format string to currency
-            var bal = double.Parse(accountBalance);
+            bal = double.Parse(accountBalance);
             formattedBal = bal.ToString("C", myNumberFormatInfo);
             balance.Text = formattedBal;
             customerName.Text = "Hi, " + firstName;
             txtAcctNumber.Text = accountNumber;
-            //to do show and hide balance
-            visibility.Click += Visibility_Click;
-            createAcct.Click += CreateAcct_Click;
-            royalKiddies.Click += RoyalKiddies_Click;
-            sendMoney.Click += SendMoney_Click;
+        }
 
+        private void SwipeRefreshLayout1_Refresh(object sender, EventArgs e)
+        {
+            //to refresh 
+            RefreshData(loginEmail, loginPassword);
+            swipeRefreshLayout1.Refreshing = false;
+        }
+
+        public async void RefreshData(string mail, string passwrd)
+        {
+            //this method will automatically login with the provided password and mail to get fresh token and balance
+            string result = string.Empty;
+            try
+            {
+                GuardianLogin model = new GuardianLogin() { username = mail, password = passwrd };
+                var rawString = JsonConvert.SerializeObject(model);
+                result = await NetworkUtils.PostUserData("Authentication//GuardianLogin", rawString);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    // Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
+
+                    var loginDetails = JsonConvert.DeserializeObject<GuardianLoginResponse>(result);
+                    var userId = loginDetails.userId;
+                    var firstName = loginDetails.firstName.ToString();
+                    var lastName = loginDetails.lastName.ToString();
+                    var gender = loginDetails.gender.ToString();
+                    var phoneNumber = loginDetails.phoneNumber.ToString();
+                    var email = loginDetails.email.ToString();
+                    var accountBalance = loginDetails.accountBalance.ToString();
+                    var accountNumber = loginDetails.accountNumber.ToString();
+                    var accountStatus = loginDetails.accountstatus.ToString();
+                    var accountType = loginDetails.accountType.ToString();
+                    var token = loginDetails.token.ToString();
+
+                    Preferences.Set("userId", userId);
+                    Preferences.Set("firstName", firstName);
+                    Preferences.Set("lastName", lastName);
+                    Preferences.Set("gender", gender);
+                    Preferences.Set("phoneNumber", phoneNumber);
+                    Preferences.Set("email", email);
+                    Preferences.Set("accountBalance", accountBalance);
+                    Preferences.Set("accountNumber", accountNumber);
+                    Preferences.Set("accountStatus", accountStatus);
+                    Preferences.Set("accountType", accountType);
+                    Preferences.Set("token", token);
+
+
+                    LoadDashboard();
+
+                }
+                else
+                {
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again. ", ToastLength.Short).Show();
+            }
+
+
+        }
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
         }
 
         private void SendMoney_Click(object sender, EventArgs e)

@@ -124,7 +124,7 @@
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pin"
+            android:text="Password"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
@@ -141,11 +141,11 @@
                 android:id="@+id/edtTransferPIN"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorEdtBackground"
-                android:hint="Pin"
+                android:hint="Password"
                     android:paddingTop="1dp"
                 android:textSize="15sp"
-                    android:maxLength="4"
-                android:inputType="numberPassword"
+                    android:maxLength="20"
+                android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:background="@drawable/edtBackground"
                 android:layout_height="47dp"/>

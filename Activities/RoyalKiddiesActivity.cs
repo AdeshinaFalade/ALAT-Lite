@@ -20,6 +20,7 @@ using Xamarin.Essentials;
 using ALAT_Lite.Fragments;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Google.Android.Material.Snackbar;
 
 namespace ALAT_Lite.Activities
 {
@@ -30,7 +31,7 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         AppCompatButton btnFundWard;
         public static string AcctNum, KidName, token;
-        public static int wardId;
+        public static int wardId, userId;
         ViewPager2 viewPager2;
         public static List<ChildClass> listOfChildren = new List<ChildClass>();
         LinearLayout parent_view;
@@ -57,12 +58,13 @@ namespace ALAT_Lite.Activities
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+            userId = Preferences.Get("userId", 0);
             token = Preferences.Get("token", "");
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
             btnTransactionHistory.Click += BtnTransactionHistory_Click;
 
-            FetchWards();
+            FetchWards(userId);
 
             
             viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
@@ -92,14 +94,14 @@ namespace ALAT_Lite.Activities
             StartActivity(intent);
         }
 
-        public async void FetchWards()
+        public async void FetchWards(int id)
         {
             string result = string.Empty;
             try
             {
                 ShowProgressDialog("Loading");
-                result = await NetworkUtils.GetUserData("Guardian/getWardByGuardian?id=2", token);
-                if (!string.IsNullOrEmpty(result))
+                result = await NetworkUtils.GetUserData($"Guardian/getWardByGuardian?id={id}", token);
+                if (!string.IsNullOrEmpty(result) && result != "Unauthorized")
                 {
                     var resultObject = JObject.Parse(result);
                     listOfChildren = JsonConvert.DeserializeObject<List<ChildClass>>(resultObject["value"].ToString());
@@ -108,6 +110,11 @@ namespace ALAT_Lite.Activities
                     //setup view pager
                     var myAdapter = new ViewPagerAdapter(this, listOfChildren);
                     viewPager2.Adapter = myAdapter;
+                }
+                else if (result == "Unauthorized")
+                {
+                    CloseProgressDialog();
+                    Snackbar.Make(parent_view, "Your session has expired, Kindly log in again or refresh in the home page.", Snackbar.LengthShort).Show();
                 }
                 else
                 {

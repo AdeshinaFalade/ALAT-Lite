@@ -120,6 +120,8 @@ namespace ALAT_Lite
                     Preferences.Set("accountStatus", accountStatus);
                     Preferences.Set("accountType", accountType);
                     Preferences.Set("token", token);
+                    Preferences.Set("loginEmail", mail);
+                    Preferences.Set("loginPassword", passwrd);
 
 
 

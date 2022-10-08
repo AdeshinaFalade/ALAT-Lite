@@ -1,4 +1,5 @@
-﻿using ALAT_Lite.Fragments;
+﻿using ALAT_Lite.Classes;
+using ALAT_Lite.Fragments;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -26,6 +27,9 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         AppCompatButton btnTransfer;
         AlertDialogFragment alertDialogFragment;
+        public ProgressFragment progressDialog;
+        public static int userId;
+        public static string token, accountNumber;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,6 +54,10 @@ namespace ALAT_Lite.Activities
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+            userId = Preferences.Get("userId", 0);
+            token = Preferences.Get("token", "");
+            accountNumber = Preferences.Get("accountNumber", "");
+
 
             //spinner setup
             ArrayAdapter adapter;
@@ -60,6 +68,7 @@ namespace ALAT_Lite.Activities
             //get info from the viewpager in royalkiddies activity
             var acct = Intent.GetStringExtra("acct");
             var kidName = Intent.GetStringExtra("name");
+
             edtAcctNum.Text = acct;
             edtAcctName.Text = kidName;
 
@@ -95,16 +104,65 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "You can only transfer between N100 and N1,000,000", ToastLength.Short).Show();
                 return;
             }
-            else if (string.IsNullOrEmpty(pin))
+            else if (string.IsNullOrEmpty(pin) || pin.Length < 6)
             {
-                Toast.MakeText(this, "Enter a valid pin", ToastLength.Short).Show();
+                Toast.MakeText(this, "Enter a valid password", ToastLength.Short).Show();
                 return;
             }
-        
-            //dialog gragment
+            Transfer(userId, acctnum, accountNumber, double.Parse(amt), pin);
+
+
+        }
+
+        void ShowAlert()
+        {
+            //dialog fragment
             alertDialogFragment = new AlertDialogFragment();
             var trans = FragmentManager.BeginTransaction();
             alertDialogFragment.Show(trans, "Dialog");
+        }
+
+        public async void Transfer(int id, string sendersAcct, string recipientAcct, double amount, string password)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Processing");
+                result = await NetworkUtils.PostData($"Guardian/makefundstransfer?userId={id}&fromAccount={sendersAcct}&toAccount={recipientAcct}&amount={amount}&password={password}", token);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    CloseProgressDialog();
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+            }
+        }
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
         }
 
         //for back button on top
