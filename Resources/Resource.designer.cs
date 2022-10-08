@@ -10109,10 +10109,13 @@ namespace ALAT_Lite
 			public const int toggle = 2131296843;
 			
 			// aapt resource value: 0x7F09024C
-			public const int top = 2131296844;
+			public const int toggleButton1 = 2131296844;
 			
 			// aapt resource value: 0x7F09024D
-			public const int topPanel = 2131296845;
+			public const int top = 2131296845;
+			
+			// aapt resource value: 0x7F09024E
+			public const int topPanel = 2131296846;
 			
 			// aapt resource value: 0x7F09000E
 			public const int TOP_END = 2131296270;
@@ -10120,203 +10123,203 @@ namespace ALAT_Lite
 			// aapt resource value: 0x7F09000F
 			public const int TOP_START = 2131296271;
 			
-			// aapt resource value: 0x7F09024E
-			public const int touch_outside = 2131296846;
-			
 			// aapt resource value: 0x7F09024F
-			public const int transactionHistory = 2131296847;
+			public const int touch_outside = 2131296847;
 			
 			// aapt resource value: 0x7F090250
-			public const int transferToolbar = 2131296848;
+			public const int transactionHistory = 2131296848;
 			
 			// aapt resource value: 0x7F090251
-			public const int transitionToEnd = 2131296849;
+			public const int transferToolbar = 2131296849;
 			
 			// aapt resource value: 0x7F090252
-			public const int transitionToStart = 2131296850;
+			public const int transitionToEnd = 2131296850;
 			
 			// aapt resource value: 0x7F090253
-			public const int transition_current_scene = 2131296851;
+			public const int transitionToStart = 2131296851;
 			
 			// aapt resource value: 0x7F090254
-			public const int transition_layout_save = 2131296852;
+			public const int transition_current_scene = 2131296852;
 			
 			// aapt resource value: 0x7F090255
-			public const int transition_position = 2131296853;
+			public const int transition_layout_save = 2131296853;
 			
 			// aapt resource value: 0x7F090256
-			public const int transition_scene_layoutid_cache = 2131296854;
+			public const int transition_position = 2131296854;
 			
 			// aapt resource value: 0x7F090257
-			public const int transition_transform = 2131296855;
+			public const int transition_scene_layoutid_cache = 2131296855;
 			
 			// aapt resource value: 0x7F090258
-			public const int triangle = 2131296856;
+			public const int transition_transform = 2131296856;
 			
 			// aapt resource value: 0x7F090259
-			public const int txtAcctNo = 2131296857;
+			public const int triangle = 2131296857;
 			
 			// aapt resource value: 0x7F09025A
-			public const int txtAcctNoLabel = 2131296858;
+			public const int txtAcctNo = 2131296858;
 			
 			// aapt resource value: 0x7F09025B
-			public const int txtAcctNumber = 2131296859;
-			
-			// aapt resource value: 0x7F090274
-			public const int txtaccts = 2131296884;
-			
-			// aapt resource value: 0x7F09025D
-			public const int txtBalance = 2131296861;
+			public const int txtAcctNoLabel = 2131296859;
 			
 			// aapt resource value: 0x7F09025C
-			public const int txtBalLabel = 2131296860;
-			
-			// aapt resource value: 0x7F09025E
-			public const int txtCustomerName = 2131296862;
-			
-			// aapt resource value: 0x7F09025F
-			public const int txtDialog = 2131296863;
-			
-			// aapt resource value: 0x7F090260
-			public const int txtGuardianBalance = 2131296864;
-			
-			// aapt resource value: 0x7F090261
-			public const int txtProgress = 2131296865;
-			
-			// aapt resource value: 0x7F090262
-			public const int txtStatus = 2131296866;
-			
-			// aapt resource value: 0x7F090263
-			public const int txtStatusLabel = 2131296867;
-			
-			// aapt resource value: 0x7F090264
-			public const int txtTransAmount = 2131296868;
-			
-			// aapt resource value: 0x7F090265
-			public const int txtTransDate = 2131296869;
-			
-			// aapt resource value: 0x7F090266
-			public const int txtTransDesc = 2131296870;
-			
-			// aapt resource value: 0x7F090267
-			public const int txtTransPhone = 2131296871;
-			
-			// aapt resource value: 0x7F090268
-			public const int txtType = 2131296872;
-			
-			// aapt resource value: 0x7F090269
-			public const int txtTypeLabel = 2131296873;
-			
-			// aapt resource value: 0x7F09026A
-			public const int txtWardAcctNoLabel = 2131296874;
-			
-			// aapt resource value: 0x7F09026B
-			public const int txtWardAcctNumber = 2131296875;
-			
-			// aapt resource value: 0x7F09026D
-			public const int txtWardBalance = 2131296877;
-			
-			// aapt resource value: 0x7F09026C
-			public const int txtWardBalLabel = 2131296876;
-			
-			// aapt resource value: 0x7F09026E
-			public const int txtWardName = 2131296878;
-			
-			// aapt resource value: 0x7F09026F
-			public const int txtWardNameLabel = 2131296879;
-			
-			// aapt resource value: 0x7F090270
-			public const int txtWardStatus = 2131296880;
-			
-			// aapt resource value: 0x7F090271
-			public const int txtWardStatusLabel = 2131296881;
-			
-			// aapt resource value: 0x7F090272
-			public const int txtWardType = 2131296882;
-			
-			// aapt resource value: 0x7F090273
-			public const int txtWardTypeLabel = 2131296883;
+			public const int txtAcctNumber = 2131296860;
 			
 			// aapt resource value: 0x7F090275
-			public const int type = 2131296885;
+			public const int txtaccts = 2131296885;
+			
+			// aapt resource value: 0x7F09025E
+			public const int txtBalance = 2131296862;
+			
+			// aapt resource value: 0x7F09025D
+			public const int txtBalLabel = 2131296861;
+			
+			// aapt resource value: 0x7F09025F
+			public const int txtCustomerName = 2131296863;
+			
+			// aapt resource value: 0x7F090260
+			public const int txtDialog = 2131296864;
+			
+			// aapt resource value: 0x7F090261
+			public const int txtGuardianBalance = 2131296865;
+			
+			// aapt resource value: 0x7F090262
+			public const int txtProgress = 2131296866;
+			
+			// aapt resource value: 0x7F090263
+			public const int txtStatus = 2131296867;
+			
+			// aapt resource value: 0x7F090264
+			public const int txtStatusLabel = 2131296868;
+			
+			// aapt resource value: 0x7F090265
+			public const int txtTransAmount = 2131296869;
+			
+			// aapt resource value: 0x7F090266
+			public const int txtTransDate = 2131296870;
+			
+			// aapt resource value: 0x7F090267
+			public const int txtTransDesc = 2131296871;
+			
+			// aapt resource value: 0x7F090268
+			public const int txtTransPhone = 2131296872;
+			
+			// aapt resource value: 0x7F090269
+			public const int txtType = 2131296873;
+			
+			// aapt resource value: 0x7F09026A
+			public const int txtTypeLabel = 2131296874;
+			
+			// aapt resource value: 0x7F09026B
+			public const int txtWardAcctNoLabel = 2131296875;
+			
+			// aapt resource value: 0x7F09026C
+			public const int txtWardAcctNumber = 2131296876;
+			
+			// aapt resource value: 0x7F09026E
+			public const int txtWardBalance = 2131296878;
+			
+			// aapt resource value: 0x7F09026D
+			public const int txtWardBalLabel = 2131296877;
+			
+			// aapt resource value: 0x7F09026F
+			public const int txtWardName = 2131296879;
+			
+			// aapt resource value: 0x7F090270
+			public const int txtWardNameLabel = 2131296880;
+			
+			// aapt resource value: 0x7F090271
+			public const int txtWardStatus = 2131296881;
+			
+			// aapt resource value: 0x7F090272
+			public const int txtWardStatusLabel = 2131296882;
+			
+			// aapt resource value: 0x7F090273
+			public const int txtWardType = 2131296883;
+			
+			// aapt resource value: 0x7F090274
+			public const int txtWardTypeLabel = 2131296884;
 			
 			// aapt resource value: 0x7F090276
-			public const int @unchecked = 2131296886;
+			public const int type = 2131296886;
 			
 			// aapt resource value: 0x7F090277
-			public const int uniform = 2131296887;
+			public const int @unchecked = 2131296887;
 			
 			// aapt resource value: 0x7F090278
-			public const int unlabeled = 2131296888;
+			public const int uniform = 2131296888;
 			
 			// aapt resource value: 0x7F090279
-			public const int up = 2131296889;
+			public const int unlabeled = 2131296889;
 			
 			// aapt resource value: 0x7F09027A
-			public const int useLogo = 2131296890;
+			public const int up = 2131296890;
 			
 			// aapt resource value: 0x7F09027B
-			public const int vertical_only = 2131296891;
+			public const int useLogo = 2131296891;
 			
 			// aapt resource value: 0x7F09027C
-			public const int viewPager = 2131296892;
+			public const int vertical_only = 2131296892;
 			
 			// aapt resource value: 0x7F09027D
-			public const int view_offset_helper = 2131296893;
+			public const int viewPager = 2131296893;
 			
 			// aapt resource value: 0x7F09027E
-			public const int view_transition = 2131296894;
+			public const int view_offset_helper = 2131296894;
 			
 			// aapt resource value: 0x7F09027F
-			public const int view_tree_lifecycle_owner = 2131296895;
+			public const int view_transition = 2131296895;
 			
 			// aapt resource value: 0x7F090280
-			public const int view_tree_on_back_pressed_dispatcher_owner = 2131296896;
+			public const int view_tree_lifecycle_owner = 2131296896;
 			
 			// aapt resource value: 0x7F090281
-			public const int view_tree_saved_state_registry_owner = 2131296897;
+			public const int view_tree_on_back_pressed_dispatcher_owner = 2131296897;
 			
 			// aapt resource value: 0x7F090282
-			public const int view_tree_view_model_store_owner = 2131296898;
+			public const int view_tree_saved_state_registry_owner = 2131296898;
 			
 			// aapt resource value: 0x7F090283
-			public const int visible = 2131296899;
+			public const int view_tree_view_model_store_owner = 2131296899;
 			
 			// aapt resource value: 0x7F090284
-			public const int visible_removing_fragment_view_tag = 2131296900;
+			public const int visible = 2131296900;
 			
 			// aapt resource value: 0x7F090285
-			public const int wardDetToolbar = 2131296901;
+			public const int visible_removing_fragment_view_tag = 2131296901;
 			
 			// aapt resource value: 0x7F090286
-			public const int wardTransToolbar = 2131296902;
+			public const int wardDetToolbar = 2131296902;
 			
 			// aapt resource value: 0x7F090287
-			public const int west = 2131296903;
-			
-			// aapt resource value: 0x7F090289
-			public const int withinBounds = 2131296905;
+			public const int wardTransToolbar = 2131296903;
 			
 			// aapt resource value: 0x7F090288
-			public const int withText = 2131296904;
+			public const int west = 2131296904;
 			
 			// aapt resource value: 0x7F09028A
-			public const int wrap = 2131296906;
+			public const int withinBounds = 2131296906;
+			
+			// aapt resource value: 0x7F090289
+			public const int withText = 2131296905;
 			
 			// aapt resource value: 0x7F09028B
-			public const int wrap_content = 2131296907;
+			public const int wrap = 2131296907;
 			
 			// aapt resource value: 0x7F09028C
-			public const int wrap_content_constrained = 2131296908;
+			public const int wrap_content = 2131296908;
 			
 			// aapt resource value: 0x7F09028D
-			public const int x_left = 2131296909;
+			public const int wrap_content_constrained = 2131296909;
 			
 			// aapt resource value: 0x7F09028E
-			public const int x_right = 2131296910;
+			public const int x_left = 2131296910;
 			
 			// aapt resource value: 0x7F09028F
-			public const int zero_corner_chip = 2131296911;
+			public const int x_right = 2131296911;
+			
+			// aapt resource value: 0x7F090290
+			public const int zero_corner_chip = 2131296912;
 			
 			static Id()
 			{
