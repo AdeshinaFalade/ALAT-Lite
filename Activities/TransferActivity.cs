@@ -9,6 +9,7 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
 using Google.Android.Material.Snackbar;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace ALAT_Lite.Activities
         AlertDialogFragment alertDialogFragment;
         public ProgressFragment progressDialog;
         public static int userId;
-        public static string token, accountNumber;
+        public static string token, accountNumber, accountBalance;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -57,6 +58,7 @@ namespace ALAT_Lite.Activities
             userId = Preferences.Get("userId", 0);
             token = Preferences.Get("token", "");
             accountNumber = Preferences.Get("accountNumber", "");
+            accountBalance = Preferences.Get("accountBalance", "");
 
 
             //spinner setup
@@ -99,7 +101,7 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "Amount is required", ToastLength.Short).Show();
                 return;
             }
-            else if (int.Parse(amt) < 100 | int.Parse(amt) > 1000000)
+            else if (int.Parse(amt) < 100 || int.Parse(amt) > 1000000)
             {
                 Toast.MakeText(this, "You can only transfer between N100 and N1,000,000", ToastLength.Short).Show();
                 return;
@@ -109,7 +111,12 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "Enter a valid password", ToastLength.Short).Show();
                 return;
             }
-            Transfer(userId, acctnum, accountNumber, double.Parse(amt), pin);
+            else if (double.Parse(amt) >= double.Parse(accountBalance))
+            {
+                Toast.MakeText(this, "Insufficient funds", ToastLength.Short).Show();
+                return;
+            }
+            Transfer(userId, accountNumber, acctnum, double.Parse(amt), pin);
 
 
         }
@@ -128,11 +135,17 @@ namespace ALAT_Lite.Activities
             try
             {
                 ShowProgressDialog("Processing");
-                result = await NetworkUtils.PostData($"Guardian/makefundstransfer?userId={id}&fromAccount={sendersAcct}&toAccount={recipientAcct}&amount={amount}&password={password}", token);
-                if (!string.IsNullOrEmpty(result))
+                result = await NetworkUtils.PostData($"Guardian/transfer_to_ward?userId={id}&fromAccount={sendersAcct}&toAccount={recipientAcct}&amount={amount}&password={password}", token);
+                var resultObject = JObject.Parse(result);
+                if (!string.IsNullOrEmpty(result) && resultObject["responseMessage"].ToString() == "Transaction Successful")
                 {
                     CloseProgressDialog();
                     ShowAlert();
+                }
+                else if (!string.IsNullOrEmpty(result) && resultObject["responseMessage"].ToString().ToLower() == "enter valid password")
+                {
+                    CloseProgressDialog();
+                    Toast.MakeText(this, "Wrong password", ToastLength.Short).Show();
                 }
                 else
                 {

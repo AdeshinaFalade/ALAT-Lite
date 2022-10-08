@@ -15,6 +15,7 @@ using ActionBar = AndroidX.AppCompat.App.ActionBar;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using Xamarin.Essentials;
 using ALAT_Lite.Classes;
+using Newtonsoft.Json.Linq;
 
 namespace ALAT_Lite.Activities
 {
@@ -82,7 +83,8 @@ namespace ALAT_Lite.Activities
             {
                 ShowProgressDialog("Updating");
                 result = await NetworkUtils.PostData($"Guardian/UpdateRestrictionStatus?wardId={id}&restStatus={status}", token);
-                if (!string.IsNullOrEmpty(result))
+                var resultObject = JObject.Parse(result);
+                if (!string.IsNullOrEmpty(result) && resultObject["statusCode"].ToString() == "200")
                 {
                     CloseProgressDialog();
                     ShowAlert();

@@ -69,9 +69,15 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "You can only select between 1-28", ToastLength.Short).Show();
                 return;
             }
+            ShowAlert();
+        }
+
+        void ShowAlert()
+        {
             standingOrderAlertFragment = new StandingOrderAlertFragment();
             var trans = FragmentManager.BeginTransaction();
             standingOrderAlertFragment.Show(trans, "Dialog");
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

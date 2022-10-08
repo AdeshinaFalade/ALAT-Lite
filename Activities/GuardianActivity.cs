@@ -119,6 +119,7 @@ namespace ALAT_Lite.Activities
                     var accountType = loginDetails.accountType.ToString();
                     var token = loginDetails.token.ToString();
 
+                    //saving all the details
                     Preferences.Set("userId", userId);
                     Preferences.Set("firstName", firstName);
                     Preferences.Set("lastName", lastName);

@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ALAT_Lite.Adapters
 {
@@ -12,6 +13,7 @@ namespace ALAT_Lite.Adapters
         public event EventHandler<RecyclerAdapterClickEventArgs> ItemClick;
         public event EventHandler<RecyclerAdapterClickEventArgs> ItemLongClick;
         List<TransactionModel> listOfTranx;
+        NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;
 
         public RecyclerAdapter(List<TransactionModel> data)
         {
@@ -40,9 +42,16 @@ namespace ALAT_Lite.Adapters
             // Replace the contents of the view with that element
             var holder = viewHolder as RecyclerAdapterViewHolder;
             //holder.TextView.Text = items[position];
-            holder.txtTransAmount.Text = item.Amount.ToString();
-            holder.txtTransDate.Text = item.Date;
-            holder.txtTransPhone.Text = item.Phone;
+            var rawDate = item.trx_Date;
+            var date = DateTime.Parse(rawDate).ToShortDateString();
+
+            var bal = double.Parse(item.amount.ToString());
+            var formattedBal = bal.ToString("C", myNumberFormatInfo);
+
+            holder.txtTransAmount.Text = formattedBal;
+            holder.txtTransDate.Text = date.ToString();
+            holder.txtTransPhone.Text = item.phone_Number;
+            holder.txtTransDesc.Text = item.trx_Description;
 
         }
 
@@ -56,7 +65,7 @@ namespace ALAT_Lite.Adapters
     public class RecyclerAdapterViewHolder : RecyclerView.ViewHolder
     {
         //public TextView TextView { get; set; }
-        public TextView txtTransPhone, txtTransAmount, txtTransDate;
+        public TextView txtTransPhone, txtTransAmount, txtTransDate, txtTransDesc;
 
 
         public RecyclerAdapterViewHolder(View itemView, Action<RecyclerAdapterClickEventArgs> clickListener,
@@ -66,6 +75,7 @@ namespace ALAT_Lite.Adapters
             txtTransAmount = itemView.FindViewById<TextView>(Resource.Id.txtTransAmount);
             txtTransPhone = itemView.FindViewById<TextView>(Resource.Id.txtTransPhone);
             txtTransDate = itemView.FindViewById<TextView>(Resource.Id.txtTransDate);
+            txtTransDesc = itemView.FindViewById<TextView>(Resource.Id.txtTransDesc);
 
             itemView.Click += (sender, e) => clickListener(new RecyclerAdapterClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerAdapterClickEventArgs { View = itemView, Position = AdapterPosition });

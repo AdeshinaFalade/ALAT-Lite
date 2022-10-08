@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +85,8 @@ namespace ALAT_Lite.Activities
             {
                 ShowProgressDialog("Updating");
                 result = await NetworkUtils.PostData($"Guardian/UpdateLimit?wardId={id}&amount={amount}", token);
-                if (!string.IsNullOrEmpty(result))
+                var resultObject = JObject.Parse(result);
+                if (!string.IsNullOrEmpty(result) && resultObject["statusCode"].ToString() == "200")
                 {
                     CloseProgressDialog();
                     ShowAlert();
