@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:elevation="4dp"
         android:layout_height="40dp"/>
+    <!--
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,6 +55,165 @@
         android:id="@+id/viewPager"
         android:layout_marginHorizontal="4dp"
         android:orientation="horizontal"/>
+    -->
+    <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp">
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/Rectangle"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+
+             <TextView
+                android:id="@+id/txtWardNameLabel"
+                android:text="Name"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardName"
+                android:text="Bruce Lee"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardNameLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardStatusLabel"
+                android:text="Status"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardStatus"
+                android:text="Active"
+                
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtWardStatusLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtWardBalLabel"
+                android:text="Balance"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardBalance"
+                android:text="N20,332.25"
+                android:textSize="23sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardBalLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            </RelativeLayout>
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtWardAcctNoLabel"
+                android:text="Account Number"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardAcctNumber"
+                android:text="0237584763"
+                android:textSize="13sp"
+                android:layout_marginRight="3dp"
+                android:layout_below="@+id/txtWardAcctNoLabel"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <TextView
+                android:id="@+id/txtWardTypeLabel"
+                android:text="Type"
+                android:textSize="10sp"
+                android:layout_marginRight="3dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/txtWardType"
+                android:text="Royal Kiddies Account"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtWardTypeLabel"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        
+        </RelativeLayout>
+            
+        
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
 
 
     <LinearLayout

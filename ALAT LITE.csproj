@@ -87,7 +87,7 @@
     <Compile Include="Activities\WardDetailsActivity.cs" />
     <Compile Include="Activities\WardTransActivity.cs" />
     <Compile Include="Adapters\RecyclerAdapter.cs" />
-    <Compile Include="Adapters\ViewPagerAdapter.cs" />
+    <Compile Include="Adapters\WardRecyclerAdapter.cs" />
     <Compile Include="Classes\ChildClass.cs" />
     <Compile Include="Classes\GuardianLogin.cs" />
     <Compile Include="Classes\GuardianLoginResponse.cs" />
@@ -528,11 +528,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DocUploadedAlertLayout.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\ViewPagerLayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

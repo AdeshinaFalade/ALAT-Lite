@@ -21,6 +21,7 @@ using ALAT_Lite.Fragments;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Google.Android.Material.Snackbar;
+using System.Globalization;
 
 namespace ALAT_Lite.Activities
 {
@@ -31,11 +32,14 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         AppCompatButton btnFundWard;
         public static string AcctNum, KidName, token;
-        public static int wardId, userId;
+        public static int wardId, userId, child;
         ViewPager2 viewPager2;
         public static List<ChildClass> listOfChildren = new List<ChildClass>();
         LinearLayout parent_view;
         AppCompatButton btnTransactionHistory;
+
+        TextView txtWardName, txtWardStatus, txtWardBalance, txtWardAcctNumber;
+
         AppCompatButton btnMaintenance;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -48,10 +52,14 @@ namespace ALAT_Lite.Activities
             btnFundWard = FindViewById<AppCompatButton>(Resource.Id.btnFundWard);
             btnTransactionHistory = FindViewById<AppCompatButton>(Resource.Id.btnWardTransactionHistory);
             btnMaintenance = FindViewById<AppCompatButton>(Resource.Id.btnMaintenance);
-            viewPager2 = FindViewById<ViewPager2>(Resource.Id.viewPager);
+            // viewPager2 = FindViewById<ViewPager2>(Resource.Id.viewPager);
+            txtWardName = FindViewById<TextView>(Resource.Id.txtWardName);
+            txtWardStatus = FindViewById<TextView>(Resource.Id.txtWardStatus);
+            txtWardBalance = FindViewById<TextView>(Resource.Id.txtWardBalance);
+            txtWardAcctNumber = FindViewById<TextView>(Resource.Id.txtWardAcctNumber);
             parent_view = FindViewById<LinearLayout>(Resource.Id.parent_view);
 
-
+            var wardlist = RoyalListActivity.listOfChildren;
             //setup toolbar
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Royal Kiddies Account";
@@ -62,17 +70,38 @@ namespace ALAT_Lite.Activities
 
             userId = Preferences.Get("userId", 0);
             token = Preferences.Get("token", "");
+            child = Preferences.Get("child", 0);
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
             btnTransactionHistory.Click += BtnTransactionHistory_Click;
 
 
-            FetchWards(userId);
+            NumberFormatInfo myNumberFormatInfo = new CultureInfo("yo-NG", false).NumberFormat;
 
-            
-            viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
+            wardId = wardlist[child].ward_Id;
+            Preferences.Set("wardId", wardId);
 
-            
+            AcctNum = wardlist[child].account_Number;
+            KidName = wardlist[child].account_Name;
+            txtWardName.Text = wardlist[child].account_Name;
+            txtWardBalance.Text = wardlist[child].account_Balance.ToString("C", myNumberFormatInfo);
+            txtWardAcctNumber.Text = wardlist[child].account_Number;
+            if (wardlist[child].activity.ToLower() == "active")
+            {
+                txtWardStatus.Text = "Active";
+            }
+            else
+            {
+                txtWardStatus.Text = "Restricted";
+            }
+
+
+            //FetchWards(userId);
+
+
+            //viewPager2.RegisterOnPageChangeCallback(new MyOnPageCangeListener(parent_view));
+
+
 
         }
 
@@ -111,8 +140,8 @@ namespace ALAT_Lite.Activities
                     CloseProgressDialog();
 
                     //setup view pager
-                    var myAdapter = new ViewPagerAdapter(this, listOfChildren);
-                    viewPager2.Adapter = myAdapter;
+                    //var myAdapter = new ViewPagerAdapter(this, listOfChildren);
+                    //viewPager2.Adapter = myAdapter;
                 }
                 else if (result == "Unauthorized")
                 {
@@ -146,7 +175,7 @@ namespace ALAT_Lite.Activities
             }
 
         }
-
+        /**
         private class MyOnPageCangeListener : OnPageChangeCallback
         {
             private LinearLayout parent_view;
@@ -169,7 +198,7 @@ namespace ALAT_Lite.Activities
                 Preferences.Set("wardId", wardId);
             }
         }
-
+        **/
         public void ShowProgressDialog(string status)
         {
             progressDialog = new ProgressFragment(status);

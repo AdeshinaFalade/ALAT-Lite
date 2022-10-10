@@ -175,7 +175,8 @@ namespace ALAT_Lite.Activities
 
         private void RoyalKiddies_Click(object sender, EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(RoyalKiddiesActivity));
+            // Intent intent = new Intent(this, typeof(RoyalKiddiesActivity));
+            Intent intent = new Intent(this, typeof(RoyalListActivity));
             StartActivity(intent);
         }
 
