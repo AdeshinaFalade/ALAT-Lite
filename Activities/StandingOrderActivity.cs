@@ -153,6 +153,10 @@ namespace ALAT_Lite.Activities
 
                     CloseProgressDialog();
                 }
+                else if (result == "Not Found")
+                {
+                    CloseProgressDialog();
+                }     
                 else if (result == "Unauthorized")
                 {
                     CloseProgressDialog();

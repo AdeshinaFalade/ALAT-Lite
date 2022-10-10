@@ -26,7 +26,7 @@ namespace ALAT_Lite.Fragments
         Spinner spinner;
         AppCompatButton btnDOB;
         MaterialButton btnNext;
-        EditText edtWardFirstName, edtWardLastName, edtWardMiddleName, edtWardEmail;
+        EditText edtWardFirstName, edtWardLastName, edtWardMiddleName, edtWardEmail, edtPhone;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -47,6 +47,7 @@ namespace ALAT_Lite.Fragments
             edtWardFirstName = view.FindViewById<EditText>(Resource.Id.edtWardFirstName);
             edtWardLastName = view.FindViewById<EditText>(Resource.Id.edtWardlastName);
             edtWardMiddleName = view.FindViewById<EditText>(Resource.Id.edtWardMiddleName);
+            edtPhone = view.FindViewById<EditText>(Resource.Id.edtPhone);
 
             ArrayAdapter adapter;
             adapter = ArrayAdapter.CreateFromResource(Activity, Resource.Array.Gender, Android.Resource.Layout.SimpleSpinnerItem);
@@ -96,7 +97,17 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid date", ToastLength.Short).Show();
                 return;
             }
-            if (string.IsNullOrEmpty(mail))
+            else if (string.IsNullOrEmpty(edtPhone.Text))
+            {
+                Toast.MakeText(Activity, "Phone number is required", ToastLength.Short).Show();
+                return;
+            }
+            else if (edtPhone.Text.Length != 11)
+            {
+                Toast.MakeText(Activity, "Invalid Phone number", ToastLength.Short).Show();
+                return;
+            }
+            else if (string.IsNullOrEmpty(mail))
             {
                 Toast.MakeText(Activity, "Email is required", ToastLength.Short).Show();
                 return;
@@ -111,6 +122,7 @@ namespace ALAT_Lite.Fragments
             Preferences.Set("WardLastName", edtWardLastName.Text);
             Preferences.Set("WardMiddleName", edtWardMiddleName.Text);
             Preferences.Set("WardEmail", edtWardEmail.Text);
+            Preferences.Set("Phone", edtPhone.Text);
             Preferences.Set("WardGender", spinner.SelectedItem.ToString());
             Preferences.Set("WardDOB", DateTime.Parse(btnDOB.Text).ToString(@"yyy-MM-dd"));
 

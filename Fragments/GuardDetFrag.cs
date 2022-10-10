@@ -26,7 +26,7 @@ namespace ALAT_Lite.Fragments
         public static string token;
         public ProgressFragment progressDialog;
         MaterialButton btnSubmit;
-        EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtPhone, edtAddress;
+        EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtBvn, edtAddress;
 
 
 
@@ -50,7 +50,7 @@ namespace ALAT_Lite.Fragments
             edtGuardLastName = view.FindViewById<EditText>(Resource.Id.edtGuardLastName);
             edtGuardEmail = view.FindViewById<EditText>(Resource.Id.edtGuardEmail);
             edtGuardMiddleName = view.FindViewById<EditText>(Resource.Id.edtGuardMiddleName);
-            edtPhone = view.FindViewById<EditText>(Resource.Id.edtBVN);
+            edtBvn = view.FindViewById<EditText>(Resource.Id.edtBVN);
             edtAddress = view.FindViewById<EditText>(Resource.Id.edtAddress);
 
             //retrieve shared pref
@@ -65,11 +65,14 @@ namespace ALAT_Lite.Fragments
             var firstName = Preferences.Get("firstName", "");
             var lastName = Preferences.Get("lastName", "");
             var guardMail = Preferences.Get("email", "");
+            var bvn = Preferences.Get("bvn", "");
+            var phone = Preferences.Get("phone", "");
 
             //set the guardian details
             edtGuardFirstName.Text = firstName;
             edtGuardLastName.Text = lastName;
             edtGuardEmail.Text = guardMail;
+            edtBvn.Text = bvn;
 
             registerWard.firstName = wardFirstName;
             registerWard.lastName = wardLastName;
@@ -79,7 +82,7 @@ namespace ALAT_Lite.Fragments
             registerWard.dateOfBirth = wardDOB;
             registerWard.address = edtAddress.Text;
             registerWard.guardianId = userId;
-            registerWard.phoneNumber = edtPhone.Text;
+            registerWard.phoneNumber = phone;
 
 
             btnSubmit.Click += BtnSubmit_Click;
@@ -95,7 +98,7 @@ namespace ALAT_Lite.Fragments
             var firstName = edtGuardFirstName.Text;
             var lastName = edtGuardLastName.Text;
             var mail = edtGuardEmail.Text;
-            var phone = edtPhone.Text;
+            var bvn = edtBvn.Text;
             var address = edtAddress.Text;
 
             if (string.IsNullOrEmpty(firstName))
@@ -118,14 +121,14 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid last name", ToastLength.Short).Show();
                 return;
             }
-            else if (string.IsNullOrEmpty(phone))
+            else if (string.IsNullOrEmpty(bvn))
             {
-                Toast.MakeText(Activity, "Phone number is required", ToastLength.Short).Show();
+                Toast.MakeText(Activity, "BVN is required", ToastLength.Short).Show();
                 return;
             }
-            else if (phone.Length != 11)
+            else if (bvn.Length != 11)
             {
-                Toast.MakeText(Activity, "Invalid phone number", ToastLength.Short).Show();
+                Toast.MakeText(Activity, "Invalid BVN", ToastLength.Short).Show();
                 return;
             }
             else if (string.IsNullOrEmpty(address))
@@ -160,7 +163,7 @@ namespace ALAT_Lite.Fragments
                 ShowProgressDialog("Submitting");
                 var rawString = JsonConvert.SerializeObject(model);
                 result = await NetworkUtils.PostUserData("Guardian/GuardianRegisterWard", rawString, token);
-                if (!string.IsNullOrEmpty(result))
+                if (!string.IsNullOrEmpty(result) && result == "Ward Account Created! Update Your Documents")
                 {
                     CloseProgressDialog();
 

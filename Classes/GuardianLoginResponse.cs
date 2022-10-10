@@ -24,5 +24,6 @@ namespace ALAT_Lite.Classes
         public bool accountstatus { get; set; }
         public string accountNumber { get; set; }
         public string accountType { get; set; }
+        public string bvn { get; set; }
     }
 }

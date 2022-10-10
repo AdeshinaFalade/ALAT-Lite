@@ -51,6 +51,14 @@ namespace ALAT_Lite.Adapters
             holder.txtAcctNumber.Text = item.account_Number;
             holder.txtWardName.Text = item.account_Name;
             holder.txtWardBalance.Text = item.account_Balance .ToString("C", myNumberFormatInfo);
+            if (item.activity.ToLower() == "active")
+            {
+                holder.txtStatus.Text = "Active";
+            }
+            else
+            {
+                holder.txtStatus.Text = "Restricted";
+            }
         }
 
         public override int ItemCount => listOfChild.Count;

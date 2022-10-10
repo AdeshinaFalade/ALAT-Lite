@@ -37,6 +37,7 @@ namespace ALAT_Lite.Activities
         LinearLayout parent_view;
         AppCompatButton btnTransactionHistory;
         AppCompatButton btnMaintenance;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -50,19 +51,21 @@ namespace ALAT_Lite.Activities
             viewPager2 = FindViewById<ViewPager2>(Resource.Id.viewPager);
             parent_view = FindViewById<LinearLayout>(Resource.Id.parent_view);
 
-            //setup toolbar
 
+            //setup toolbar
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Royal Kiddies Account";
             ActionBar actionBar = SupportActionBar;
             actionBar.SetHomeAsUpIndicator(Resource.Drawable.black_arrow);
             actionBar.SetDisplayHomeAsUpEnabled(true);
 
+
             userId = Preferences.Get("userId", 0);
             token = Preferences.Get("token", "");
             btnFundWard.Click += BtnFundWard_Click;
             btnMaintenance.Click += BtnMaintenance_Click;
             btnTransactionHistory.Click += BtnTransactionHistory_Click;
+
 
             FetchWards(userId);
 

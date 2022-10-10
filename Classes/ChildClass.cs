@@ -18,5 +18,6 @@ namespace ALAT_Lite.Classes
         public string account_Name { get; set; }
         public int ward_Id { get; set; }
         public int guardianId { get; set; }
+        public string activity { get; set; }
     }
 }

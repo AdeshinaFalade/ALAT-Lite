@@ -85,7 +85,7 @@ namespace ALAT_Lite
         }
         public async void LoginUserAccount(string mail, string passwrd)
         {
-            string result = string.Empty; 
+            string result;
             try
             {
                 ShowProgressDialog("Authenticating");
@@ -108,6 +108,7 @@ namespace ALAT_Lite
                     var accountStatus = loginDetails.accountstatus.ToString();
                     var accountType = loginDetails.accountType.ToString();
                     var token = loginDetails.token.ToString();
+                    var bvn = loginDetails.bvn.ToString();
 
                     Preferences.Set("userId", userId);
                     Preferences.Set("firstName", firstName);
@@ -122,14 +123,13 @@ namespace ALAT_Lite
                     Preferences.Set("token", token);
                     Preferences.Set("loginEmail", mail);
                     Preferences.Set("loginPassword", passwrd);
-
+                    Preferences.Set("bvn", bvn);
 
 
                     Intent intent = new Intent(this, typeof(GuardianActivity));
                     CloseProgressDialog();
                     StartActivity(intent);
                     password.Text = "";
-                    // var desiioo = JsonConvert.DeserializeObject<LoginModel>(result);
                 }
                 else
                 {

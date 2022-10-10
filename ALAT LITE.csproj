@@ -80,6 +80,7 @@
     <Compile Include="Activities\MaintenanceActivity.cs" />
     <Compile Include="Activities\RestrictAccountActivity.cs" />
     <Compile Include="Activities\RoyalKiddiesActivity.cs" />
+    <Compile Include="Activities\RoyalListActivity.cs" />
     <Compile Include="Activities\SetLimitActivity.cs" />
     <Compile Include="Activities\StandingOrderActivity.cs" />
     <Compile Include="Activities\TransferActivity.cs" />
@@ -532,6 +533,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ViewPagerLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ChildListLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RoyalAcctList.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
