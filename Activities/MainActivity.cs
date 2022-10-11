@@ -109,6 +109,8 @@ namespace ALAT_Lite
                     var accountType = loginDetails.accountType.ToString();
                     var token = loginDetails.token.ToString();
                     var bvn = loginDetails.bvn.ToString();
+                    var role = loginDetails.role.ToString();
+
 
                     Preferences.Set("userId", userId);
                     Preferences.Set("firstName", firstName);

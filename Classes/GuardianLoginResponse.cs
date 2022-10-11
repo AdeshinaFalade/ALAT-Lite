@@ -25,5 +25,6 @@ namespace ALAT_Lite.Classes
         public string accountNumber { get; set; }
         public string accountType { get; set; }
         public string bvn { get; set; }
+        public string role { get; set; }
     }
 }

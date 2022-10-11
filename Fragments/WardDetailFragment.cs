@@ -26,6 +26,7 @@ namespace ALAT_Lite.Fragments
         Spinner spinner;
         AppCompatButton btnDOB;
         MaterialButton btnNext;
+        AppCompatCheckBox appCompatCheck;
         EditText edtWardFirstName, edtWardLastName, edtWardMiddleName, edtWardEmail, edtPhone;
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,11 +49,24 @@ namespace ALAT_Lite.Fragments
             edtWardLastName = view.FindViewById<EditText>(Resource.Id.edtWardlastName);
             edtWardMiddleName = view.FindViewById<EditText>(Resource.Id.edtWardMiddleName);
             edtPhone = view.FindViewById<EditText>(Resource.Id.edtPhone);
+            appCompatCheck = view.FindViewById<AppCompatCheckBox>(Resource.Id.controls_checked);
 
             ArrayAdapter adapter;
             adapter = ArrayAdapter.CreateFromResource(Activity, Resource.Array.Gender, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
+            var guardLastName = Preferences.Get("lastName", "");
+
+            appCompatCheck.Click += (o, e) =>
+            {
+                if (appCompatCheck.Checked)
+                {
+                    edtWardLastName.Text = guardLastName;
+                }
+                else
+                    edtWardLastName.Text = "";
+            };
 
             btnDOB.Click += BtnDOB_Click;
             btnNext.Click += BtnNext_Click;
@@ -124,7 +138,7 @@ namespace ALAT_Lite.Fragments
             Preferences.Set("WardEmail", edtWardEmail.Text);
             Preferences.Set("Phone", edtPhone.Text);
             Preferences.Set("WardGender", spinner.SelectedItem.ToString());
-            Preferences.Set("WardDOB", DateTime.Parse(btnDOB.Text).ToString(@"yyy-MM-dd"));
+            Preferences.Set("WardDOB", DateTime.Parse(btnDOB.Text).ToString(@"yyyy-MM-dd"));
 
             var trans = Activity.FragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout1, new GuardDetFrag());
             trans.AddToBackStack(null);
