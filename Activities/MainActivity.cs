@@ -185,9 +185,16 @@ namespace ALAT_Lite
                 progressDialog = null;
             }
         }
+        public override void OnBackPressed()
+        {
+            FinishAffinity();
 
-        
+            
+           //base.OnBackPressed();
+        }
 
-       
+
+
+
     }
 }
