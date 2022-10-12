@@ -30,15 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             
-                <TextView
-                android:text="Airtime Purchases"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/colorPrimary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="25dp"
