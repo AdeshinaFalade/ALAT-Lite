@@ -99,7 +99,7 @@ namespace ALAT_Lite.Classes
             string result = string.Empty;
             try
             {
-                using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
+                using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl)})
                 {
                     mClient.Timeout = TimeSpan.FromMinutes(1);
                     mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

@@ -140,7 +140,7 @@ namespace ALAT_Lite.Activities
             {
                 ShowProgressDialog("Loading");
                 result = await NetworkUtils.GetUserData($"Guardian/get-standing-instructions?wardId={id}", token);
-                if (!string.IsNullOrEmpty(result) && result != "Unauthorized")
+                if (!string.IsNullOrEmpty(result) && result != "Unauthorized" && result != "Not Found")
                 {
                     var standingDetails = JsonConvert.DeserializeObject<StandingOrderResponse>(result);
                     var status = standingDetails.isActivated;

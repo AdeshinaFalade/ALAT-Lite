@@ -33,7 +33,6 @@ namespace ALAT_Lite
         AppCompatButton login;
         public ProgressFragment progressDialog;
         ImageView childImage;
-        public static string baseUrl = "https://galacticos-alat-apim.azure-api.net/api/Authentication/Login/";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,7 +41,7 @@ namespace ALAT_Lite
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
              childImage = FindViewById<ImageView>(Resource.Id.childImage);
-            childImage.Click += ChildImage_Click;
+            //childImage.Click += ChildImage_Click;
             email = FindViewById<EditText>(Resource.Id.edtEmail);
             password = FindViewById<TextInputEditText>(Resource.Id.edtPassword);
             login = FindViewById<AppCompatButton>(Resource.Id.btnLogin);
@@ -91,8 +90,8 @@ namespace ALAT_Lite
                 ShowProgressDialog("Authenticating");
                 GuardianLogin model = new GuardianLogin() { username = mail, password = passwrd };
                 var rawString = JsonConvert.SerializeObject(model); 
-                result = await NetworkUtils.PostUserData("Authentication//GuardianLogin", rawString);
-                if (!string.IsNullOrEmpty(result))
+                result = await NetworkUtils.PostUserData("Authentication/JointLogin", rawString);
+                if (!string.IsNullOrEmpty(result) && result != "Bad Request")
                 {
                    // Toast.MakeText(this, "Logged in successfully", ToastLength.Short).Show();
 
@@ -107,9 +106,9 @@ namespace ALAT_Lite
                     var accountNumber = loginDetails.accountNumber.ToString();
                     var accountStatus = loginDetails.accountstatus.ToString();
                     var accountType = loginDetails.accountType.ToString();
-                    var token = loginDetails.token.ToString();
-                    var bvn = loginDetails.bvn.ToString();
                     var role = loginDetails.role.ToString();
+                    var token = loginDetails.token.ToString();
+                    //var bvn = loginDetails.bvn.ToString();
 
 
                     Preferences.Set("userId", userId);
@@ -125,13 +124,31 @@ namespace ALAT_Lite
                     Preferences.Set("token", token);
                     Preferences.Set("loginEmail", mail);
                     Preferences.Set("loginPassword", passwrd);
-                    Preferences.Set("bvn", bvn);
+                   // Preferences.Set("bvn", bvn);
 
+                    if (role == "Guardian")
+                    {
+                        var bvn = loginDetails.bvn.ToString();
+                        Preferences.Set("bvn", bvn);
+                        Intent intent = new Intent(this, typeof(GuardianActivity));
+                        CloseProgressDialog();
+                        StartActivity(intent);
+                        password.Text = "";
+                    }
+                    else if (role == "Ward")
+                    {
+                        Intent intent = new Intent(this, typeof(ChildDashboardActivity));
+                        CloseProgressDialog();
+                        StartActivity(intent);
+                        password.Text = "";
+                    }
 
-                    Intent intent = new Intent(this, typeof(GuardianActivity));
+                    
+                }
+                else if (result == "Bad Request")
+                {
                     CloseProgressDialog();
-                    StartActivity(intent);
-                    password.Text = "";
+                    Toast.MakeText(this, "Wrong email or password", ToastLength.Short).Show();
                 }
                 else
                 {

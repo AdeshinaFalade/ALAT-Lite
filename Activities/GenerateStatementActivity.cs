@@ -13,6 +13,8 @@ using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AndroidX.AppCompat.Widget;
 using ALAT_Lite.Fragments;
 using AndroidX.AppCompat.App;
+using Xamarin.Essentials;
+using ALAT_Lite.Classes;
 
 namespace ALAT_Lite.Activities
 {
@@ -22,6 +24,9 @@ namespace ALAT_Lite.Activities
         Toolbar toolbar;
         AppCompatButton btnStartDate;
         AppCompatButton btnEndDate;
+        public static int wardId, userId;
+        public static string token;
+        public ProgressFragment progressDialog;
         AppCompatButton btnGenerate;
         AcctStatementAlertFrag alertFrag;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,8 +40,11 @@ namespace ALAT_Lite.Activities
             btnEndDate = FindViewById<AppCompatButton>(Resource.Id.btnEndDate);
             btnGenerate = FindViewById<AppCompatButton>(Resource.Id.btnGenerate);
 
-            //setup toolbar
 
+            wardId = Preferences.Get("wardId", 0);
+            token = Preferences.Get("token", "");
+            userId = Preferences.Get("userId", 0);
+            //setup toolbar
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Generate Statement";
             ActionBar actionBar = SupportActionBar;
@@ -49,6 +57,7 @@ namespace ALAT_Lite.Activities
             btnGenerate.Click += BtnGenerate_Click; 
 
         }
+
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
@@ -77,11 +86,60 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "End date can't be less than start date", ToastLength.Short).Show();
                 return;
             }
+            var startDate = DateTime.Parse(btnStartDate.Text).ToString(@"MM-dd-yyyy");
+            var endDate = DateTime.Parse(btnEndDate.Text).ToString(@"MM-dd-yyyy");
+            GenerateStatement(startDate, endDate);
+        }
+        public async void GenerateStatement(string start, string stop)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Processing");
+                result = await NetworkUtils.PostData($"Guardian/GenerateAccountStatementWard?WardId={wardId}&GuardianId={userId}&startDate={start}&endDate={stop}", token);
+                if (!string.IsNullOrEmpty(result) && result == "Sent")
+                {
+                    CloseProgressDialog();
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                    Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, "Oops! an error occured, Kindly try again.", ToastLength.Short).Show();
+            }
+        }
+
+        void ShowAlert()
+        {
             alertFrag = new AcctStatementAlertFrag();
             var trans = FragmentManager.BeginTransaction();
             alertFrag.Show(trans, "Dialog");
         }
 
+
+        public void ShowProgressDialog(string status)
+        {
+            progressDialog = new ProgressFragment(status);
+            var trans = FragmentManager.BeginTransaction();
+            progressDialog.Cancelable = false;
+            progressDialog.Show(trans, "progress");
+
+        }
+
+        public void CloseProgressDialog()
+        {
+            if (progressDialog != null)
+            {
+                progressDialog.Dismiss();
+                progressDialog = null;
+            }
+        }
         private void BtnEndDate_Click(object sender, EventArgs e)
         {
             
