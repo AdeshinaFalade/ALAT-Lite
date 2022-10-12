@@ -22,6 +22,10 @@ namespace ALAT_Lite.Classes
         public string gender { get; set; }
         public int guardianId { get; set; }
         public string address { get; set; }
+        public string idUrl { get; set; }
+        public string wardPassportUrl { get; set; }
+        public string guardianPassportUrl { get; set; }
+        public string birthCertUrl { get; set; }
 
     }
 }

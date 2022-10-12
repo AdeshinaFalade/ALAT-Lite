@@ -33,6 +33,7 @@ namespace ALAT_Lite.Activities
         LinearLayout linearLayoutDoc;
         public Bitmap bitmap;
         public static int wardId;
+        public static RegisterWardModel registerWard = new RegisterWardModel();
         public static string token;
         public List<string> links = new List<string>();
         public ProgressFragment progressDialog;
@@ -71,6 +72,10 @@ namespace ALAT_Lite.Activities
 
             wardId = Preferences.Get("wardId", 0);
             token = Preferences.Get("token", "");
+
+            
+
+
 
             btnSubmit.Click += BtnSubmit_Click;
             imgAttachBirthCert.Click += ImgAttachBirthCert_Click;
@@ -158,9 +163,69 @@ namespace ALAT_Lite.Activities
                 Toast.MakeText(this, "Upload all the required documents", ToastLength.Short).Show();
                 return;
             }
-            var docLinks = new UploadDocsModel() { birthCertUrl = links[1], guardianPassportUrl = links[3], idCardUrl = links[2], wardPassportUrl = links[0] };
-            UploadDocuments(wardId, docLinks);
-            
+
+            Setup();
+
+            CreateWard(registerWard);
+
+        }
+
+        void Setup()
+        {
+            int userId = Preferences.Get("userId", 0);
+            var wardFirstName = Preferences.Get("WardFirstName", "");
+            var wardLastName = Preferences.Get("WardLastName", "");
+            var wardMiddleName = Preferences.Get("WardMiddleName", "");
+            var wardEmail = Preferences.Get("WardEmail", "");
+            var wardGender = Preferences.Get("WardGender", "");
+            var wardDOB = Preferences.Get("WardDOB", "");
+            var firstName = Preferences.Get("firstName", "");
+            var lastName = Preferences.Get("lastName", "");
+            var guardMail = Preferences.Get("email", "");
+            var bvn = Preferences.Get("bvn", "");
+            var phone = Preferences.Get("phone", "");
+            var address = Preferences.Get("address", "");
+            registerWard.firstName = wardFirstName;
+            registerWard.lastName = wardLastName;
+            registerWard.middleName = wardMiddleName;
+            registerWard.emailAddress = wardEmail;
+            registerWard.gender = wardGender;
+            registerWard.dateOfBirth = wardDOB;
+            registerWard.address = address;
+            registerWard.guardianId = userId;
+            registerWard.phoneNumber = phone;
+            registerWard.birthCertUrl = links[1];
+            registerWard.idUrl = links[2];
+            registerWard.wardPassportUrl = links[0];
+            registerWard.guardianPassportUrl = links[3];
+        }
+
+        public async void CreateWard(RegisterWardModel model)
+        {
+            string result = string.Empty;
+            try
+            {
+                ShowProgressDialog("Submitting");
+                var rawString = JsonConvert.SerializeObject(model);
+                result = await NetworkUtils.PostUserData("Guardian/GuardianRegisterWardNew", rawString, token);
+                if (!string.IsNullOrEmpty(result) && result == "Ward Account Created! Update Your Documents")
+                {
+                    CloseProgressDialog();
+
+                    ShowAlert();
+                }
+                else
+                {
+                    CloseProgressDialog();
+                }
+            }
+            catch (Exception e)
+            {
+                CloseProgressDialog();
+                Toast.MakeText(this, e.Message, ToastLength.Short).Show();
+            }
+
+
         }
 
         public async void UploadDocuments(int id, UploadDocsModel model)

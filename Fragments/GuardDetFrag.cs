@@ -1,4 +1,5 @@
-﻿using ALAT_Lite.Classes;
+﻿using ALAT_Lite.Activities;
+using ALAT_Lite.Classes;
 using Android;
 using Android.App;
 using Android.Content;
@@ -74,6 +75,9 @@ namespace ALAT_Lite.Fragments
             edtGuardEmail.Text = guardMail;
             edtBvn.Text = bvn;
 
+            Preferences.Set("address", edtAddress.Text);
+
+            /**
             registerWard.firstName = wardFirstName;
             registerWard.lastName = wardLastName;
             registerWard.middleName = wardMiddleName;
@@ -83,6 +87,7 @@ namespace ALAT_Lite.Fragments
             registerWard.address = edtAddress.Text;
             registerWard.guardianId = userId;
             registerWard.phoneNumber = phone;
+            **/
 
 
             btnSubmit.Click += BtnSubmit_Click;
@@ -151,8 +156,9 @@ namespace ALAT_Lite.Fragments
                 Toast.MakeText(Activity, "Invalid Email Address", ToastLength.Short).Show();
                 return;
             }
-
-            CreateWard(registerWard);
+            Intent intent = new Intent(Activity, typeof(DocumentationActivity));
+            StartActivity(intent);
+            Activity.Finish();
         }
 
         public async void CreateWard(RegisterWardModel model)

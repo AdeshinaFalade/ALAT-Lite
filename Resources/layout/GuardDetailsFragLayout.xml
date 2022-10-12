@@ -191,7 +191,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:text="Submit"
+                android:text="Next"
                 android:layout_gravity="right"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/white"

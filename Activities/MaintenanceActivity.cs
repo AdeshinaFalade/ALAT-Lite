@@ -33,7 +33,7 @@ namespace ALAT_Lite.Activities
             btnAcctStatement = FindViewById<RelativeLayout>(Resource.Id.btnAcctStatement);
             btnRestrictAcct = FindViewById<RelativeLayout>(Resource.Id.btnRestrictAcct);
             btnSetLimits = FindViewById<RelativeLayout>(Resource.Id.btnSetLimits);
-            btnDocumentation = FindViewById<RelativeLayout>(Resource.Id.btnDocumentation);
+            //btnDocumentation = FindViewById<RelativeLayout>(Resource.Id.btnDocumentation);
 
             //setup toolbar
 
@@ -48,7 +48,7 @@ namespace ALAT_Lite.Activities
             btnAcctStatement.Click += BtnAcctStatement_Click;
             btnRestrictAcct.Click += BtnRestrictAcct_Click;
             btnSetLimits.Click += BtnSetLimits_Click;
-            btnDocumentation.Click += BtnDocumentation_Click;
+            //btnDocumentation.Click += BtnDocumentation_Click;
 
         }
 

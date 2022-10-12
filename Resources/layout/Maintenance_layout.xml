@@ -210,7 +210,7 @@
         </RelativeLayout>
     
     </androidx.cardview.widget.CardView>
-
+    <!--
      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardBackgroundColor="@color/colorBackground"
@@ -260,6 +260,7 @@
         </RelativeLayout>
     
     </androidx.cardview.widget.CardView>
+    -->
         
 
    

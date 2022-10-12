@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Documents Uploaded\nSuccessfully"
+        android:text="Successful!\nCheck Mail For Further \nInformation"
         android:textColor="@android:color/white"
         android:id="@+id/txtDialog"
         android:layout_marginTop="40dp"

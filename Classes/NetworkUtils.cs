@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace ALAT_Lite.Classes
 {
+    /// <summary>
+    /// Contains methods for http requests
+    /// </summary>
     public class NetworkUtils
     {
         internal static string baseUrl = "https://galacticos-alat-apim.azure-api.net/api/";
