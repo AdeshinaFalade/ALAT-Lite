@@ -40,8 +40,6 @@ namespace ALAT_Lite
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-             childImage = FindViewById<ImageView>(Resource.Id.childImage);
-            //childImage.Click += ChildImage_Click;
             email = FindViewById<EditText>(Resource.Id.edtEmail);
             password = FindViewById<TextInputEditText>(Resource.Id.edtPassword);
             login = FindViewById<AppCompatButton>(Resource.Id.btnLogin);
@@ -188,14 +186,7 @@ namespace ALAT_Lite
             }
         }
 
-        private void ChildImage_Click(object sender, System.EventArgs e)
-        {
-            var myIntent = new Intent(this,typeof(ChildLoginActivity));
-            StartActivityForResult(myIntent,1000);
-            SetResult(Result.Ok, myIntent);
-            Finish();
-        }
-
+        
 
        
     }

@@ -378,7 +378,7 @@
                 android:id="@+id/imageView9" 
                     />
             <TextView
-                android:text="Rhoyal Kiddies\nAccount"
+                android:text="Royal Kiddies\nAccount"
                 android:textSize="10sp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"

@@ -103,7 +103,10 @@ namespace ALAT_Lite.Activities
                 else if (result == "Unauthorized")
                 {
                     CloseProgressDialog();
-                    Toast.MakeText(this, "Your session has expired, Kindly log in again or refresh in the home page", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Your session has expired", ToastLength.Short).Show();
+                    Intent intent = new Intent(this, typeof(MainActivity));
+                    StartActivity(intent);
+                    Finish();
                 }
                 else
                 {
