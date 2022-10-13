@@ -39,7 +39,7 @@ namespace ALAT_Lite.Classes
             {
                 using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
                 {
-                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.Timeout = TimeSpan.FromMinutes(3);
 
                     var response = await mClient.PostAsync($"{actionName}", new StringContent(rawData, System.Text.Encoding.UTF8, "application/json")).ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
@@ -67,7 +67,7 @@ namespace ALAT_Lite.Classes
             {
                 using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
                 {
-                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.Timeout = TimeSpan.FromMinutes(3);
                     mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     var response = await mClient.PostAsync($"{actionName}",null).ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
@@ -104,7 +104,7 @@ namespace ALAT_Lite.Classes
             {
                 using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl)})
                 {
-                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.Timeout = TimeSpan.FromMinutes(3);
                     mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                     var response = await mClient.PostAsync($"{actionName}", new StringContent(rawData, System.Text.Encoding.UTF8, "application/json")).ConfigureAwait(false);
@@ -137,7 +137,7 @@ namespace ALAT_Lite.Classes
             {
                 using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
                 {
-                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.Timeout = TimeSpan.FromMinutes(3);
 
                     var response = await mClient.GetAsync($"{actionName}").ConfigureAwait(false);
                     if (response.IsSuccessStatusCode)
@@ -165,7 +165,7 @@ namespace ALAT_Lite.Classes
             {
                 using (var mClient = new HttpClient() { BaseAddress = new Uri(baseUrl) })
                 {
-                    mClient.Timeout = TimeSpan.FromMinutes(1);
+                    mClient.Timeout = TimeSpan.FromMinutes(3);
                     mClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                     var response = await mClient.GetAsync($"{actionName}").ConfigureAwait(false);

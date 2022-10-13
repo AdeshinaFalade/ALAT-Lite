@@ -9,6 +9,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.Widget;
 using Google.Android.Material.Button;
 using Newtonsoft.Json;
 using Plugin.Media;
@@ -25,8 +26,10 @@ namespace ALAT_Lite.Fragments
     {
         public static RegisterWardModel registerWard = new RegisterWardModel();
         public static string token;
+        public static bool isWardDownload;
         public ProgressFragment progressDialog;
         MaterialButton btnSubmit;
+        AppCompatCheckBox appCompatCheck;
         EditText edtGuardFirstName, edtGuardLastName, edtGuardEmail, edtGuardMiddleName, edtBvn, edtAddress;
 
 
@@ -53,6 +56,17 @@ namespace ALAT_Lite.Fragments
             edtGuardMiddleName = view.FindViewById<EditText>(Resource.Id.edtGuardMiddleName);
             edtBvn = view.FindViewById<EditText>(Resource.Id.edtBVN);
             edtAddress = view.FindViewById<EditText>(Resource.Id.edtAddress);
+            appCompatCheck = view.FindViewById<AppCompatCheckBox>(Resource.Id.download_checked);
+
+            appCompatCheck.Click += (o, e) =>
+            {
+                if (appCompatCheck.Checked)
+                {
+                    isWardDownload = true;
+                }
+                else
+                    isWardDownload = false;
+            };
 
             //retrieve shared pref
             token = Preferences.Get("token", "");
@@ -76,6 +90,7 @@ namespace ALAT_Lite.Fragments
             edtBvn.Text = bvn;
 
             Preferences.Set("address", edtAddress.Text);
+            Preferences.Set("isWardDownload", isWardDownload);
 
             /**
             registerWard.firstName = wardFirstName;

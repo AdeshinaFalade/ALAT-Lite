@@ -128,15 +128,17 @@ namespace ALAT_Lite
                     {
                         var bvn = loginDetails.bvn.ToString();
                         Preferences.Set("bvn", bvn);
-                        Intent intent = new Intent(this, typeof(GuardianActivity));
                         CloseProgressDialog();
+                        Intent intent = new Intent(this, typeof(GuardianActivity));
+                        
                         StartActivity(intent);
                         password.Text = "";
                     }
                     else if (role == "Ward")
                     {
-                        Intent intent = new Intent(this, typeof(ChildDashboardActivity));
                         CloseProgressDialog();
+                        Intent intent = new Intent(this, typeof(ChildDashboardActivity));
+                        
                         StartActivity(intent);
                         password.Text = "";
                     }
@@ -159,10 +161,14 @@ namespace ALAT_Lite
                 CloseProgressDialog();
                 if (e.Message == "Unexpected character encountered while parsing value: B. Path '', line 0, position 0.")
                 {
+                    CloseProgressDialog();
                     Toast.MakeText(this, "Wrong email or password", ToastLength.Short).Show();
                 }
                 else
+                {
+                    CloseProgressDialog();
                     Toast.MakeText(this, "Oops! an error occured, Kindly try again. ", ToastLength.Short).Show();
+                }
             }
 
 

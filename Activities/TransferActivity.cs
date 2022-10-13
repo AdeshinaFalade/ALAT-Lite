@@ -136,13 +136,13 @@ namespace ALAT_Lite.Activities
             {
                 ShowProgressDialog("Processing");
                 result = await NetworkUtils.PostData($"Guardian/transfer_to_ward?userId={id}&fromAccount={sendersAcct}&toAccount={recipientAcct}&amount={amount}&password={password}", token);
-                var resultObject = JObject.Parse(result);
-                if (!string.IsNullOrEmpty(result) && resultObject["responseMessage"].ToString() == "Transaction Successful")
+                
+                if (!string.IsNullOrEmpty(result) && result == "Transaction Successful")
                 {
                     CloseProgressDialog();
                     ShowAlert();
                 }
-                else if (!string.IsNullOrEmpty(result) && resultObject["responseMessage"].ToString().ToLower() == "enter valid password")
+                else if (!string.IsNullOrEmpty(result) && result == "enter valid password")
                 {
                     CloseProgressDialog();
                     Toast.MakeText(this, "Wrong password", ToastLength.Short).Show();

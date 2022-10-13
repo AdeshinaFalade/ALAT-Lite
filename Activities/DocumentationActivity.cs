@@ -185,6 +185,7 @@ namespace ALAT_Lite.Activities
             var bvn = Preferences.Get("bvn", "");
             var phone = Preferences.Get("phone", "");
             var address = Preferences.Get("address", "");
+            var isWardDownload = Preferences.Get("isWardDownload", false);
             registerWard.firstName = wardFirstName;
             registerWard.lastName = wardLastName;
             registerWard.middleName = wardMiddleName;
@@ -194,6 +195,7 @@ namespace ALAT_Lite.Activities
             registerWard.address = address;
             registerWard.guardianId = userId;
             registerWard.phoneNumber = phone;
+            registerWard.isDownload = isWardDownload;
             registerWard.birthCertUrl = links[1];
             registerWard.idUrl = links[2];
             registerWard.wardPassportUrl = links[0];

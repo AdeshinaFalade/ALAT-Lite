@@ -26,6 +26,7 @@ namespace ALAT_Lite.Classes
         public string wardPassportUrl { get; set; }
         public string guardianPassportUrl { get; set; }
         public string birthCertUrl { get; set; }
+        public bool isDownload { get; set; }
 
     }
 }

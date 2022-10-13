@@ -32,7 +32,7 @@
              <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Limit"
+            android:text="Set Monthly Limit"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
